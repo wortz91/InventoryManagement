@@ -19,40 +19,86 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        android:background="@color/ColorPrimaryDark">
 
-
-        <TextView
-            style="@style/MainScreenTheme"
-            android:text="Hello" />
 
         <Button
-            android:id="@+id/button1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Fragment No.1"
-            android:onClick="selectFrag"
-            />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:onClick="selectFrag"
-            android:text="Fragment No.2" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:onClick="selectFrag"
-            android:text="Fragment No.3" />
-
-        <fragment
-            android:id="@+id/test_fragment"
-            android:name="wortman.com.inventorymanagement.FragmentOne"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:text="VIEW CURRENT INVENTORY"
+            android:id="@+id/viewButton"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/ColorPrimaryDark"
+            android:outlineProvider="bounds"
+            android:textColor="@color/ColorPrimaryTextColor"
+            android:drawableLeft="@android:drawable/ic_menu_camera"
+            android:drawablePadding="55px"
+            android:layout_marginBottom="25px"
+            android:layout_marginTop="15px"
+            android:textSize="55px"
+            android:gravity="left|center_vertical" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADD ITEM"
+            android:id="@+id/addItemButton"
+            android:background="@color/ColorPrimaryDark"
+            android:outlineProvider="bounds"
+            android:textColor="@color/ColorPrimaryTextColor"
+            android:drawableLeft="@android:drawable/ic_menu_camera"
+            android:drawablePadding="55px"
+            android:layout_marginBottom="25px"
+            android:textAlignment="gravity"
+            android:layout_gravity="center_horizontal"
+            android:gravity="left|center_vertical"
+            android:textSize="55px" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BARCODE SCANNER"
+            android:id="@+id/barcodeButton"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/ColorPrimaryDark"
+            android:outlineProvider="bounds"
+            android:textColor="@color/ColorPrimaryTextColor"
+            android:drawableLeft="@android:drawable/ic_menu_camera"
+            android:drawablePadding="55px"
+            android:layout_marginBottom="25px"
+            android:textSize="55px"
+            android:gravity="left|center_vertical" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GENERATE REPORT"
+            android:id="@+id/reportButton"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/ColorPrimaryDark"
+            android:outlineProvider="bounds"
+            android:textColor="@color/ColorPrimaryTextColor"
+            android:drawableLeft="@android:drawable/ic_menu_camera"
+            android:drawablePadding="55px"
+            android:layout_marginBottom="25px"
+            android:textSize="55px"
+            android:gravity="left|center_vertical" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOCATE NEARBY ITEMS"
+            android:id="@+id/locateNearbyButton"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/ColorPrimaryDark"
+            android:outlineProvider="bounds"
+            android:textColor="@color/ColorPrimaryTextColor"
+            android:drawableLeft="@android:drawable/ic_menu_camera"
+            android:drawablePadding="55px"
+            android:layout_marginBottom="25px"
+            android:textSize="55px"
+            android:gravity="left|center_vertical" />
 
     </LinearLayout>
 </RelativeLayout>

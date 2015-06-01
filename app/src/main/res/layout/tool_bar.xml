@@ -2,11 +2,13 @@
 <android.support.v7.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/ColorPrimary"
+    android:background="@color/ColorPrimaryDark"
     android:textColor="@color/TextColorActionBar"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    android:elevation="4dp">
+    android:elevation="4dp"
+    tools:showIn="@layout/activity_main">
 
 </android.support.v7.widget.Toolbar>
