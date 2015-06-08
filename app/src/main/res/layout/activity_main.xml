@@ -4,11 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:theme="@style/AppTheme">
 
     <include
         android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"></include>
+        layout="@layout/tool_bar">
+    </include>
+
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -22,83 +25,37 @@
         tools:context=".MainActivity"
         android:background="@color/ColorPrimaryDark">
 
+        <include
+            android:id="@+id/search_view"
+            layout="@layout/search_view">
+        </include>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="VIEW CURRENT INVENTORY"
-            android:id="@+id/viewButton"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/ColorPrimaryDark"
-            android:outlineProvider="bounds"
-            android:textColor="@color/ColorPrimaryTextColor"
-            android:drawableLeft="@android:drawable/ic_menu_camera"
-            android:drawablePadding="55px"
-            android:layout_marginBottom="25px"
-            android:layout_marginTop="15px"
-            android:textSize="55px"
-            android:gravity="left|center_vertical" />
+        <include
+            android:id="@+id/inventory_button"
+            layout="@layout/inventory_button">
+        </include>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ADD ITEM"
-            android:id="@+id/addItemButton"
-            android:background="@color/ColorPrimaryDark"
-            android:outlineProvider="bounds"
-            android:textColor="@color/ColorPrimaryTextColor"
-            android:drawableLeft="@android:drawable/ic_menu_camera"
-            android:drawablePadding="55px"
-            android:layout_marginBottom="25px"
-            android:textAlignment="gravity"
-            android:layout_gravity="center_horizontal"
-            android:gravity="left|center_vertical"
-            android:textSize="55px" />
+        <include
+            android:id="@+id/add_button"
+            layout="@layout/add_button">
+        </include>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="BARCODE SCANNER"
-            android:id="@+id/barcodeButton"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/ColorPrimaryDark"
-            android:outlineProvider="bounds"
-            android:textColor="@color/ColorPrimaryTextColor"
-            android:drawableLeft="@android:drawable/ic_menu_camera"
-            android:drawablePadding="55px"
-            android:layout_marginBottom="25px"
-            android:textSize="55px"
-            android:gravity="left|center_vertical" />
+        <include
+            android:id="@+id/barcode_button"
+            layout="@layout/barcode_button">
+        </include>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="GENERATE REPORT"
-            android:id="@+id/reportButton"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/ColorPrimaryDark"
-            android:outlineProvider="bounds"
-            android:textColor="@color/ColorPrimaryTextColor"
-            android:drawableLeft="@android:drawable/ic_menu_camera"
-            android:drawablePadding="55px"
-            android:layout_marginBottom="25px"
-            android:textSize="55px"
-            android:gravity="left|center_vertical" />
+        <include
+            android:id="@+id/report_button"
+            layout="@layout/report_button">
+        </include>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="LOCATE NEARBY ITEMS"
-            android:id="@+id/locateNearbyButton"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/ColorPrimaryDark"
-            android:outlineProvider="bounds"
-            android:textColor="@color/ColorPrimaryTextColor"
-            android:drawableLeft="@android:drawable/ic_menu_camera"
-            android:drawablePadding="55px"
-            android:layout_marginBottom="25px"
-            android:textSize="55px"
-            android:gravity="left|center_vertical" />
+        <include
+            android:id="@+id/nearby_button"
+            layout="@layout/nearby_button"
+            >
+        </include>
 
     </LinearLayout>
+
 </RelativeLayout>

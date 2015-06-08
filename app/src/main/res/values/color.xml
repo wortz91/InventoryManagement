@@ -4,5 +4,9 @@
     <color name="ColorPrimary">#2C2C2C</color>
     <color name="TextColorActionBar">#52EA70</color>
     <color name="ColorPrimaryDark">#2C2C2C</color>
-    <color name="ColorPrimaryTextColor">#52EA70</color>
+    <color name="ColorPrimaryTextColor">#38A664</color>
+    <color name="MenuTitleTextColor">#EFEFEF</color>
+    <color name="MenuSecondaryTitleTextColor">#9F9F9F</color>
+    <color name="ButtonBackgroundColor">#52EA70</color>
+    <color name="HintTextColor">#3C3C3C</color>
 </resources>
