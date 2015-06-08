@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp"
+    android:layout_centerVertical="true"
+    android:theme="@style/AppTheme">
+
+    <ImageView
+        android:id="@+id/near_button_image"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/locate_nearby_menu_icon"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"/>
+
+    <TextView
+        android:id="@+id/near_button_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/MenuTitleTextColor"
+        android:layout_alignTop="@+id/near_button_image"
+        android:layout_toRightOf="@+id/near_button_image"
+        android:text="LOCATE NEARBY ITEMS"/>
+
+    <TextView
+        android:id="@+id/near_button_text2"
+        android:layout_width="wrap_content"
+        android:text="Find inventory based on location"
+        android:textColor="@color/MenuSecondaryTitleTextColor"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/near_button_text1"
+        android:layout_alignLeft="@+id/near_button_text1"/>
+</RelativeLayout>

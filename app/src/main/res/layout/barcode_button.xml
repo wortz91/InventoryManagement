@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp"
+    android:theme="@style/AppTheme">
+
+    <ImageView
+        android:id="@+id/barc_button_image"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/barcode_menu_icon"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp" />
+
+    <TextView
+        android:id="@+id/barc_button_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/MenuTitleTextColor"
+        android:layout_alignTop="@+id/barc_button_image"
+        android:layout_toRightOf="@+id/barc_button_image"
+        android:text="BARCODE SCANNER"/>
+
+    <TextView
+        android:id="@+id/barc_button_text2"
+        android:layout_width="wrap_content"
+        android:text="Scan barcode for inventory lookup"
+        android:textColor="@color/MenuSecondaryTitleTextColor"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/barc_button_text1"
+        android:layout_alignLeft="@+id/barc_button_text1"/>
+
+</RelativeLayout>
