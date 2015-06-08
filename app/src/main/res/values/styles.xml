@@ -7,6 +7,9 @@
         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textStyle">normal</item>
+        <item name="colorControlNormal">@color/HintTextColor</item>
+        <item name="colorControlActivated">@color/ColorPrimaryTextColor</item>
+        <item name="colorControlHighlight">@color/ButtonBackgroundColor</item>
 
         <item name="android:actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
         <!-- Support library compatibility -->

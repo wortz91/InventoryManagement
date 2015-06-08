@@ -1,13 +1,12 @@
 package wortman.com.inventorymanagement;
 
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
 import android.widget.Toast;
 
 import wortman.com.openshiftapplication.R;
@@ -20,15 +19,15 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_main);
         //ACTION BAR TO BE ON EACH ACTIVITY
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
         //Action bar settings
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //getSupportActionBar().setIcon(R.drawable.inv_man);
-        //getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.inv_man);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         RelativeLayoutButton button1 = new RelativeLayoutButton(this,R.id.inventory_button);
         RelativeLayoutButton button2 = new RelativeLayoutButton(this,R.id.add_button);
@@ -39,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "View Inventory Button Clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "View Inventory Button Clicked", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -47,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Add Inventory Button Clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Add Inventory Button Clicked", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -55,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Barcode Scanner Button clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Barcode Scanner Button clicked", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -63,7 +62,7 @@ public class MainActivity extends ActionBarActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Generate Report Button Clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Generate Report Button Clicked", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -71,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Locate Nearby Button Clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Locate Nearby Button Clicked", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -112,16 +111,16 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(MainActivity.this, "Settings Button Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Settings Button Clicked", Toast.LENGTH_SHORT).show();
         }
         if (id == R.id.action_help) {
-            Toast.makeText(MainActivity.this, "Help Button Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Help Button Clicked", Toast.LENGTH_SHORT).show();
         }
         if (id == R.id.action_print) {
-            Toast.makeText(MainActivity.this, "Print Button Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
         }
         if (id == R.id.action_main) {
-            Toast.makeText(MainActivity.this, "Main Menu Button Clicked", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Main Menu Button Clicked", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);
