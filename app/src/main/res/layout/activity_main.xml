@@ -30,31 +30,61 @@
             layout="@layout/search_view">
         </include>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"/>
+
         <include
             android:id="@+id/inventory_button"
             layout="@layout/inventory_button">
         </include>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"/>
 
         <include
             android:id="@+id/add_button"
             layout="@layout/add_button">
         </include>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"/>
+
         <include
             android:id="@+id/barcode_button"
             layout="@layout/barcode_button">
         </include>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"/>
 
         <include
             android:id="@+id/report_button"
             layout="@layout/report_button">
         </include>
 
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"/>
+
         <include
             android:id="@+id/nearby_button"
             layout="@layout/nearby_button"
             >
         </include>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"/>
 
     </LinearLayout>
 
