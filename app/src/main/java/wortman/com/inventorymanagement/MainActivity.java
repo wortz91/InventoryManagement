@@ -1,6 +1,8 @@
 package wortman.com.inventorymanagement;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +15,8 @@ import wortman.com.openshiftapplication.R;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private Activity submitActivity = this;
 
     //private Toolbar toolbar;
 
@@ -46,8 +50,8 @@ public class MainActivity extends ActionBarActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Add Inventory Button Clicked", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(submitActivity, IMAddActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -77,22 +81,22 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-    public void selectFrag(View view) {
-        android.support.v4.app.Fragment fr;
+   // public void selectFrag(View view) {
+    //    android.support.v4.app.Fragment fr;
 
-        if(view == findViewById(R.id.button2)) {
-            fr = new FragmentTwo();
-        } else if (view == findViewById(R.id.button3)) {
-            fr = new FragmentThree();
-        } else {
-            fr = new FragmentOne();
-        }
+   //     if(view == findViewById(R.id.button2)) {
+   //         fr = new FragmentTwo();
+   //     } else if (view == findViewById(R.id.button3)) {
+   //         fr = new FragmentThree();
+   //     } else {
+   //         fr = new FragmentOne();
+   //     }
 
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.replace(R.id.test_fragment, fr);
-        fragmentTransaction.commit();
-    }
+   //     android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+   //     android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+   //     fragmentTransaction.replace(R.id.test_fragment, fr);
+   //    fragmentTransaction.commit();
+   // }
 
 
     @Override
