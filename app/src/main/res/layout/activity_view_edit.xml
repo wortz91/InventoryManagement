@@ -30,6 +30,214 @@
             layout="@layout/search_view">
         </include>
 
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VIEW/EDIT INVENTORY ITEM"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/viewEditInventory_Title"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/ColorPrimaryTextColor"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:textSize="23dp" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_editText"
+                android:layout_alignParentEnd="true"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                android:text="Some Label" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Label"
+                android:id="@+id/label_textView"
+                android:textColor="@color/ColorPrimaryTextColor"
+                android:textSize="20dp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/itemName_editText"
+                android:layout_alignParentEnd="true"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                android:text="Some Item Name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Item Name"
+                android:id="@+id/itemName_textView"
+                android:textColor="@color/ColorPrimaryTextColor"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/catagory_editText"
+                android:layout_alignParentEnd="true"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                android:text="Some Catagory" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Catagory"
+                android:id="@+id/catagory_textView"
+                android:textColor="@color/ColorPrimaryTextColor"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/model_editText"
+                android:layout_alignParentEnd="true"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                android:text="Some Model" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Model"
+                android:id="@+id/model_textView"
+                android:textColor="@color/ColorPrimaryTextColor"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/condition_editText"
+                android:layout_alignParentEnd="true"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                android:text="Some Condition" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Condition"
+                android:id="@+id/condition_textView"
+                android:textColor="@color/ColorPrimaryTextColor"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="225dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/location_editText"
+                android:layout_alignParentEnd="true"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:clickable="false"
+                android:text="Some Location" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Location"
+                android:id="@+id/location_textView"
+                android:textColor="@color/ColorPrimaryTextColor"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="SAVE"
+                android:id="@+id/save_button"
+                android:textSize="20dp"
+                android:background="@color/ButtonBackgroundColor"
+                android:textColor="@color/ColorPrimaryDark"
+                android:layout_marginTop="25dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="50dp"
+                android:visibility="invisible" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="EDIT"
+                android:id="@+id/edit_button"
+                android:textSize="20dp"
+                android:background="@color/ButtonBackgroundColor"
+                android:textColor="@color/ColorPrimaryDark"
+                android:layout_marginTop="25dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="50dp"
+                android:visibility="visible" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:id="@+id/cancel_button"
+                android:textSize="20dp"
+                android:background="@color/ButtonBackgroundColor"
+                android:textColor="@color/ColorPrimaryDark"
+                android:layout_marginTop="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="50dp" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

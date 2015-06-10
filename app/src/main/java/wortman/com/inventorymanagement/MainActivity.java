@@ -42,7 +42,8 @@ public class MainActivity extends ActionBarActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "View Inventory Button Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(submitActivity, IMViewEditActivity.class);
+                startActivity(intent);
 
             }
         });

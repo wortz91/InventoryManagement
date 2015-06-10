@@ -10,6 +10,8 @@
 
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_add">AddActivity</string>
+    <string name="title_activity_view_edit">ViewEditActivity</string>
 
 
     <string name="error_field_required">Field Required</string>

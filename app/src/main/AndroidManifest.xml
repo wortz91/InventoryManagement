@@ -27,7 +27,12 @@
 
         <activity
             android:name="wortman.com.inventorymanagement.IMAddActivity"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_add" >
+        </activity>
+
+        <activity
+            android:name="wortman.com.inventorymanagement.IMViewEditActivity"
+            android:label="@string/title_activity_view_edit" >
         </activity>
 
     </application>
