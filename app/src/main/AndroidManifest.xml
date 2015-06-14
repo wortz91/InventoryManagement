@@ -12,8 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="wortman.com.inventorymanagement.IMLoginActivity"
-            android:label="@string/title_activity_login">
+            android:name="wortman.com.inventorymanagement.IMLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,18 +20,19 @@
         </activity>
 
         <activity
-            android:name="wortman.com.inventorymanagement.MainActivity"
-            android:label="@string/title_activity_main" >
+            android:name="wortman.com.inventorymanagement.MainActivity">
         </activity>
 
         <activity
-            android:name="wortman.com.inventorymanagement.IMAddActivity"
-            android:label="@string/title_activity_add" >
+            android:name="wortman.com.inventorymanagement.IMAddActivity">
         </activity>
 
         <activity
-            android:name="wortman.com.inventorymanagement.IMViewEditActivity"
-            android:label="@string/title_activity_view_edit" >
+            android:name="wortman.com.inventorymanagement.IMViewEditActivity">
+        </activity>
+
+        <activity
+            android:name="wortman.com.inventorymanagement.IMInventoryActivity">
         </activity>
 
     </application>

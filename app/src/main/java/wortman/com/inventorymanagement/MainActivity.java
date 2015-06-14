@@ -42,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(submitActivity, IMViewEditActivity.class);
+                Intent intent = new Intent(submitActivity, IMInventoryActivity.class);
                 startActivity(intent);
 
             }

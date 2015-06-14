@@ -12,6 +12,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_add">AddActivity</string>
     <string name="title_activity_view_edit">ViewEditActivity</string>
+    <string name="title_activity_inventory">InventoryActivity</string>
 
 
     <string name="error_field_required">Field Required</string>

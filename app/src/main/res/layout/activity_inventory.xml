@@ -30,6 +30,10 @@
             layout="@layout/search_view">
         </include>
 
+        <include
+            android:id="@+id/inventory_view"
+            layout="@layout/inventory_view">
+        </include>
     </LinearLayout>
 
 </RelativeLayout>
