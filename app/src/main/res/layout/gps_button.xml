@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp"
+    android:theme="@style/AppTheme"
+    android:id="@+id/wireless_button">
+
+    <TextView
+        android:id="@+id/gps_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/MenuTitleTextColor"
+        android:text="Use GPS satellites"/>
+
+    <TextView
+        android:id="@+id/gps_text2"
+        android:layout_width="wrap_content"
+        android:text="When locating, accurate to street level"
+        android:textColor="@color/MenuSecondaryTitleTextColor"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gps_text"
+        android:layout_alignLeft="@+id/gps_text"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignRight="@+id/gps_text" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:checked="true" />
+
+</RelativeLayout>
