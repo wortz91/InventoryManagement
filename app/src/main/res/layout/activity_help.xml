@@ -23,12 +23,94 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context=".MainActivity"
-        android:background="@color/ColorPrimaryDark">
+        android:background="@color/ColorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:weightSum="1">
 
         <include
             android:id="@+id/search_view"
             layout="@layout/search_view">
         </include>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INVENTORY MANAGEMENT HELP"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/editText"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/ColorPrimaryTextColor"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:textSize="23dp"
+            android:gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/HelpTopic1"
+            android:text="Help Topic 1"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/ColorPrimaryTextColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:id="@+id/Help1"
+            android:textColor="#9f9f9f" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/HelpTopic2"
+            android:text="Help Topic 2"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/ColorPrimaryTextColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:id="@+id/Help2"
+            android:textColor="#9f9f9f"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/HelpTopic3"
+            android:text="Help Topic 3"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/ColorPrimaryTextColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:id="@+id/Help3"
+            android:textColor="#9f9f9f"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/HelpTopic4"
+            android:text="Help Topic 4"
+            android:textColor="@color/ColorPrimaryTextColor" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:id="@+id/Help4"
+            android:textColor="#9f9f9f"
+            android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
 

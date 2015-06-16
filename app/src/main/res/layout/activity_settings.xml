@@ -18,11 +18,40 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context=".MainActivity"
-        android:background="@color/ColorPrimaryDark">
+        android:background="@color/ColorPrimaryDark"
+        android:weightSum="1">
 
         <include
             android:id="@+id/search_view"
             layout="@layout/search_view">
+        </include>
+
+        <TextView
+            android:layout_width="352dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="My Location"
+            android:id="@+id/Location"
+            android:textColor="#EFEFEF"
+            android:background="#ff1d814f"
+            android:textStyle="bold"
+            android:textSize="15dp" />
+
+        <include
+            android:id="@+id/wireless_button"
+            layout="@layout/wireless_button">
+        </include>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"/>
+
+        <include
+            android:id="@+id/gps_button"
+            layout="@layout/gps_button">
         </include>
 
     </LinearLayout>
