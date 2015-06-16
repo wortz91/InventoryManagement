@@ -42,7 +42,7 @@ public class MainActivity extends ActionBarActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(submitActivity, IMInventoryActivity.class);
+                Intent intent = new Intent(submitActivity, IMViewEditActivity.class);
                 startActivity(intent);
 
             }
@@ -59,8 +59,8 @@ public class MainActivity extends ActionBarActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Barcode Scanner Button clicked", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(submitActivity, IMBarcodeActivity.class);
+                startActivity(intent);
             }
         });
 

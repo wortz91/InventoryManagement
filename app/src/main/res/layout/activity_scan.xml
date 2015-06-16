@@ -30,6 +30,15 @@
             layout="@layout/search_view">
         </include>
 
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="SCAN AGAIN"
+            android:id="@+id/scanBtn"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/ButtonBackgroundColor"
+            android:textColor="@color/ColorPrimaryDark" />
+
     </LinearLayout>
 
 </RelativeLayout>
