@@ -72,6 +72,7 @@
                         android:text="LOCATION"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="@color/ColorPrimaryDark" />
+
                         <TextView
                             android:id="@+id/header4"
                             android:layout_width="wrap_content"
@@ -84,6 +85,7 @@
                             android:gravity="center"
                             android:textAppearance="?android:attr/textAppearanceMedium"
                             android:textColor="@color/ColorPrimaryDark" />
+
                         <TextView
                             android:id="@+id/header5"
                             android:layout_width="wrap_content"
@@ -137,15 +139,18 @@
                             android:gravity="center"
                             android:text="SomeLoc1"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
+
                         <TextView
                             android:id="@+id/editButton1"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:layout_marginLeft="1dp"
                             android:layout_weight="1"
-                            android:background="#2C2C2C"
+                            android:background="#ff149b00"
                             android:gravity="center"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:clickable="true" />
+
                         <TextView
                             android:id="@+id/deleteButton1"
                             android:layout_height="wrap_content"
@@ -153,9 +158,10 @@
                             android:layout_marginLeft="1dp"
                             android:layout_marginRight="1dp"
                             android:layout_weight="1"
-                            android:background="#2C2C2C"
+                            android:background="#ffff2d00"
                             android:gravity="center"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:clickable="true" />
                     </TableRow>
 
                     <TableRow
@@ -197,15 +203,18 @@
                             android:gravity="center"
                             android:text="SomeLoc2"
                             android:textAppearance="?android:attr/textAppearanceMedium" />
+
                         <TextView
                             android:id="@+id/editButton2"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
                             android:layout_marginLeft="1dp"
                             android:layout_weight="1"
-                            android:background="#2C2C2C"
+                            android:background="#ff149b00"
                             android:gravity="center"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:clickable="true" />
+
                         <TextView
                             android:id="@+id/deleteButton2"
                             android:layout_height="wrap_content"
@@ -213,8 +222,9 @@
                             android:layout_marginLeft="1dp"
                             android:layout_marginRight="1dp"
                             android:layout_weight="1"
-                            android:background="#2C2C2C"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:background="#ffff2d00"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:clickable="true" />
 
                     </TableRow>
                 </TableLayout>

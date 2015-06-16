@@ -1,6 +1,8 @@
 package wortman.com.inventorymanagement;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +15,8 @@ import wortman.com.openshiftapplication.R;
 
 
 public class IMInventoryActivity extends ActionBarActivity {
+
+    private Activity submitActivity = this;
 
     //private Toolbar toolbar;
 
@@ -28,6 +32,39 @@ public class IMInventoryActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        findViewById(R.id.editButton1).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(submitActivity, IMViewEditActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+        findViewById(R.id.editButton2).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(submitActivity, IMViewEditActivity.class);
+                        startActivity(intent);
+                    }
+                });
+        findViewById(R.id.deleteButton1).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(IMInventoryActivity.this, "Delete Button Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        findViewById(R.id.deleteButton2).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(IMInventoryActivity.this, "Delete Button Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
     }
