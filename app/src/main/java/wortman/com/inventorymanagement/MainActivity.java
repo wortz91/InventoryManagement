@@ -2,7 +2,11 @@ package wortman.com.inventorymanagement;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,9 +18,11 @@ import android.widget.Toast;
 import wortman.com.openshiftapplication.R;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements LocationListener {
 
     private Activity submitActivity = this;
+    private double latitude;
+    private double longitude;
 
     //private Toolbar toolbar;
 
@@ -67,20 +73,49 @@ public class MainActivity extends ActionBarActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Generate Report Button Clicked", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(submitActivity, IMReportActivity.class);
+                startActivity(intent);
             }
         });
 
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Locate Nearby Button Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(submitActivity, IMLocationActivity.class);
+                startActivity(intent);
 
             }
         });
 
     }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        if (location.getLatitude() != 0.0){
+            latitude = location.getLatitude();
+        }
+        if(location.getLongitude() != 0.0){
+            longitude = location.getLongitude();
+        }
+
+    }
+
+    public void setLocation() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        if (lm.getLastKnownLocation(LocationManager.GPS_PROVIDER) != null){
+            Location l = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            latitude = l.getLatitude();
+            longitude = l.getLongitude();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setLocation();
+    }
+
 
    // public void selectFrag(View view) {
     //    android.support.v4.app.Fragment fr;
@@ -129,5 +164,25 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // junk needed for location manager below
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        // TODO Auto-generated method stub
+
     }
 }
