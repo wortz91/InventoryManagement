@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/ColorPrimaryDark"
+    android:background="@color/ColorPrimary"
     android:textColor="@color/TextColorActionBar"
     app:theme="@style/AppTheme"
     android:elevation="1dp">
