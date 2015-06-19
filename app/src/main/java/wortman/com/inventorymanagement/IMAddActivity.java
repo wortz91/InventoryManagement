@@ -1,21 +1,66 @@
 package wortman.com.inventorymanagement;
 
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import wortman.com.openshiftapplication.R;
 
 
 public class IMAddActivity extends ActionBarActivity {
+    //this is for navigation with the overflow menu
+    private Activity submitActivity = this;
 
-    //private Toolbar toolbar;
+    //class variables from table
+    String label;
+    String itemName;
+    String category;
+    String model;
+    int condition;
+    String location;
+
+    //class variables that are automated
+    int id;
+    Double latitude;
+    Double longitude;
+    Date createDate;
+    Date lastEditDate;
+    String lastEditUser;
+
+
+    InputStream is = null;
+    String result = null;
+    String line = null;
+    int code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +75,41 @@ public class IMAddActivity extends ActionBarActivity {
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        final EditText lbl = (EditText) findViewById(R.id.label_editText);
+        final EditText itm = (EditText) findViewById(R.id.itemName_editText);
+        final EditText cat = (EditText) findViewById(R.id.category_editText);
+        final EditText modl = (EditText) findViewById(R.id.model_editText);
+        final EditText cond = (EditText) findViewById(R.id.condition_editText);
+        final EditText loc = (EditText) findViewById(R.id.location_editText);
+
         findViewById(R.id.add_button).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(IMAddActivity.this, "Add Button Clicked", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(IMAddActivity.this, "Add Button Clicked", Toast.LENGTH_SHORT).show();
+
+                        //global strings get text from EditText fields
+                        label = lbl.getText().toString();
+                        itemName = itm.getText().toString();
+                        category = cat.getText().toString();
+                        model = modl.getText().toString();
+                        condition = Integer.parseInt(cond.getText().toString());
+                        location = loc.getText().toString();
+
+                        //hidden variables
+                        id = 77;
+                        latitude = 0.0;
+                        longitude = 0.0;
+                        createDate = null;
+                        lastEditDate = null;
+                        lastEditUser = "Nicholas";
+
+                        //call method to parse the strings into the proper table column field
+                        insertIntoDatabase();
+
+                        //call successful
+                        //Toast.makeText(IMAddActivity.this, "Add Successful", Toast.LENGTH_SHORT).show();
+
                     }
                 });
 
@@ -47,6 +122,117 @@ public class IMAddActivity extends ActionBarActivity {
                 });
 
     }
+
+    private String getDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    public boolean insertIntoDatabase() {
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                //create an ArrayList for the values to be stored in
+                ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
+
+                nameValuePairs.add(new BasicNameValuePair("id", id + ""));
+                nameValuePairs.add(new BasicNameValuePair("label", label));
+                nameValuePairs.add(new BasicNameValuePair("itemName", itemName));
+                nameValuePairs.add(new BasicNameValuePair("category", category));
+                nameValuePairs.add(new BasicNameValuePair("modelNumber", model + ""));
+                nameValuePairs.add(new BasicNameValuePair("conditionId", condition + ""));
+                nameValuePairs.add(new BasicNameValuePair("location", location));
+                nameValuePairs.add(new BasicNameValuePair("latitude", latitude + ""));
+                nameValuePairs.add(new BasicNameValuePair("longitude", longitude + ""));
+                nameValuePairs.add(new BasicNameValuePair("createDate", null));
+                nameValuePairs.add(new BasicNameValuePair("lastEditDate", null));
+                nameValuePairs.add(new BasicNameValuePair("lastEditUser", lastEditUser));
+
+                try {
+                    HttpClient httpclient = new DefaultHttpClient();
+
+                    HttpPost httppost = new HttpPost("http://s15inventory.franklinpracticum.com/php/insert.php");
+
+                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                    HttpResponse response = httpclient.execute(httppost);
+
+                    HttpEntity entity = response.getEntity();
+
+                    is = entity.getContent();
+
+                    Log.e("pass 1", "connection success ");
+                } catch (Exception e) {
+                    Log.e("Fail 1", e.toString());
+
+                    Toast.makeText(getApplicationContext(), "Invalid IP Address",
+                            Toast.LENGTH_LONG).show();
+                }
+
+                try
+
+                {
+                    BufferedReader reader = new BufferedReader
+                            (new InputStreamReader(is, "iso-8859-1"), 8);
+
+                    StringBuilder sb = new StringBuilder();
+
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+
+                    is.close();
+
+                    result = sb.toString();
+
+                    Log.e("pass 2", "connection success ");
+                } catch (Exception e) {
+                    Log.e("Fail 2", e.toString());
+                }
+
+                try {
+                    JSONObject json_data = new JSONObject(result);
+                    Log.d("code before,", code +"");
+                    code = (json_data.getInt("code"));
+                    Log.d("code after grab,", code +"");
+
+                    if (code == 1) {
+                        submitActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getBaseContext(), "Inserted Successfully",
+                                        Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                    } else {
+                        submitActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getBaseContext(), "Sorry, Try Again",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        //PHP script not updating 'code' variable this indicates that something is
+                        //wrong with the formatting of my insert.php script
+                        //I am not exactly sure what it is though.
+                        Log.d("Failure code:", code + "");
+                        Log.d("Failure 3", "Inserted Unsuccessfully");
+                    }
+            }
+            catch(Exception e) {
+                Log.e("Fail 3", e.toString());
+            }
+
+            return null;
+        }
+    }.execute();
+    return true;
+}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,6 +254,9 @@ public class IMAddActivity extends ActionBarActivity {
         }
         if (id == R.id.action_help) {
             Toast.makeText(IMAddActivity.this, "Help Button Clicked", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(submitActivity, IMHelpActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_print) {
             Toast.makeText(IMAddActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();

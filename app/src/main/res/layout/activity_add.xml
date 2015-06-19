@@ -62,28 +62,6 @@
                         <EditText
                             android:layout_width="225dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/id_editText"
-                            android:layout_alignParentEnd="true" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="ID"
-                            android:id="@+id/id_textView"
-                            android:textColor="@color/ColorPrimaryTextColor"
-                            android:textSize="20dp" />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:layout_width="225dp"
-                            android:layout_height="wrap_content"
                             android:id="@+id/label_editText"
                             android:layout_alignParentEnd="true" />
 
@@ -127,7 +105,7 @@
                         <EditText
                             android:layout_width="225dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/catagory_editText"
+                            android:id="@+id/category_editText"
                             android:layout_alignParentEnd="true" />
 
                         <TextView
@@ -201,116 +179,6 @@
                             android:id="@+id/location_textView"
                             android:textColor="@color/ColorPrimaryTextColor"
                             android:textSize="20dp" />
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:layout_width="225dp"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/latitude_editText"
-                            android:layout_alignParentEnd="true" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="Latitude"
-                            android:id="@+id/latitude_textView"
-                            android:textColor="@color/ColorPrimaryTextColor"
-                            android:textSize="20dp" />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:layout_width="225dp"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/longitude_editText"
-                            android:layout_alignParentEnd="true" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="Longitude"
-                            android:id="@+id/longitude_textView"
-                            android:textColor="@color/ColorPrimaryTextColor"
-                            android:textSize="20dp" />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:layout_width="225dp"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/createDate_editText"
-                            android:layout_alignParentEnd="true" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="Create Date"
-                            android:id="@+id/createDate_textView"
-                            android:textColor="@color/ColorPrimaryTextColor"
-                            android:textSize="20dp" />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:layout_width="225dp"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lastEditDate_editText"
-                            android:layout_alignParentEnd="true" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="Last Edit Date"
-                            android:id="@+id/lastEditDate_textView"
-                            android:textColor="@color/ColorPrimaryTextColor"
-                            android:textSize="20dp" />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                        <EditText
-                            android:layout_width="225dp"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lastEditUser_editText"
-                            android:layout_alignParentEnd="true" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="Last Edit User"
-                            android:id="@+id/lastEditUser_textView"
-                            android:textColor="@color/ColorPrimaryTextColor"
-                            android:textSize="20dp" />
-
 
                     </RelativeLayout>
                 </LinearLayout>
