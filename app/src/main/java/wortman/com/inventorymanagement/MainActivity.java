@@ -154,7 +154,8 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
             Toast.makeText(MainActivity.this, "Settings Button Clicked", Toast.LENGTH_SHORT).show();
         }
         if (id == R.id.action_help) {
-            Toast.makeText(MainActivity.this, "Help Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMHelpActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_print) {
             Toast.makeText(MainActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
