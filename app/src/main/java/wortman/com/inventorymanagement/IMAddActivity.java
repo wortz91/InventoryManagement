@@ -52,8 +52,8 @@ public class IMAddActivity extends ActionBarActivity {
     int id;
     Double latitude;
     Double longitude;
-    Date createDate;
-    Date lastEditDate;
+    Timestamp createDate;
+    Timestamp lastEditDate;
     String lastEditUser;
 
 
@@ -138,18 +138,18 @@ public class IMAddActivity extends ActionBarActivity {
                 //create an ArrayList for the values to be stored in
                 ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
 
-                nameValuePairs.add(new BasicNameValuePair("id", id + ""));
-                nameValuePairs.add(new BasicNameValuePair("label", label));
-                nameValuePairs.add(new BasicNameValuePair("itemName", itemName));
-                nameValuePairs.add(new BasicNameValuePair("category", category));
-                nameValuePairs.add(new BasicNameValuePair("modelNumber", model + ""));
-                nameValuePairs.add(new BasicNameValuePair("conditionId", condition + ""));
-                nameValuePairs.add(new BasicNameValuePair("location", location));
-                nameValuePairs.add(new BasicNameValuePair("latitude", latitude + ""));
-                nameValuePairs.add(new BasicNameValuePair("longitude", longitude + ""));
-                nameValuePairs.add(new BasicNameValuePair("createDate", null));
-                nameValuePairs.add(new BasicNameValuePair("lastEditDate", null));
-                nameValuePairs.add(new BasicNameValuePair("lastEditUser", lastEditUser));
+                nameValuePairs.add(new BasicNameValuePair("ItemID", id + ""));
+                nameValuePairs.add(new BasicNameValuePair("Label", label));
+                nameValuePairs.add(new BasicNameValuePair("ItemName", itemName));
+                nameValuePairs.add(new BasicNameValuePair("Category", category));
+                nameValuePairs.add(new BasicNameValuePair("ModelNumber", model + ""));
+                nameValuePairs.add(new BasicNameValuePair("ConditionID", condition + ""));
+                nameValuePairs.add(new BasicNameValuePair("Location", location));
+                nameValuePairs.add(new BasicNameValuePair("Latitude", latitude + ""));
+                nameValuePairs.add(new BasicNameValuePair("Longitude", longitude + ""));
+                nameValuePairs.add(new BasicNameValuePair("CreateDate", null));
+                nameValuePairs.add(new BasicNameValuePair("LastEditDate", null));
+                nameValuePairs.add(new BasicNameValuePair("LastEditUser", lastEditUser));
 
                 try {
                     HttpClient httpclient = new DefaultHttpClient();
@@ -195,6 +195,7 @@ public class IMAddActivity extends ActionBarActivity {
 
                 try {
                     JSONObject json_data = new JSONObject(result);
+                    System.out.println(json_data);
                     Log.d("code before,", code +"");
                     code = (json_data.getInt("code"));
                     Log.d("code after grab,", code +"");
@@ -218,8 +219,9 @@ public class IMAddActivity extends ActionBarActivity {
                         });
 
                         //PHP script not updating 'code' variable this indicates that something is
-                        //wrong with the formatting of my insert.php script
+                        //wrong with the insert.php script
                         //I am not exactly sure what it is though.
+                        //the script is outputting ": 0", where it should be "1"
                         Log.d("Failure code:", code + "");
                         Log.d("Failure 3", "Inserted Unsuccessfully");
                     }
