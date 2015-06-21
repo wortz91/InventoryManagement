@@ -60,5 +60,9 @@
             android:name="wortman.com.inventorymanagement.IMHelpActivity">
         </activity>
 
+        <activity
+            android:name="wortman.com.inventorymanagement.IMSettingsActivity">
+        </activity>
+
     </application>
 </manifest>

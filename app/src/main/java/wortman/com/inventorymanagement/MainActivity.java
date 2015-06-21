@@ -151,7 +151,8 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(MainActivity.this, "Settings Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMSettingsActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_help) {
             Intent intent = new Intent(submitActivity, IMHelpActivity.class);

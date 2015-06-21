@@ -8,10 +8,7 @@
     android:theme="@style/AppTheme"
     android:background="@color/ColorPrimaryDark">
 
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/tool_bar">
-    </include>
+
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -47,19 +44,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="INVENTORY MANAGEMENT HELP"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/IMH"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/ColorPrimaryTextColor"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
-            android:textSize="23dp"
-            android:gravity="center_horizontal" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/HelpTopic1"
             android:text="Help Topic 1"
             android:layout_gravity="center_horizontal"
@@ -72,7 +56,18 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
             android:id="@+id/Help1"
-            android:textColor="#9f9f9f" />
+            android:textColor="#9f9f9f"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -90,7 +85,18 @@
             android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
             android:id="@+id/Help2"
             android:textColor="#9f9f9f"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -108,7 +114,18 @@
             android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
             android:id="@+id/Help3"
             android:textColor="#9f9f9f"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -125,7 +142,9 @@
             android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
             android:id="@+id/Help4"
             android:textColor="#9f9f9f"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
 
     </LinearLayout>
     </ScrollView>

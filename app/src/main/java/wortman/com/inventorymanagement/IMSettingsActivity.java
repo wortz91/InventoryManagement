@@ -1,29 +1,23 @@
 package wortman.com.inventorymanagement;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import wortman.com.openshiftapplication.R;
 
-public class IMHelpActivity extends ActionBarActivity {
+public class IMSettingsActivity extends ActionBarActivity {
     private Activity submitActivity = this;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_help);
+        setContentView(R.layout.activity_settings);
         //ACTION BAR TO BE ON EACH ACTIVITY
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
@@ -63,10 +57,10 @@ public class IMHelpActivity extends ActionBarActivity {
             startActivity(intent);
         }
         if (id == R.id.action_print) {
-            Toast.makeText(IMHelpActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(IMSettingsActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
         }
         if (id == R.id.action_main) {
-            Toast.makeText(IMHelpActivity.this, "Main Menu Button Clicked", Toast.LENGTH_SHORT).show();
+            Toast.makeText(IMSettingsActivity.this, "Main Menu Button Clicked", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);
