@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/ColorPrimary</item>
         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
@@ -21,6 +21,9 @@
 
         <item name="android:searchViewStyle">@style/SearchView</item>
         <item name="searchViewStyle">@style/SearchView</item>
+
+        <item name="android:spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
+        <item name="spinnerDropDownItemStyle">@style/mySpinnerItemStyle</item>
 
 
     </style>
@@ -47,6 +50,10 @@
         <item name="android:dividerHeight">1dp</item>
         <item name="android:dividerPadding">2dp</item>
         <item name="android:background">@color/ColorPrimaryDark</item>-->
+    </style>
+
+    <style name="mySpinnerItemStyle" parent="@android:style/Widget.Holo.DropDownItem.Spinner">
+        <item name="android:textColor">@color/ColorPrimaryTextColor</item>
     </style>
 
 </resources>

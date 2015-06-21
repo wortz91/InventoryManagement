@@ -20,4 +20,14 @@
     <string name="error_invalid_email">Invalid Email</string>
     <string name="button_text"><font size="125">First line!</font>\n\<font size="15">Second line!</font></string>
 
+    <string-array name="report_array">
+        <item></item>
+        <item>Category Report</item>
+        <item>Condition Report</item>
+        <item>Location Report</item>
+        <item>Nearby Report</item>
+        <item>Custom Report</item>
+    </string-array>
+
+
 </resources>

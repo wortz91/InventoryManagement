@@ -26,11 +26,6 @@
         android:background="@color/ColorPrimaryDark">
 
         <include
-            android:id="@+id/search_view"
-            layout="@layout/search_view">
-        </include>
-
-        <include
             android:id="@+id/report_view"
             layout="@layout/report_view">
         </include>
