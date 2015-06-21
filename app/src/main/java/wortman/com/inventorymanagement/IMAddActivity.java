@@ -184,6 +184,7 @@ public class IMAddActivity extends ActionBarActivity {
                         sb.append(line + "\n");
                     }
 
+                    Log.d("sb", sb.toString());
                     is.close();
 
                     result = sb.toString();
