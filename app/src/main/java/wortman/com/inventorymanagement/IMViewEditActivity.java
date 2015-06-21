@@ -1,6 +1,7 @@
 package wortman.com.inventorymanagement;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,12 +12,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import wortman.com.openshiftapplication.R;
 
 
 public class IMViewEditActivity extends ActionBarActivity {
 
-    //private Toolbar toolbar;
+    private EditText label;
+    private EditText itemName;
+    private EditText category;
+    private EditText model;
+    private EditText condition;
+    private EditText location;
+
+    private String LabelID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +41,20 @@ public class IMViewEditActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        this.label = (EditText) this.findViewById(R.id.label_editText);
+        this.itemName = (EditText) this.findViewById(R.id.itemName_editText);
+        this.category = (EditText) this.findViewById(R.id.catagory_editText);
+        this.model = (EditText) this.findViewById(R.id.model_editText);
+        this.condition = (EditText) this.findViewById(R.id.condition_editText);
+        this.location = (EditText) this.findViewById(R.id.location_editText);
+
+        //get LabelID to pass to DB call
+        this.LabelID = getIntent().getStringExtra("LabelID");
+
+        if (this.LabelID != null){
+            new EditInventoryDetails().execute(new ApiConnector());
+        }
 
         final Button edit = (Button)findViewById(R.id.edit_button);
         final Button save = (Button)findViewById(R.id.save_button);
@@ -151,5 +176,39 @@ public class IMViewEditActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class EditInventoryDetails extends AsyncTask<ApiConnector,Long,JSONArray>
+    {
+        @Override
+        protected JSONArray doInBackground(ApiConnector... params) {
+
+            // it is executed on Background thread
+
+            return params[0].EditInventoryDetails(LabelID);
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray jsonArray) {
+
+            try
+            {
+                JSONObject inventoryItem = jsonArray.getJSONObject(0);
+
+                label.setText(inventoryItem.getString("Label"));
+                itemName.setText(inventoryItem.getString("ItemName"));
+                category.setText(inventoryItem.getString("Category"));
+                model.setText(inventoryItem.getString("ModelNumber"));
+                condition.setText(""+inventoryItem.getInt("ConditionID"));
+                location.setText(inventoryItem.getString("Location"));
+
+               // idOfCustomer = inventoryItem.getString("id");
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+        }
     }
 }
