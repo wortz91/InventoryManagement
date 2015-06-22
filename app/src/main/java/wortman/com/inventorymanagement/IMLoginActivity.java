@@ -2,6 +2,7 @@ package wortman.com.inventorymanagement;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -57,6 +58,9 @@ public class IMLoginActivity extends Activity {
     private int code;
     private boolean successful = false;
 
+    //Session
+    SharedPreferences prefs = getSharedPreferences(SESSION_DATA, 0);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +86,7 @@ public class IMLoginActivity extends Activity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                       attemptLogin();
+                        attemptLogin();
                     }
                 });
     }
@@ -129,8 +133,7 @@ public class IMLoginActivity extends Activity {
                             Toast.LENGTH_LONG).show();
                 }
 
-                try
-                {
+                try {
                     BufferedReader reader = new BufferedReader
                             (new InputStreamReader(is, "iso-8859-1"), 8);
 
@@ -160,7 +163,7 @@ public class IMLoginActivity extends Activity {
 
                     JSONObject json_data = new JSONObject(result);
                     Log.d("json_data", json_data.toString());
-                    Log.d("code before", code +"");
+                    Log.d("code before", code + "");
 
                     code = (json_data.getInt("code"));
                     Log.d("code", code + "");
@@ -168,7 +171,7 @@ public class IMLoginActivity extends Activity {
                     if (code == 1) {
                         Log.d("test", "test");
                         successful = true;
-                        Log.d("successful", successful +"");
+                        Log.d("successful", successful + "");
                         submitActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -200,7 +203,6 @@ public class IMLoginActivity extends Activity {
         startActivity(intent);
     }
 }
-
 
 
 
