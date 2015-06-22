@@ -52,8 +52,8 @@ public class IMAddActivity extends ActionBarActivity {
     int id;
     Double latitude;
     Double longitude;
-    Timestamp createDate;
-    Timestamp lastEditDate;
+    String createDate;
+    String lastEditDate;
     String lastEditUser;
 
 
@@ -121,13 +121,6 @@ public class IMAddActivity extends ActionBarActivity {
                     }
                 });
 
-    }
-
-    private String getDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        Date date = new Date();
-        return dateFormat.format(date);
     }
 
     public boolean insertIntoDatabase() {
@@ -254,6 +247,9 @@ public class IMAddActivity extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Toast.makeText(IMAddActivity.this, "Settings Button Clicked", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(submitActivity, IMSettingsActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_help) {
             Toast.makeText(IMAddActivity.this, "Help Button Clicked", Toast.LENGTH_SHORT).show();

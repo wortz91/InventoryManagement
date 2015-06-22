@@ -1,9 +1,16 @@
 package wortman.com.inventorymanagement;
 
 import android.app.Activity;
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.Toast;
 
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by Nicholas on 6/20/2015.
@@ -19,53 +26,53 @@ public class AssistActivities extends ActionBarActivity{
     Timestamp createDate;
     Timestamp lastEditDate;
     String lastEditUser;
-    //the getId should not be needed
-    public int getId() {
-        return id;
-    }
 
-    //the setId should not be needed
-    public void setId(int id) {
-        this.id = id;
-    }
+    //Assist methods (Latitude)
+    public Double findLatitude() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location;
 
-    public Double getLatitude() {
+        if(lm == null) {
+            Toast.makeText(AssistActivities.this, "GPS not enabled, please enable GPS in system settings", Toast.LENGTH_SHORT).show();
+        } else {
+            location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            if(location != null) {
+                latitude = location.getLatitude();
+            }
+        }
+
         return latitude;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
+    //Assist methods (Latitude)
+    public Double findLongitude() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location;
 
-    public Double getLongitude() {
+        if(lm == null) {
+            Toast.makeText(AssistActivities.this, "GPS not enabled, please enable GPS in system settings", Toast.LENGTH_SHORT).show();
+        } else {
+            location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            if(location != null) {
+                longitude = location.getLongitude();
+            }
+        }
+
         return longitude;
     }
 
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
+    public String getCreateDate() {
+        Calendar cal = Calendar.getInstance();
 
-    public Timestamp getCreateDate() {
-        return createDate;
-    }
+        SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
 
-    public void setCreateDate(Timestamp createDate) {
-        this.createDate = createDate;
-    }
-
-    public Timestamp getLastEditDate() {
-        return lastEditDate;
-    }
-
-    public void setLastEditDate(Timestamp lastEditDate) {
-        this.lastEditDate = lastEditDate;
+        String strDate = sdf.format(cal.getTime());
+        return strDate;
     }
 
     public String getLastEditUser() {
         return lastEditUser;
-    }
-
-    public void setLastEditUser(String lastEditUser) {
-        this.lastEditUser = lastEditUser;
     }
 }
