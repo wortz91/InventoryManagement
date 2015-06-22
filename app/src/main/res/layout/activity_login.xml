@@ -31,15 +31,15 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
             android:ems="10"
-            android:id="@+id/email_field"
+            android:id="@+id/user_field"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/ColorPrimaryTextColor"
             android:textAlignment="center"
             android:textColorHint="@color/HintTextColor"
-            android:hint="E-mail"
-            android:textSize="25dp" />
+            android:hint="Username"
+            android:textSize="25dp"
+            android:inputType="text" />
 
         <EditText
             android:layout_width="match_parent"
