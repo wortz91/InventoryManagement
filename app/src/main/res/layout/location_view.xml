@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Label"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/MenuTitleTextColor"
+        android:textColor="@color/ButtonBackgroundColor"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true" />
 
@@ -24,10 +24,9 @@
         android:layout_height="wrap_content"
         android:text="Item Name"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/MenuTitleTextColor"
-        android:paddingStart="15dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:textColor="@color/ButtonBackgroundColor"
+        android:layout_below="@+id/valLabel"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:id="@+id/valCategory"
@@ -35,10 +34,9 @@
         android:layout_height="wrap_content"
         android:text="Category"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/MenuTitleTextColor"
-        android:paddingStart="15dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true" />
+        android:textColor="@color/ButtonBackgroundColor"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/valItemName"/>
 
     <TextView
         android:id="@+id/valModelNum"
@@ -46,9 +44,9 @@
         android:layout_height="wrap_content"
         android:text="Model Number"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/MenuTitleTextColor"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/valLabel"/>
+        android:textColor="@color/ButtonBackgroundColor"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/valItemName"/>
 
     <TextView
         android:id="@+id/valCondition"
@@ -56,10 +54,9 @@
         android:layout_height="wrap_content"
         android:text="Condition"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/MenuTitleTextColor"
-        android:paddingStart="15dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/valItemName"/>
+        android:textColor="@color/ButtonBackgroundColor"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/valCategory"/>
 
     <TextView
         android:id="@+id/valLocation"
@@ -67,8 +64,7 @@
         android:layout_height="wrap_content"
         android:text="Location"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/MenuTitleTextColor"
-        android:paddingStart="15dp"
+        android:textColor="@color/ButtonBackgroundColor"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/valCategory"/>
 
