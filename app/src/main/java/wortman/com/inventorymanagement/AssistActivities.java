@@ -2,6 +2,7 @@ package wortman.com.inventorymanagement;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationManager;
 import android.support.v7.app.ActionBarActivity;
@@ -19,12 +20,14 @@ public class AssistActivities extends ActionBarActivity{
     //this is for navigation with the overflow menu
     private Activity submitActivity = this;
 
+    public static final String SESSION_DATA = "sessionData";
+
     //class variables that are automated
     int id;
     Double latitude;
     Double longitude;
-    Timestamp createDate;
-    Timestamp lastEditDate;
+    String createDate;
+    String lastEditDate;
     String lastEditUser;
 
     //Assist methods (Latitude)
@@ -73,6 +76,8 @@ public class AssistActivities extends ActionBarActivity{
     }
 
     public String getLastEditUser() {
-        return lastEditUser;
+        SharedPreferences prefs = getSharedPreferences(SESSION_DATA, 0);
+        String user = prefs.getString("user", "IT DIDN't SAVE");
+        return user;
     }
 }

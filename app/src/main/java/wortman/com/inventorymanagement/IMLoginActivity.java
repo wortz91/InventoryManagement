@@ -59,7 +59,7 @@ public class IMLoginActivity extends Activity {
     private boolean successful = false;
 
     //Session
-    SharedPreferences prefs = getSharedPreferences(SESSION_DATA, 0);
+    //SharedPreferences prefs = getSharedPreferences(SESSION_DATA, 0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

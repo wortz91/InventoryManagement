@@ -97,12 +97,11 @@ public class IMAddActivity extends ActionBarActivity {
                         location = loc.getText().toString();
 
                         //hidden variables
-                        id = 77;
-                        latitude = 0.0;
-                        longitude = 0.0;
-                        createDate = null;
-                        lastEditDate = null;
-                        lastEditUser = "Nicholas";
+                        latitude = new AssistActivities().findLatitude();
+                        longitude = 2.9; //new AssistActivities().findLongitude();
+                        createDate = "test"; //new AssistActivities().getCreateDate();
+                        lastEditDate = "test"; //new AssistActivities().getCreateDate();
+                        lastEditUser = "nicholas"; //new AssistActivities().getLastEditUser();
 
                         //call method to parse the strings into the proper table column field
                         insertIntoDatabase();
@@ -140,8 +139,8 @@ public class IMAddActivity extends ActionBarActivity {
                 nameValuePairs.add(new BasicNameValuePair("Location", location));
                 nameValuePairs.add(new BasicNameValuePair("Latitude", latitude + ""));
                 nameValuePairs.add(new BasicNameValuePair("Longitude", longitude + ""));
-                nameValuePairs.add(new BasicNameValuePair("CreateDate", null));
-                nameValuePairs.add(new BasicNameValuePair("LastEditDate", null));
+                nameValuePairs.add(new BasicNameValuePair("CreateDate", createDate));
+                nameValuePairs.add(new BasicNameValuePair("LastEditDate", lastEditDate));
                 nameValuePairs.add(new BasicNameValuePair("LastEditUser", lastEditUser));
 
                 try {
@@ -259,9 +258,15 @@ public class IMAddActivity extends ActionBarActivity {
         }
         if (id == R.id.action_print) {
             Toast.makeText(IMAddActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(submitActivity, IMReportActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_main) {
             Toast.makeText(IMAddActivity.this, "Main Menu Button Clicked", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(submitActivity, MainActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
