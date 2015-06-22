@@ -73,7 +73,6 @@ public class IMLoginActivity extends Activity {
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
                     attemptLogin();
-
                 }
                 return false;
             }
