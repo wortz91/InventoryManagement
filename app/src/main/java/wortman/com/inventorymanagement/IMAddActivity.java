@@ -4,6 +4,7 @@ package wortman.com.inventorymanagement;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -89,7 +90,9 @@ public class IMAddActivity extends ActionBarActivity {
         final EditText modl = (EditText) findViewById(R.id.model_editText);
         final EditText cond = (EditText) findViewById(R.id.condition_editText);
         final EditText loc = (EditText) findViewById(R.id.location_editText);
-
+        Log.d("User",SESSION_DATA);
+        final SharedPreferences prefs = getSharedPreferences(SESSION_DATA, 0);
+        Log.d("User",SESSION_DATA);
         findViewById(R.id.add_button).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -109,7 +112,7 @@ public class IMAddActivity extends ActionBarActivity {
                         longitude = findLongitude();
                         createDate = getCreateDate();
                         lastEditDate = getCreateDate();
-                        lastEditUser = null; //getUser();
+                        lastEditUser = prefs.getString("username", "user");
 
                         //call method to parse the strings into the proper table column field
                         insertIntoDatabase();
@@ -323,7 +326,7 @@ public class IMAddActivity extends ActionBarActivity {
     public String getCreateDate() {
         Calendar cal = Calendar.getInstance();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMMMMMMM:yyyy HH:mm:ss a");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
 
         String strDate = sdf.format(cal.getTime());
         return strDate;
