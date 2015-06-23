@@ -2,7 +2,13 @@ package wortman.com.inventorymanagement;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -30,7 +36,9 @@ import java.io.InputStreamReader;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import wortman.com.openshiftapplication.R;
@@ -39,6 +47,7 @@ import wortman.com.openshiftapplication.R;
 public class IMAddActivity extends ActionBarActivity {
     //this is for navigation with the overflow menu
     private Activity submitActivity = this;
+    public static final String SESSION_DATA = "sessionData";
 
     //class variables from table
     String label;
@@ -50,12 +59,11 @@ public class IMAddActivity extends ActionBarActivity {
 
     //class variables that are automated
     int id;
-    Double latitude;
-    Double longitude;
+    double latitude;
+    double longitude;
     String createDate;
     String lastEditDate;
     String lastEditUser;
-
 
     InputStream is = null;
     String result = null;
@@ -97,11 +105,11 @@ public class IMAddActivity extends ActionBarActivity {
                         location = loc.getText().toString();
 
                         //hidden variables
-                        latitude = new AssistActivities().findLatitude();
-                        longitude = 2.9; //new AssistActivities().findLongitude();
-                        createDate = "test"; //new AssistActivities().getCreateDate();
-                        lastEditDate = "test"; //new AssistActivities().getCreateDate();
-                        lastEditUser = "nicholas"; //new AssistActivities().getLastEditUser();
+                        latitude = findLatitude();
+                        longitude = findLongitude();
+                        createDate = getCreateDate();
+                        lastEditDate = getCreateDate();
+                        lastEditUser = getUser();
 
                         //call method to parse the strings into the proper table column field
                         insertIntoDatabase();
@@ -271,4 +279,59 @@ public class IMAddActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //Assist methods (Latitude)
+    public double findLatitude() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location;
+
+        if(lm == null) {
+            Toast.makeText(this, "GPS not enabled, please enable GPS in system settings", Toast.LENGTH_SHORT).show();
+        } else {
+            location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            if(location != null) {
+                latitude = location.getLatitude();
+            } else {
+                latitude = 0.0;
+            }
+        }
+
+        return latitude;
+    }
+
+    //Assist methods (Latitude)
+    public double findLongitude() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location;
+
+        if(lm == null) {
+            Toast.makeText(this, "GPS not enabled, please enable GPS in system settings", Toast.LENGTH_SHORT).show();
+        } else {
+            location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            if(location != null) {
+                longitude = location.getLongitude();
+            } else {
+                longitude = 0.0;
+            }
+        }
+
+        return longitude;
+    }
+
+    public String getCreateDate() {
+        Calendar cal = Calendar.getInstance();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
+
+        String strDate = sdf.format(cal.getTime());
+        return strDate;
+    }
+
+    public String getUser() {
+        return IMLoginActivity.getUser();
+
+    }
+
 }
