@@ -109,7 +109,7 @@ public class IMAddActivity extends ActionBarActivity {
                         longitude = findLongitude();
                         createDate = getCreateDate();
                         lastEditDate = getCreateDate();
-                        lastEditUser = getUser();
+                        lastEditUser = null; //getUser();
 
                         //call method to parse the strings into the proper table column field
                         insertIntoDatabase();
@@ -323,15 +323,9 @@ public class IMAddActivity extends ActionBarActivity {
     public String getCreateDate() {
         Calendar cal = Calendar.getInstance();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMMMMMMM:yyyy HH:mm:ss a");
 
         String strDate = sdf.format(cal.getTime());
         return strDate;
     }
-
-    public String getUser() {
-        return IMLoginActivity.getUser();
-
-    }
-
 }
