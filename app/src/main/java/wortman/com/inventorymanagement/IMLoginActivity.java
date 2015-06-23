@@ -117,6 +117,11 @@ public class IMLoginActivity extends Activity {
                 nameValuePairs.add(new BasicNameValuePair("username", user));
                 nameValuePairs.add(new BasicNameValuePair("password", password));
 
+                SharedPreferences userId =  getSharedPreferences(SESSION_DATA,0);
+                SharedPreferences.Editor editor = userId.edit();
+                editor.putString("username", user);
+                editor.commit();
+
                 try {
                     HttpClient httpclient = new DefaultHttpClient();
                     HttpPost httppost = new HttpPost("http://s15inventory.franklinpracticum.com/php/login.php");
