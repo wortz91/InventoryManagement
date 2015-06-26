@@ -8,7 +8,10 @@
     android:theme="@style/AppTheme"
     android:background="@color/ColorPrimaryDark">
 
-
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar">
+    </include>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
