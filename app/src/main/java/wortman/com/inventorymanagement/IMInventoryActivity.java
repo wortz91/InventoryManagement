@@ -67,7 +67,7 @@ public class IMInventoryActivity extends ActionBarActivity {
 
                     // Do something with the click, here we would go to edit screen
                     Intent showDetails = new Intent(getApplicationContext(),IMViewEditActivity.class);
-                    showDetails.putExtra("LabelID", clicked.getString("Label"));
+                    showDetails.putExtra("ItemID", clicked.getInt("ItemID"));
 
                     startActivity(showDetails);
 
