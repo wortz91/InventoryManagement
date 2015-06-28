@@ -2,7 +2,9 @@ package wortman.com.inventorymanagement;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
@@ -44,6 +46,7 @@ public class IMViewEditActivity extends ActionBarActivity {
 
     private Activity submitActivity = this;
     public static final String SESSION_DATA = "sessionData";
+    Context context;
 
     private EditText lbl;
     private EditText itm;
@@ -76,6 +79,7 @@ public class IMViewEditActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
         setContentView(R.layout.activity_view_edit);
         //ACTION BAR TO BE ON EACH ACTIVITY
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -176,7 +180,32 @@ public class IMViewEditActivity extends ActionBarActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //do something
+                AlertDialog dialog = new AlertDialog.Builder(context).create();
+                dialog.setTitle("Are You Sure You Want To Delete This Item?");
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "NO",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                dialog.dismiss();
+                                return;
+                            }
+                        }
+                );
+                dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which)
+                            {
+                                //Do delete here
+                                itemID = ItemID;
+                                archiveDatabase();
+                                dialog.dismiss();
+                                onBackPressed();
+                                return;
+                            }
+                        }
+                );
+                dialog.show();
             }});
 
         findViewById(R.id.cancel_button).setOnClickListener(
@@ -289,6 +318,102 @@ public class IMViewEditActivity extends ActionBarActivity {
                         //the script is outputting ": 0", where it should be "1"
                         Log.d("Failure code:", code + "");
                         Log.d("Failure 3", "Inserted Unsuccessfully");
+                    }
+                } catch (Exception e) {
+                    Log.e("Fail 3", e.toString());
+                }
+
+                return null;
+            }
+        }.execute();
+        return true;
+    }
+
+    public boolean archiveDatabase() {
+        new AsyncTask<Void, Void, Void>() {
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                //create an ArrayList for the values to be stored in
+                ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
+
+                nameValuePairs.add(new BasicNameValuePair("ItemID", itemID +""));
+
+                try {
+                    HttpClient httpclient = new DefaultHttpClient();
+
+                    HttpPost httppost = new HttpPost("http://s15inventory.franklinpracticum.com/php/archive.php");
+
+                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                    HttpResponse response = httpclient.execute(httppost);
+
+                    HttpEntity entity = response.getEntity();
+
+                    is = entity.getContent();
+
+                    Log.e("pass 1", "connection success ");
+                } catch (Exception e) {
+                    Log.e("Fail 1", e.toString());
+
+                    Toast.makeText(getApplicationContext(), "Invalid IP Address",
+                            Toast.LENGTH_LONG).show();
+                }
+
+                try
+
+                {
+                    BufferedReader reader = new BufferedReader
+                            (new InputStreamReader(is, "iso-8859-1"), 8);
+
+                    StringBuilder sb = new StringBuilder();
+
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+
+                    Log.d("sb", sb.toString());
+                    is.close();
+
+                    result = sb.toString();
+
+                    Log.e("pass 2", "connection success ");
+                } catch (Exception e) {
+                    Log.e("Fail 2", e.toString());
+                }
+
+                try {
+                    JSONObject json_data = new JSONObject(result);
+                    System.out.println(json_data);
+                    Log.d("code before,", code + "");
+                    code = (json_data.getInt("code"));
+                    Log.d("code after grab,", code + "");
+
+                    if (code == 1) {
+                        submitActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getBaseContext(), "Deleted Successfully",
+                                        Toast.LENGTH_SHORT).show();
+                                onBackPressed();
+
+                            }
+                        });
+                    } else {
+                        submitActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getBaseContext(), "Sorry, Try Again",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        //PHP script not updating 'code' variable this indicates that something is
+                        //wrong with the insert.php script
+                        //I am not exactly sure what it is though.
+                        //the script is outputting ": 0", where it should be "1"
+                        Log.d("Failure code:", code + "");
+                        Log.d("Failure 3", "Delete Unsuccessful");
                     }
                 } catch (Exception e) {
                     Log.e("Fail 3", e.toString());
