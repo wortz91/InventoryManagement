@@ -236,7 +236,7 @@
             <Button
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Delete"
+                android:text="Remove"
                 android:id="@+id/delete_button"
                 android:textSize="20dp"
                 android:background="@color/ButtonBackgroundColor"

@@ -181,7 +181,7 @@ public class IMViewEditActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog dialog = new AlertDialog.Builder(context).create();
-                dialog.setTitle("Are You Sure You Want To Delete This Item?");
+                dialog.setTitle("Are You Sure You Want To Remove This Item?");
 
                 dialog.setButton(DialogInterface.BUTTON_POSITIVE, "NO",
                         new DialogInterface.OnClickListener() {
@@ -393,7 +393,7 @@ public class IMViewEditActivity extends ActionBarActivity {
                         submitActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getBaseContext(), "Deleted Successfully",
+                                Toast.makeText(getBaseContext(), "Removed Successfully",
                                         Toast.LENGTH_SHORT).show();
                                 onBackPressed();
 
