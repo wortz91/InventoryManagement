@@ -1,6 +1,7 @@
 package wortman.com.inventorymanagement;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -20,6 +21,7 @@ import wortman.com.openshiftapplication.R;
 
 public class IMBarcodeActivity extends ActionBarActivity {
 
+    private Activity submitActivity = this;
     private Button scan;
 
     //private Toolbar toolbar;
@@ -49,6 +51,7 @@ public class IMBarcodeActivity extends ActionBarActivity {
 
         scan= (Button)findViewById(R.id.scanBtn);
 
+
        scan.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -61,8 +64,21 @@ public class IMBarcodeActivity extends ActionBarActivity {
                 integrator.initiateScan();
             }
         });
+
+        findViewById(R.id.cancel_button).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBackPressed();
+                    }
+                });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -97,16 +113,16 @@ public class IMBarcodeActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(IMBarcodeActivity.this, "Settings Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMSettingsActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_help) {
-            Toast.makeText(IMBarcodeActivity.this, "Help Button Clicked", Toast.LENGTH_SHORT).show();
-        }
-        if (id == R.id.action_print) {
-            Toast.makeText(IMBarcodeActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMHelpActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_main) {
-            Toast.makeText(IMBarcodeActivity.this, "Main Menu Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, MainActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

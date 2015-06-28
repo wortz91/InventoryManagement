@@ -127,11 +127,17 @@ public class IMAddActivity extends ActionBarActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(IMAddActivity.this, "Cancel Button Clicked", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
                     }
                 });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
 
     public boolean insertIntoDatabase() {
         new AsyncTask<Void, Void, Void>() {
@@ -256,26 +262,14 @@ public class IMAddActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(IMAddActivity.this, "Settings Button Clicked", Toast.LENGTH_SHORT).show();
-
             Intent intent = new Intent(submitActivity, IMSettingsActivity.class);
             startActivity(intent);
         }
         if (id == R.id.action_help) {
-            Toast.makeText(IMAddActivity.this, "Help Button Clicked", Toast.LENGTH_SHORT).show();
-
             Intent intent = new Intent(submitActivity, IMHelpActivity.class);
             startActivity(intent);
         }
-        if (id == R.id.action_print) {
-            Toast.makeText(IMAddActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(submitActivity, IMReportActivity.class);
-            startActivity(intent);
-        }
         if (id == R.id.action_main) {
-            Toast.makeText(IMAddActivity.this, "Main Menu Button Clicked", Toast.LENGTH_SHORT).show();
-
             Intent intent = new Intent(submitActivity, MainActivity.class);
             startActivity(intent);
         }

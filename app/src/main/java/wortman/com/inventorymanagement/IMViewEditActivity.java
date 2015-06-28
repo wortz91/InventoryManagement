@@ -1,6 +1,8 @@
 package wortman.com.inventorymanagement;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -20,6 +22,7 @@ import wortman.com.openshiftapplication.R;
 
 public class IMViewEditActivity extends ActionBarActivity {
 
+    private Activity submitActivity = this;
     private EditText label;
     private EditText itemName;
     private EditText category;
@@ -58,6 +61,7 @@ public class IMViewEditActivity extends ActionBarActivity {
 
         final Button edit = (Button)findViewById(R.id.edit_button);
         final Button save = (Button)findViewById(R.id.save_button);
+        final Button delete = (Button)findViewById(R.id.delete_button);
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,17 +138,27 @@ public class IMViewEditActivity extends ActionBarActivity {
                 location_editText.setCursorVisible(false);
                 location_editText.setClickable(false);
                 location_editText.setFocusableInTouchMode(false);
-            }
-        });
+            }});
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //do something
+            }});
 
         findViewById(R.id.cancel_button).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(IMViewEditActivity.this, "Cancel Button Clicked", Toast.LENGTH_SHORT).show();
+                        onBackPressed();
                     }
                 });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     @Override
@@ -163,16 +177,16 @@ public class IMViewEditActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(IMViewEditActivity.this, "Settings Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMSettingsActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_help) {
-            Toast.makeText(IMViewEditActivity.this, "Help Button Clicked", Toast.LENGTH_SHORT).show();
-        }
-        if (id == R.id.action_print) {
-            Toast.makeText(IMViewEditActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMHelpActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_main) {
-            Toast.makeText(IMViewEditActivity.this, "Main Menu Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, MainActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

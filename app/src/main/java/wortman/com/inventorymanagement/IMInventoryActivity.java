@@ -32,6 +32,7 @@ import wortman.com.openshiftapplication.R;
 
 public class IMInventoryActivity extends ActionBarActivity {
 
+    private Activity submitActivity = this;
     //private TextView responseTextView;
     private ListView getInventoryView;
     private JSONArray jsonArray;
@@ -127,16 +128,16 @@ public class IMInventoryActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(IMInventoryActivity.this, "Settings Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMSettingsActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_help) {
-            Toast.makeText(IMInventoryActivity.this, "Help Button Clicked", Toast.LENGTH_SHORT).show();
-        }
-        if (id == R.id.action_print) {
-            Toast.makeText(IMInventoryActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMHelpActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_main) {
-            Toast.makeText(IMInventoryActivity.this, "Main Menu Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, MainActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

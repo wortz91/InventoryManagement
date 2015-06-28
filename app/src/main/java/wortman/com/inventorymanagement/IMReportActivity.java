@@ -49,6 +49,14 @@ public class IMReportActivity extends ActionBarActivity implements AdapterView.O
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+
+        findViewById(R.id.cancel_button).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBackPressed();
+                    }
+                });
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
@@ -114,6 +122,11 @@ public class IMReportActivity extends ActionBarActivity implements AdapterView.O
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_secondary, menu);
@@ -129,16 +142,16 @@ public class IMReportActivity extends ActionBarActivity implements AdapterView.O
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(IMReportActivity.this, "Settings Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMSettingsActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_help) {
-            Toast.makeText(IMReportActivity.this, "Help Button Clicked", Toast.LENGTH_SHORT).show();
-        }
-        if (id == R.id.action_print) {
-            Toast.makeText(IMReportActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMHelpActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_main) {
-            Toast.makeText(IMReportActivity.this, "Main Menu Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, MainActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
