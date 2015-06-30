@@ -160,6 +160,10 @@ public class IMAddActivity extends ActionBarActivity {
                 nameValuePairs.add(new BasicNameValuePair("LastEditDate", lastEditDate));
                 nameValuePairs.add(new BasicNameValuePair("LastEditUser", lastEditUser));
 
+                for(int i = 0; i < nameValuePairs.size(); i++) {
+                    Log.d("ArrayList:", nameValuePairs.get(i).toString());
+                }
+
                 try {
                     HttpClient httpclient = new DefaultHttpClient();
 

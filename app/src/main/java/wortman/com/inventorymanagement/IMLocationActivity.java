@@ -31,8 +31,14 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     Context context;
     private ArrayList<String> placeholder = new ArrayList<>(Arrays.asList("test1"+ "       test11" + "       test111","test2","test3","test4","test5","test6"));
     public static final String SESSION_DATA = "sessionData";
-    private double latitude;
-    private double longitude;
+
+    //current latitude/longitude
+    private double curLat;
+    private double curLon;
+
+    //database latitude/longitude
+    private double dbLat;
+    private double dbLon;
 
     //private Toolbar toolbar;
 
@@ -51,57 +57,22 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        //initialize GPS
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
-
         //Session
         SharedPreferences prefs = getSharedPreferences(SESSION_DATA, 0);
 
-        //Lat long
-        String latString = prefs.getString("lat", "0.1");
-        String longString = prefs.getString("longi", "0.1");
+        // Set current latitude/longitude
+        curLat = findLatitude();
+        curLon = findLongitude();
 
-        // Set lat long
-        latitude = Double.parseDouble(latString);
-        longitude = Double.parseDouble(longString);
+        //set dbLatitude/dbLongitude
+        dbLat = 0;
+        dbLon = 0;
 
-        //need to check login stuff here
-
-        //redirect user to setting page on launch if GPS is not set
-
-        if (latitude == 0.00 || longitude == 0.00){
-
-            String valBody = "GPS is not currently set, please go to application settings page and verify GPS is turned ON";
-            AlertDialog dialog = new AlertDialog.Builder(context).create();
-            dialog.setTitle("GPS Error");
-            dialog.setMessage(valBody);
-            dialog.setButton(DialogInterface.BUTTON_POSITIVE, "OK",
-
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-                            dialog.dismiss();
-                        }
-                    }
-            );
-            dialog.show();
+        if(isNearby(curLat, curLon, dbLat, dbLon)) {
+            populateListView();
+        } else {
+            Toast.makeText(this, "There are no nearby items", Toast.LENGTH_SHORT).show();
         }
-
-
-    populateListView();
-    }
-     // If the location changes update the latitude and longitude.
-
-    @Override
-    public void onLocationChanged(Location location) {
-        if (location.getLatitude() != 0.0){
-            latitude = location.getLatitude();
-        }
-        if (location.getLongitude() != 0.0) {
-            longitude = location.getLongitude();
-        }
-
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -148,12 +119,63 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         return super.onOptionsItemSelected(item);
     }
 
+    public boolean isNearby(double curLat, double curLon, double dbLat, double dbLon) {
+        if (Math.sqrt(Math.pow(curLat - dbLat, 2) + Math.pow(curLon - dbLon, 2) ) < .25) {
+            return true;
+        }
+        return false;
+    }
+    //Assist methods (Latitude)
+    public double findLatitude() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location;
+
+        if(lm == null) {
+            Toast.makeText(this, "GPS not enabled, please enable GPS in system settings", Toast.LENGTH_SHORT).show();
+        } else {
+            location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            if(location != null) {
+                curLat = location.getLatitude();
+            } else {
+                curLat = 0.0;
+            }
+        }
+
+        return curLat;
+    }
+
+    //Assist methods (Latitude)
+    public double findLongitude() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location location;
+
+        if(lm == null) {
+            Toast.makeText(this, "GPS not enabled, please enable GPS in system settings", Toast.LENGTH_SHORT).show();
+        } else {
+            location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+            if(location != null) {
+                curLon = location.getLongitude();
+            } else {
+                curLon = 0.0;
+            }
+        }
+
+        return curLon;
+    }
+
     // junk needed for location manager below
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void onLocationChanged(Location loc) {
+        // TODO Auto-generated method stub
     }
 
     @Override
