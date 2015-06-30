@@ -18,18 +18,31 @@
             android:orientation="vertical"
             android:padding="5dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingBottom="15dp"
-                    android:text="Inventory Report Generator"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textStyle="bold"
-                    android:textColor="@color/ColorPrimaryTextColor"
-                    android:layout_gravity="center_horizontal"
-                    android:textAlignment="gravity"
-                    android:gravity="center_horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="5dp"
+                android:text="Inventory Report Generator"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold"
+                android:textColor="@color/ColorPrimaryTextColor"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="gravity"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:text="Please Select A Report"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/MenuSecondaryTitleTextColor"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="gravity"
+                android:gravity="center_horizontal" />
+
 
 
             <LinearLayout
@@ -54,5 +67,18 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/cancel_button"
+        android:textSize="20dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/ColorPrimaryDark"
+        android:background="@color/ButtonBackgroundColor" />
 
 </RelativeLayout>

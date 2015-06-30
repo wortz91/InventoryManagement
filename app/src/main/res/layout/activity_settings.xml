@@ -25,11 +25,6 @@
         android:background="@color/ColorPrimaryDark"
         android:weightSum="1">
 
-        <include
-            android:id="@+id/search_view"
-            layout="@layout/search_view">
-        </include>
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

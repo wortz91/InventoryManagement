@@ -73,10 +73,63 @@ public class ApiConnector {
         return jsonArray;
     }
 
-    public JSONArray EditInventoryDetails(String LabelID)
-    {
+    public JSONArray EditInventoryDetails(int ItemID) {
         // URL for getting all customers
-        String url = "http://s15inventory.franklinpracticum.com/php/getById.php?Label=" + LabelID;
+        String url = "http://s15inventory.franklinpracticum.com/php/getById.php?ItemID=" + ItemID;
+
+        // Get HttpResponse Object from url.
+        // Get HttpEntity from Http Response Object
+
+        HttpEntity httpEntity = null;
+
+        try
+        {
+
+            DefaultHttpClient httpClient = new DefaultHttpClient();  // Default HttpClient
+            HttpGet httpGet = new HttpGet(url);
+
+            HttpResponse httpResponse = httpClient.execute(httpGet);
+
+            httpEntity = httpResponse.getEntity();
+
+        } catch (ClientProtocolException e) {
+
+            // Signals error in http protocol
+            e.printStackTrace();
+
+            //Log Errors Here
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        // Convert HttpEntity into JSON Array
+        JSONArray jsonArray = null;
+
+        if (httpEntity != null) {
+            try {
+                String entityResponse = EntityUtils.toString(httpEntity);
+
+                Log.e("Entity Response  : ", entityResponse);
+
+                jsonArray = new JSONArray(entityResponse);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return jsonArray;
+    }
+
+    public JSONArray ScanInventoryDetailsAddEdit(String Label) {
+        // URL for getting all customers
+        String url = "http://s15inventory.franklinpracticum.com/php/getById.php?ItemID=" + Label;
 
         // Get HttpResponse Object from url.
         // Get HttpEntity from Http Response Object

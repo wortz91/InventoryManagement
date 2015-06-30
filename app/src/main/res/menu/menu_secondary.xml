@@ -7,11 +7,6 @@
         android:orderInCategory="100"
         app:showAsAction="never"
         android:icon="@drawable/ic_launcher"/>
-    <item android:id="@+id/action_print"
-        android:title="@string/action_print"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:icon="@drawable/ic_launcher"/>
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"

@@ -35,7 +35,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="VIEW/EDIT INVENTORY ITEM"
+            android:text="EDIT/DELETE INVENTORY"
             android:layout_centerHorizontal="true"
             android:id="@+id/viewEditInventory_Title"
             android:layout_gravity="center_horizontal"
@@ -208,7 +208,6 @@
                 android:textColor="@color/ColorPrimaryDark"
                 android:layout_marginTop="25dp"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="50dp"
                 android:visibility="invisible" />
 
             <Button
@@ -221,7 +220,6 @@
                 android:textColor="@color/ColorPrimaryDark"
                 android:layout_marginTop="25dp"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="50dp"
                 android:visibility="visible" />
 
             <Button
@@ -233,8 +231,18 @@
                 android:background="@color/ButtonBackgroundColor"
                 android:textColor="@color/ColorPrimaryDark"
                 android:layout_marginTop="25dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="50dp" />
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Remove"
+                android:id="@+id/delete_button"
+                android:textSize="20dp"
+                android:background="@color/ButtonBackgroundColor"
+                android:textColor="@color/ColorPrimaryDark"
+                android:layout_marginTop="25dp"
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
 

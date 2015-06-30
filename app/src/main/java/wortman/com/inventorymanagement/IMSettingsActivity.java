@@ -56,11 +56,9 @@ public class IMSettingsActivity extends ActionBarActivity {
             Intent intent = new Intent(submitActivity, IMHelpActivity.class);
             startActivity(intent);
         }
-        if (id == R.id.action_print) {
-            Toast.makeText(IMSettingsActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
-        }
         if (id == R.id.action_main) {
-            Toast.makeText(IMSettingsActivity.this, "Main Menu Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, MainActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

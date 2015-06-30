@@ -1,8 +1,10 @@
 package wortman.com.inventorymanagement;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
@@ -23,6 +25,8 @@ import wortman.com.openshiftapplication.R;
 
 
 public class IMLocationActivity extends ActionBarActivity implements LocationListener{
+
+    private Activity submitActivity = this;
     //need to initialize db
     Context context;
     private ArrayList<String> placeholder = new ArrayList<>(Arrays.asList("test1"+ "       test11" + "       test111","test2","test3","test4","test5","test6"));
@@ -129,16 +133,16 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(IMLocationActivity.this, "Settings Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMSettingsActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_help) {
-            Toast.makeText(IMLocationActivity.this, "Help Button Clicked", Toast.LENGTH_SHORT).show();
-        }
-        if (id == R.id.action_print) {
-            Toast.makeText(IMLocationActivity.this, "Print Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, IMHelpActivity.class);
+            startActivity(intent);
         }
         if (id == R.id.action_main) {
-            Toast.makeText(IMLocationActivity.this, "Main Menu Button Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(submitActivity, MainActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
