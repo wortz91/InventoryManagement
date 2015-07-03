@@ -90,7 +90,6 @@ public class IMInventoryActivity extends ActionBarActivity {
         protected JSONArray doInBackground(ApiConnector... params) {
 
             // it is executed on Background thread
-
             return params[0].GetInventory();
         }
 
