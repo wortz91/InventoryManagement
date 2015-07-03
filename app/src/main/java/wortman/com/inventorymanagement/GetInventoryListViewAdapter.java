@@ -78,7 +78,7 @@ public class GetInventoryListViewAdapter extends BaseAdapter{
         {
             JSONObject jsonObject = this.dataArray.getJSONObject(position);
 
-            cell.Label.setText("Label: "+ jsonObject.getString("Label"));
+            cell.Label.setText("UPC: "+ jsonObject.getString("Label"));
             cell.ItemName.setText("Item Name: "+ jsonObject.getString("ItemName"));
             cell.Category.setText("Category: "+ jsonObject.getString("Category"));
             cell.ModelNumber.setText("Model Number: "+ jsonObject.getString("ModelNumber"));

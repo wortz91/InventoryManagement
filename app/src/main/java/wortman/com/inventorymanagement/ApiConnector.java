@@ -129,7 +129,7 @@ public class ApiConnector {
 
     public JSONArray ScanInventoryDetailsAddEdit(String Label) {
         // URL for getting all customers
-        String url = "http://s15inventory.franklinpracticum.com/php/getById.php?ItemID=" + Label;
+        String url = "http://s15inventory.franklinpracticum.com/php/getByLabel.php?Label=" + Label;
 
         // Get HttpResponse Object from url.
         // Get HttpEntity from Http Response Object

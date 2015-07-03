@@ -74,7 +74,7 @@ public class IMReportActivity extends ActionBarActivity implements AdapterView.O
             WebView mWebView=new WebView(IMReportActivity.this);
             mWebView.getSettings().setJavaScriptEnabled(true);
             //Need to change URL to reflect actual report URL after the +
-            mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://www.urartuuniversity.com/content_images/pdf-sample.pdf");
+            mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://s15inventory.franklinpracticum.com/php/categoryReportPDF.php");
             setContentView(mWebView);
         }
         //Condition Report
@@ -82,33 +82,24 @@ public class IMReportActivity extends ActionBarActivity implements AdapterView.O
             WebView mWebView=new WebView(IMReportActivity.this);
             mWebView.getSettings().setJavaScriptEnabled(true);
             //Need to change URL to reflect actual report URL after the +
-            mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://www.urartuuniversity.com/content_images/pdf-sample.pdf");
+            mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://s15inventory.franklinpracticum.com/php/conditionReportPDF.php");
             setContentView(mWebView);
 
         }
-        //Location Report
+        //Inventory Report
         else if(pos == 3){
             WebView mWebView=new WebView(IMReportActivity.this);
             mWebView.getSettings().setJavaScriptEnabled(true);
             //Need to change URL to reflect actual report URL after the +
-            mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://www.urartuuniversity.com/content_images/pdf-sample.pdf");
+            mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://s15inventory.franklinpracticum.com/php/inventoryReportPDF.php");
             setContentView(mWebView);
 
         }
-        //Nearby Report
+        //Location Report
         else if(pos == 4){
             WebView mWebView=new WebView(IMReportActivity.this);
             mWebView.getSettings().setJavaScriptEnabled(true);
-            //Need to change URL to reflect actual report URL after the +
-            mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://www.urartuuniversity.com/content_images/pdf-sample.pdf");
-            setContentView(mWebView);
-
-        }
-        //Custom Report
-        else if(pos == 5){
-            WebView mWebView=new WebView(IMReportActivity.this);
-            mWebView.getSettings().setJavaScriptEnabled(true);
-            mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://www.urartuuniversity.com/content_images/pdf-sample.pdf");
+            mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://s15inventory.franklinpracticum.com/php/locationReportPDF.php");
             setContentView(mWebView);
 
         }
