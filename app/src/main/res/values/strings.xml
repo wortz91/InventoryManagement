@@ -24,9 +24,8 @@
         <item></item>
         <item>Category Report</item>
         <item>Condition Report</item>
+        <item>Inventory Report</item>
         <item>Location Report</item>
-        <item>Nearby Report</item>
-        <item>Custom Report</item>
     </string-array>
 
 
