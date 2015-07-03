@@ -49,6 +49,8 @@ public class IMAddActivity extends ActionBarActivity {
     //this is for navigation with the overflow menu
     private Activity submitActivity = this;
     public static final String SESSION_DATA = "sessionData";
+    String Label;
+    private EditText lbl;
 
     //class variables from table
     String label;
@@ -83,6 +85,12 @@ public class IMAddActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
+        //get ItemID to pass to DB call
+        this.Label = getIntent().getStringExtra("Label");
+        if (Label != null){
+            this.lbl = (EditText) this.findViewById(R.id.label_editText);
+            lbl.setText(Label);
+        }
 
         final EditText lbl = (EditText) findViewById(R.id.label_editText);
         final EditText itm = (EditText) findViewById(R.id.itemName_editText);

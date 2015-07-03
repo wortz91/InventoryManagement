@@ -3,6 +3,7 @@ package wortman.com.inventorymanagement;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,9 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import wortman.com.openshiftapplication.R;
 
 
@@ -23,6 +27,10 @@ public class IMBarcodeActivity extends ActionBarActivity {
 
     private Activity submitActivity = this;
     private Button scan;
+    private String Label;
+
+    private JSONObject jObj;
+    int ItemID;
 
     //private Toolbar toolbar;
 
@@ -43,16 +51,9 @@ public class IMBarcodeActivity extends ActionBarActivity {
         //SCAN INITIATION AND LAUNCH
         final IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setCaptureActivity(IMCaptureActivityOrientation.class);
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
-        integrator.setPrompt("SCAN A BARCODE");
-        integrator.setCameraId(0);  // Use a specific camera of the device
-        integrator.setBeepEnabled(false);
-        integrator.initiateScan();
 
         scan= (Button)findViewById(R.id.scanBtn);
-
-
-       scan.setOnClickListener(new View.OnClickListener() {
+        scan.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -78,7 +79,7 @@ public class IMBarcodeActivity extends ActionBarActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
-    
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -89,6 +90,9 @@ public class IMBarcodeActivity extends ActionBarActivity {
             } else {
                 Log.d("MainActivity", "Scanned");
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                Label = result.getContents().toString();
+                //GET INVENTORY ARRAY
+                new GetInventoryTask().execute(new ApiConnector());
             }
         } else {
             Log.d("MainActivity", "Weird");
@@ -96,6 +100,87 @@ public class IMBarcodeActivity extends ActionBarActivity {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+    private class GetInventoryTask extends AsyncTask<ApiConnector,Long,JSONArray>
+    {
+        @Override
+        protected JSONArray doInBackground(ApiConnector... params) {
+            // it is executed on Background thread
+            return params[0].GetInventory();
+        }
+        @Override
+        protected void onPostExecute(JSONArray jsonArray) {
+
+            try {
+                if(jsonArray != null) {
+                    boolean isMatch = false;
+                    for (int i = 0 ; i < jsonArray.length(); i++) {
+                        jObj = jsonArray.getJSONObject(i);
+                        if (jObj.getString("Label").equals(Label)) {
+                            ItemID = jObj.getInt("ItemID");
+                            exists();
+                            isMatch = true;
+                        }
+                    }
+                    if (!isMatch){
+                        doesntExists();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void exists(){
+        new ScanInventoryDetailsAddEdit().execute(new ApiConnector());
+        if(ItemID != 0) {
+            Intent showDetails = new Intent(getApplicationContext(), IMViewEditActivity.class);
+            showDetails.putExtra("ItemID", ItemID);
+            startActivity(showDetails);
+        }
+    }
+
+    private void doesntExists(){
+        new ScanInventoryDetailsAddEdit().execute(new ApiConnector());
+        if(Label != null) {
+            Intent showDetails = new Intent(getApplicationContext(), IMAddActivity.class);
+            showDetails.putExtra("Label", Label);
+            startActivity(showDetails);
+        }
+    }
+    private class ScanInventoryDetailsAddEdit extends AsyncTask<ApiConnector,Long,JSONArray>
+    {
+        @Override
+        protected JSONArray doInBackground(ApiConnector... params) {
+
+            // it is executed on Background thread
+
+            return params[0].ScanInventoryDetailsAddEdit(Label);
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray jsonArray) {
+
+            try
+            {
+                if(jsonArray != null) {
+                    JSONObject inventoryItem = jsonArray.getJSONObject(0);
+
+                    ItemID = inventoryItem.getInt("ItemID");
+                    Label = inventoryItem.getString("Label");
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

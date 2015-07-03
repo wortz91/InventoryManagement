@@ -168,8 +168,9 @@ public class ApiConnector {
                 String entityResponse = EntityUtils.toString(httpEntity);
 
                 Log.e("Entity Response  : ", entityResponse);
-
-                jsonArray = new JSONArray(entityResponse);
+                if (entityResponse != null) {
+                    jsonArray = new JSONArray(entityResponse);
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();

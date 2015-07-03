@@ -105,11 +105,8 @@ public class IMInventoryActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         new GetInventoryTask().execute(new ApiConnector());
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
