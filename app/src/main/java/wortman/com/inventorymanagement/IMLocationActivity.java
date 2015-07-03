@@ -62,6 +62,7 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        //here is a change to push to Unfuddle
         //ListView
         new GetInventoryTask().execute(new ApiConnector());
 
