@@ -116,25 +116,6 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
         setLocation();
     }
 
-
-   // public void selectFrag(View view) {
-    //    android.support.v4.app.Fragment fr;
-
-   //     if(view == findViewById(R.id.button2)) {
-   //         fr = new FragmentTwo();
-   //     } else if (view == findViewById(R.id.button3)) {
-   //         fr = new FragmentThree();
-   //     } else {
-   //         fr = new FragmentOne();
-   //     }
-
-   //     android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-   //     android.support.v4.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
-   //     fragmentTransaction.replace(R.id.test_fragment, fr);
-   //    fragmentTransaction.commit();
-   // }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

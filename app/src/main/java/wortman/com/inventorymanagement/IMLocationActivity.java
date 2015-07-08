@@ -48,7 +48,7 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventory);
+        setContentView(R.layout.activity_location);
 
         //this.responseTextView = (TextView) this.findViewById(R.id.responseTextView);
         this.getLocationView = (ListView) this.findViewById(R.id.getInventoryView);
