@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -53,6 +54,7 @@ public class IMViewEditActivity extends ActionBarActivity {
     private EditText cat;
     private EditText modl;
     private EditText cond;
+    private Spinner conditionSpinner;
     private EditText loc;
 
     //class variables from table
@@ -60,7 +62,7 @@ public class IMViewEditActivity extends ActionBarActivity {
     String itemName;
     String category;
     String model;
-    int condition;
+    String condition;
     String location;
 
     //class variables that are automated
@@ -94,8 +96,10 @@ public class IMViewEditActivity extends ActionBarActivity {
         this.itm = (EditText) this.findViewById(R.id.itemName_editText);
         this.cat = (EditText) this.findViewById(R.id.catagory_editText);
         this.modl = (EditText) this.findViewById(R.id.model_editText);
-        this.cond = (EditText) this.findViewById(R.id.condition_editText);
         this.loc = (EditText) this.findViewById(R.id.location_editText);
+
+        addListenerOnSpinnerItemSelection();
+
 
         //get ItemID to pass to DB call
         this.ItemID = getIntent().getIntExtra("ItemID", ItemID);
@@ -137,8 +141,7 @@ public class IMViewEditActivity extends ActionBarActivity {
                 catagory_editText.setClickable(true);
                 catagory_editText.setFocusableInTouchMode(true);
 
-                EditText condition_editText =(EditText)findViewById(R.id.condition_editText);
-                condition_editText.setCursorVisible(true);
+                Spinner condition_editText =(Spinner)findViewById(R.id.condition_editText);
                 condition_editText.setClickable(true);
                 condition_editText.setFocusableInTouchMode(true);
 
@@ -161,7 +164,7 @@ public class IMViewEditActivity extends ActionBarActivity {
                 itemName = itm.getText().toString();
                 category = cat.getText().toString();
                 model = modl.getText().toString();
-                condition = Integer.parseInt(cond.getText().toString());
+                condition = conditionSpinner.getSelectedItem().toString();
                 location = loc.getText().toString();
 
                 //hidden variables
@@ -216,6 +219,11 @@ public class IMViewEditActivity extends ActionBarActivity {
                     }
                 });
 
+    }
+
+    public void addListenerOnSpinnerItemSelection() {
+        conditionSpinner = (Spinner) findViewById(R.id.condition_editText);
+        conditionSpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     }
 
     @Override

@@ -62,7 +62,8 @@
                             android:layout_width="225dp"
                             android:layout_height="wrap_content"
                             android:id="@+id/label_editText"
-                            android:layout_alignParentEnd="true" />
+                            android:layout_alignParentEnd="true"
+                            android:maxLength="13" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -84,7 +85,8 @@
                             android:layout_width="225dp"
                             android:layout_height="wrap_content"
                             android:id="@+id/itemName_editText"
-                            android:layout_alignParentEnd="true" />
+                            android:layout_alignParentEnd="true"
+                            android:maxLength="45" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -105,7 +107,8 @@
                             android:layout_width="225dp"
                             android:layout_height="wrap_content"
                             android:id="@+id/category_editText"
-                            android:layout_alignParentEnd="true" />
+                            android:layout_alignParentEnd="true"
+                            android:maxLength="45" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -126,7 +129,8 @@
                             android:layout_width="225dp"
                             android:layout_height="wrap_content"
                             android:id="@+id/model_editText"
-                            android:layout_alignParentEnd="true"/>
+                            android:layout_alignParentEnd="true"
+                            android:maxLength="20" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -173,7 +177,8 @@
                             android:layout_width="225dp"
                             android:layout_height="wrap_content"
                             android:id="@+id/location_editText"
-                            android:layout_alignParentEnd="true" />
+                            android:layout_alignParentEnd="true"
+                            android:maxLength="45" />
 
                         <TextView
                             android:layout_width="wrap_content"

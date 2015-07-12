@@ -55,7 +55,8 @@
                 android:focusable="false"
                 android:cursorVisible="false"
                 android:clickable="false"
-                android:text="Some UPC" />
+                android:text="Some UPC"
+                android:maxLength="13" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -81,7 +82,8 @@
                 android:focusable="false"
                 android:cursorVisible="false"
                 android:clickable="false"
-                android:text="Some Item Name" />
+                android:text="Some Item Name"
+                android:maxLength="45" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -106,7 +108,8 @@
                 android:focusable="false"
                 android:cursorVisible="false"
                 android:clickable="false"
-                android:text="Some Category" />
+                android:text="Some Category"
+                android:maxLength="45" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -131,7 +134,8 @@
                 android:focusable="false"
                 android:cursorVisible="false"
                 android:clickable="false"
-                android:text="Some Model" />
+                android:text="Some Model"
+                android:maxLength="20" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -148,10 +152,13 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-            <EditText
+            <Spinner
                 android:layout_width="225dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/condition_editText"
+                android:spinnerMode="dropdown"
+                android:theme="@style/AppTheme"
+                android:entries="@array/add_array"
                 android:layout_alignParentEnd="true"
                 android:focusable="false"
                 android:cursorVisible="false"
@@ -181,7 +188,8 @@
                 android:focusable="false"
                 android:cursorVisible="false"
                 android:clickable="false"
-                android:text="Some Location" />
+                android:text="Some Location"
+                android:maxLength="45" />
 
             <TextView
                 android:layout_width="wrap_content"
