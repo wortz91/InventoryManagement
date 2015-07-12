@@ -48,7 +48,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="225dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/label_editText"
                 android:layout_alignParentEnd="true"
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="225dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/itemName_editText"
                 android:layout_alignParentEnd="true"
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="225dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/catagory_editText"
                 android:layout_alignParentEnd="true"
@@ -127,7 +127,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="225dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/model_editText"
                 android:layout_alignParentEnd="true"
@@ -153,7 +153,7 @@
             android:layout_height="wrap_content">
 
             <Spinner
-                android:layout_width="225dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/condition_editText"
                 android:spinnerMode="dropdown"
@@ -181,7 +181,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="225dp"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/location_editText"
                 android:layout_alignParentEnd="true"
