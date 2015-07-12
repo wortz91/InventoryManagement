@@ -55,14 +55,14 @@
                 android:focusable="false"
                 android:cursorVisible="false"
                 android:clickable="false"
-                android:text="Some UPC"
+                android:text="Some Serial Number"
                 android:maxLength="13" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="UPC"
+                android:text="Serial Number"
                 android:id="@+id/label_textView"
                 android:textColor="@color/ColorPrimaryTextColor"
                 android:textSize="20dp" />
