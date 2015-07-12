@@ -132,6 +132,8 @@ public class IMAddActivity extends ActionBarActivity {
                         //call method to parse the strings into the proper table column field
                         insertIntoDatabase();
 
+                        goHome();
+
                         //call successful
                         //Toast.makeText(IMAddActivity.this, "Add Successful", Toast.LENGTH_SHORT).show();
 
@@ -158,6 +160,10 @@ public class IMAddActivity extends ActionBarActivity {
         super.onBackPressed();
     }
 
+    public void goHome() {
+        Intent intent = new Intent(submitActivity, MainActivity.class);
+        startActivity(intent);
+    }
 
     public boolean insertIntoDatabase() {
         new AsyncTask<Void, Void, Void>() {
