@@ -43,7 +43,7 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     double curLon = 0;
     double dbLat = 0;
     double dbLon = 0;
-    double distance = 70000;
+    double distance = 0.09;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

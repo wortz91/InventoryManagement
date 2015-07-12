@@ -19,6 +19,7 @@
     <string name="error_invalid_password">Invalid Password</string>
     <string name="error_invalid_email">Invalid Email</string>
     <string name="button_text"><font size="125">First line!</font>\n\<font size="15">Second line!</font></string>
+    <string name="search_hint">What do you wish to search for?</string>
 
     <string-array name="report_array">
         <item></item>
@@ -26,6 +27,13 @@
         <item>Condition Report</item>
         <item>Inventory Report</item>
         <item>Location Report</item>
+    </string-array>
+
+    <string-array name="add_array">
+        <item>Excellent</item>
+        <item>Good</item>
+        <item>Fair</item>
+        <item>Poor</item>
     </string-array>
 
 

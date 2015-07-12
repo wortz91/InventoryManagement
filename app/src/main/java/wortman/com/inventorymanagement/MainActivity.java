@@ -2,42 +2,112 @@ package wortman.com.inventorymanagement;
 
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.SearchRecentSuggestions;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
+import java.lang.reflect.Field;
+
+import java.lang.reflect.Field;
 
 import wortman.com.openshiftapplication.R;
 
 
-public class MainActivity extends ActionBarActivity implements LocationListener {
+public class MainActivity extends ActionBarActivity implements LocationListener, SearchView.OnQueryTextListener {
 
     private Activity submitActivity = this;
     private double latitude;
     private double longitude;
 
-    //private Toolbar toolbar;
+    private MenuItem searchItem;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //ACTION BAR TO BE ON EACH ACTIVITY
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+
         //Action bar settings
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        searchView = new SearchView(getSupportActionBar().getThemedContext());
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setIconifiedByDefault(true);
+        searchView.setMaxWidth(1000);
+
+        SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById((android.support.v7.appcompat.R.id.search_src_text));
+
+        searchAutoComplete.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus)
+                    showSearch(false);
+            }
+        });
+
+        try {
+            // This sets the cursor
+            // resource ID to 0 or @null
+            // which will make it visible
+            // on white background
+            Field mCursorDrawableRes = TextView.class
+                    .getDeclaredField("mCursorDrawableRes");
+
+            mCursorDrawableRes.setAccessible(true);
+            mCursorDrawableRes.set(searchAutoComplete, 0);
+
+        } catch (Exception e) {
+        }
+//        //this sets up the search feature and passes in the searched text
+//        Intent searchIntent = getIntent();
+//        Log.d("searchIntent", getIntent().toString());
+//        Log.d("before search", searchIntent.toString());
+//        Log.d("actionSearch", Intent.ACTION_SEARCH);
+////        Log.d("actionIntent", searchIntent.getAction());
+//
+//        if(Intent.ACTION_SEARCH.equals(searchIntent.getAction())) {
+//            String searchQuery = searchIntent.getStringExtra(SearchManager.QUERY);
+//            Log.d("searchQuery", searchQuery);
+//
+//            search(searchQuery);
+//        }
+//
+//        Log.d("After search intent:", searchIntent.toString());
+
+//        search= new SearchView(getSupportActionBar().getThemedContext());
+//        sm = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//
+//        search.setSearchableInfo(sm.getSearchableInfo(getComponentName()));
+//        search.setSubmitButtonEnabled(true);
+//        search.setIconifiedByDefault(true);
+//        search.setMaxWidth(1000);
+
+//        onQueryTextSubmit(search.toString());
 
         RelativeLayoutButton button1 = new RelativeLayoutButton(this,R.id.inventory_button);
         RelativeLayoutButton button2 = new RelativeLayoutButton(this,R.id.add_button);
@@ -86,8 +156,62 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
 
             }
         });
-
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.d("onNewIntent:", intent.toString());
+        showSearch(false);
+        Bundle extras = intent.getExtras();
+        String userQuery = String.valueOf(extras.get(SearchManager.USER_QUERY));
+        String query = String.valueOf(extras.get(SearchManager.QUERY));
+
+        Log.d("query:", query);
+        Log.d("userQuery:", userQuery);
+
+        Toast.makeText(this, "query: " + query + " user_query: " + userQuery,
+                Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showSearch(boolean visible) {
+        if (visible)
+            MenuItemCompat.expandActionView(searchItem);
+        else
+            MenuItemCompat.collapseActionView(searchItem);
+    }
+
+    public void search(String searchQuery) {
+        Toast.makeText(this, "The searched for query is:" + searchQuery, Toast.LENGTH_LONG).show();
+
+        Log.d("inside search method:", searchQuery);
+    }
+
+    /**
+     * Called when the hardware search button is pressed
+     */
+    @Override
+    public boolean onSearchRequested() {
+        Log.d("onSearchRequested();", "searchySearchSearchSearch");
+        showSearch(true);
+
+        // dont show the built-in search dialog
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String myQuery) {
+
+        return (false);
+    } /* on query text submit */
+
+
+    @Override
+    public boolean onQueryTextChange(String change)
+    {
+        // "change" represents current text string as being typed
+        return(false);
+    } /* on query text change */
 
     @Override
     public void onLocationChanged(Location location) {
@@ -118,9 +242,34 @@ public class MainActivity extends ActionBarActivity implements LocationListener 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_secondary, menu);
-        return true;
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_secondary, menu);
+////        MenuInflater inflater = getMenuInflater();
+////        inflater.inflate(R.menu.menu_secondary, menu);
+//
+//        // Get the SearchView and set the searchable configuration
+//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        SearchView searchView = (SearchView) menu.findItem(R.id.search_view).getActionView();
+//        // Assumes current activity is the searchable activity
+//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+        searchItem = menu.add(android.R.string.search_go);
+
+        menu.add("One");
+        menu.add("Two");
+        menu.add("Three");
+
+        searchItem.setIcon(R.drawable.ic_action_search);
+
+        MenuItemCompat.setActionView(searchItem, searchView);
+
+        MenuItemCompat.setShowAsAction(searchItem,
+                MenuItemCompat.SHOW_AS_ACTION_ALWAYS
+                        | MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+
+        return super.onCreateOptionsMenu(menu);
+
+//        return true;
     }
 
     @Override

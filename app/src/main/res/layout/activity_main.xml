@@ -25,6 +25,11 @@
         tools:context=".MainActivity"
         android:background="@color/ColorPrimaryDark">
 
+        <SearchView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchView" />
+
         <include
             android:id="@+id/search_view"
             layout="@layout/search_view">

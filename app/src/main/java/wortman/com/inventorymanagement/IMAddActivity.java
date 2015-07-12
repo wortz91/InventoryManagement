@@ -18,7 +18,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -57,7 +59,8 @@ public class IMAddActivity extends ActionBarActivity {
     String itemName;
     String category;
     String model;
-    int condition;
+    String condition;
+    Spinner conditionSpinner;
     String location;
 
     //class variables that are automated
@@ -85,6 +88,8 @@ public class IMAddActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+
         //get ItemID to pass to DB call
         this.Label = getIntent().getStringExtra("Label");
         if (Label != null){
@@ -96,7 +101,9 @@ public class IMAddActivity extends ActionBarActivity {
         final EditText itm = (EditText) findViewById(R.id.itemName_editText);
         final EditText cat = (EditText) findViewById(R.id.category_editText);
         final EditText modl = (EditText) findViewById(R.id.model_editText);
-        final EditText cond = (EditText) findViewById(R.id.condition_editText);
+
+        addListenerOnSpinnerItemSelection();
+
         final EditText loc = (EditText) findViewById(R.id.location_editText);
         Log.d("User",SESSION_DATA);
         final SharedPreferences prefs = getSharedPreferences(SESSION_DATA, 0);
@@ -112,7 +119,7 @@ public class IMAddActivity extends ActionBarActivity {
                         itemName = itm.getText().toString();
                         category = cat.getText().toString();
                         model = modl.getText().toString();
-                        condition = Integer.parseInt(cond.getText().toString());
+                        condition = conditionSpinner.getSelectedItem().toString();
                         location = loc.getText().toString();
 
                         //hidden variables
@@ -141,6 +148,11 @@ public class IMAddActivity extends ActionBarActivity {
 
     }
 
+    public void addListenerOnSpinnerItemSelection() {
+        conditionSpinner = (Spinner) findViewById(R.id.condition_editText);
+        conditionSpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -160,7 +172,7 @@ public class IMAddActivity extends ActionBarActivity {
                 nameValuePairs.add(new BasicNameValuePair("ItemName", itemName));
                 nameValuePairs.add(new BasicNameValuePair("Category", category));
                 nameValuePairs.add(new BasicNameValuePair("ModelNumber", model + ""));
-                nameValuePairs.add(new BasicNameValuePair("ConditionID", condition + ""));
+                nameValuePairs.add(new BasicNameValuePair("ConditionID", condition));
                 nameValuePairs.add(new BasicNameValuePair("Location", location));
                 nameValuePairs.add(new BasicNameValuePair("Latitude", latitude + ""));
                 nameValuePairs.add(new BasicNameValuePair("Longitude", longitude + ""));
