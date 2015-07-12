@@ -43,7 +43,7 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     double curLon = 0;
     double dbLat = 0;
     double dbLon = 0;
-    double distance = 0.09;
+    double distance = 0.25;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,7 +187,11 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     }
 
     public boolean isNearby(double curLat, double curLon, double dbLat, double dbLon, double distance) {
-        if (Math.sqrt(Math.pow(curLat - dbLat, 2) + Math.pow(curLon - dbLon, 2)) < distance) {
+        /*if (Math.sqrt(Math.pow(curLat - dbLat, 2) + Math.pow(curLon - dbLon, 2)) < distance) {
+            return true;
+        }*/
+        if ((curLat < (dbLat + distance)) && (curLat > (dbLat - distance)) &&
+        (curLon < (dbLon + distance)) && (curLon > (dbLon - distance))) {
             return true;
         }
         return false;
