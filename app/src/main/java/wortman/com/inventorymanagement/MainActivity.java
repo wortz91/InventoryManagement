@@ -30,6 +30,7 @@ import wortman.com.openshiftapplication.R;
 
 public class MainActivity extends ActionBarActivity implements LocationListener, SearchView.OnQueryTextListener {
 
+    //This is added so something changed so I could make a push
     private Activity submitActivity = this;
     private double latitude;
     private double longitude;
