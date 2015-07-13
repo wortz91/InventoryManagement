@@ -173,6 +173,8 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
 
         Toast.makeText(this, "query: " + query + " user_query: " + userQuery,
                 Toast.LENGTH_SHORT).show();
+
+        //add the ListViewAdapter
     }
 
     protected void showSearch(boolean visible) {
