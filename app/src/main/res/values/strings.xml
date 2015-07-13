@@ -26,6 +26,7 @@
         <item>Category Report</item>
         <item>Condition Report</item>
         <item>Inventory Report</item>
+        <item>Item Name Report</item>
         <item>Location Report</item>
     </string-array>
 

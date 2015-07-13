@@ -95,8 +95,16 @@ public class IMReportActivity extends ActionBarActivity implements AdapterView.O
             setContentView(mWebView);
 
         }
-        //Location Report
+        //Item Name Report
         else if(pos == 4){
+            WebView mWebView=new WebView(IMReportActivity.this);
+            mWebView.getSettings().setJavaScriptEnabled(true);
+            mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://s15inventory.franklinpracticum.com/php/itemNameReportPDF.php");
+            setContentView(mWebView);
+
+        }
+        //Location Report
+        else if(pos == 5){
             WebView mWebView=new WebView(IMReportActivity.this);
             mWebView.getSettings().setJavaScriptEnabled(true);
             mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://s15inventory.franklinpracticum.com/php/locationReportPDF.php");
