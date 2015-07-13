@@ -350,7 +350,7 @@ public class IMViewEditActivity extends ActionBarActivity {
                 try {
                     HttpClient httpclient = new DefaultHttpClient();
 
-                    HttpPost httppost = new HttpPost("http://s15inventory.franklinpracticum.com/php/archive.php");
+                    HttpPost httppost = new HttpPost("http://s15inventory.franklinpracticum.com/php/archiveAPP.php");
 
                     httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
