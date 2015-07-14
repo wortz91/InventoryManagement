@@ -95,6 +95,8 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
 
     public void setListAdapter (JSONArray jsonArray) {
         this.jsonArray = jsonArray;
+        JSONArray nearbyArray = new JSONArray();
+
         try {
             Log.d("JSONArray", jsonArray.getJSONObject(0).toString());
         } catch (JSONException je) {
@@ -102,29 +104,40 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         }
 
         try {
-            JSONObject dbVal = jsonArray.getJSONObject(0);
 
-            dbLat =  Double.parseDouble((String) dbVal.get("Latitude"));
-            Log.d("dbLat:", dbLat + "");
+            Log.d("Remaining objects:", jsonArray.length() + "");
 
-            Log.d("curLat:", curLat + "");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject dbVal = jsonArray.getJSONObject(i);
+                Log.d("JSONObject:", dbVal.toString());
 
-            dbLon = Double.parseDouble((String) dbVal.get("Longitude"));
-            Log.d("dbLon:", dbLon + "");
+                Log.d("JSONObject:", dbVal.toString());
 
-            Log.d("curLon:", curLon + "");
+                dbLat = Double.parseDouble((String) dbVal.get("Latitude"));
+                Log.d("dbLat:", dbLat + "");
 
-            Log.d("nearBy", isNearby(curLat, curLon, dbLat, dbLon, distance) + "");
+                Log.d("curLat:", curLat + "");
+
+                dbLon = Double.parseDouble((String) dbVal.get("Longitude"));
+                Log.d("dbLon:", dbLon + "");
+
+                Log.d("curLon:", curLon + "");
+
+                Log.d("nearBy", isNearby(curLat, curLon, dbLat, dbLon, distance) + "");
+
+
+                //place the nearby code here
+                if (isNearby(curLat, curLon, dbLat, dbLon, distance)) {
+
+                    //add item to list -- this setAdapter is adding the entire jsonArray if one is true
+                    //I think I need to change the AdapterListView
+                    nearbyArray.put(dbVal);
+                    this.getLocationView.setAdapter(new GetLocationListViewAdapter(nearbyArray, this));
+                }
+            }
         } catch (JSONException je) {
             je.printStackTrace();
         }
-
-        //place the nearby code here
-        if(isNearby(curLat, curLon, dbLat, dbLon, distance)) {
-            //add item to list
-            this.getLocationView.setAdapter(new GetLocationListViewAdapter(jsonArray, this));
-        }
-
         //this.getLocationView.setAdapter(new GetLocationListViewAdapter(jsonArray, this));
     }
 

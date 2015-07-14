@@ -82,7 +82,7 @@ public class GetLocationListViewAdapter extends BaseAdapter{
             cell.ItemName.setText("Item Name: "+ jsonObject.getString("ItemName"));
             cell.Category.setText("Category: "+ jsonObject.getString("Category"));
             cell.ModelNumber.setText("Model Number: "+ jsonObject.getString("ModelNumber"));
-            cell.Condition.setText("Condition ID: "+ jsonObject.getInt("ConditionID"));
+            cell.Condition.setText("Condition ID: "+ jsonObject.getString("ConditionID"));
             cell.Location.setText("Location: "+ jsonObject.getString("Location"));
             cell.Latitude.setText("Latitude:" + jsonObject.getString("Latitude"));
             cell.Longitude.setText("Longitude:" + jsonObject.getString("Longitude"));
