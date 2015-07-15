@@ -14,6 +14,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -112,15 +113,40 @@ public class IMAddActivity extends ActionBarActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        //Toast.makeText(IMAddActivity.this, "Add Button Clicked", Toast.LENGTH_SHORT).show();
-
+                        boolean error = false;
+                        View focusView = null;
                         //global strings get text from EditText fields
                         label = lbl.getText().toString();
+                        if (TextUtils.isEmpty(label)){
+                            lbl.setError(getString(R.string.error_field_required));
+                            focusView = lbl;
+                            error = true;
+                        }
                         itemName = itm.getText().toString();
+                        if (TextUtils.isEmpty(itemName)){
+                            itm.setError(getString(R.string.error_field_required));
+                            focusView = itm;
+                            error = true;
+                        }
                         category = cat.getText().toString();
+                        if (TextUtils.isEmpty(category)){
+                            cat.setError(getString(R.string.error_field_required));
+                            focusView = cat;
+                            error = true;
+                        }
                         model = modl.getText().toString();
+                        if (TextUtils.isEmpty(model)){
+                            modl.setError(getString(R.string.error_field_required));
+                            focusView = modl;
+                            error = true;
+                        }
                         condition = conditionSpinner.getSelectedItem().toString();
                         location = loc.getText().toString();
+                        if (TextUtils.isEmpty(location)){
+                            loc.setError(getString(R.string.error_field_required));
+                            focusView = loc;
+                            error = true;
+                        }
 
                         //hidden variables
                         latitude = findLatitude();
@@ -129,10 +155,15 @@ public class IMAddActivity extends ActionBarActivity {
                         lastEditDate = getCreateDate();
                         lastEditUser = prefs.getString("username", "user");
 
+                        if (error) {
+                            // There was an error; don't attempt login and focus the first
+                            // form field with an error.
+                            focusView.requestFocus();
+                        }else{
                         //call method to parse the strings into the proper table column field
                         insertIntoDatabase();
 
-                        goHome();
+                        goHome();}
 
                         //call successful
                         //Toast.makeText(IMAddActivity.this, "Add Successful", Toast.LENGTH_SHORT).show();
