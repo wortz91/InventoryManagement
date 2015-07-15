@@ -149,17 +149,15 @@
 
                         <Spinner
                             android:layout_width="200dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="45dp"
                             android:id="@+id/condition_editText"
                             android:spinnerMode="dropdown"
                             android:theme="@style/AppTheme"
                             android:entries="@array/add_array"
-                            android:layout_weight="1"
-                            android:layout_alignParentTop="true"
-                            android:layout_toEndOf="@+id/condition_textView" />
+                            android:layout_alignParentEnd="true" />
 
                         <TextView
-                            android:layout_width="200dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:text="Condition"

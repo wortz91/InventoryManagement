@@ -64,8 +64,6 @@ public class IMReportActivity extends ActionBarActivity implements AdapterView.O
         // An item was selected. You can retrieve the selected item
         parent.getItemAtPosition(pos);
 
-
-
         if(pos == 0) {
             //do nothing
         }
@@ -84,7 +82,6 @@ public class IMReportActivity extends ActionBarActivity implements AdapterView.O
             //Need to change URL to reflect actual report URL after the +
             mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://s15inventory.franklinpracticum.com/php/conditionReportPDF.php");
             setContentView(mWebView);
-
         }
         //Inventory Report
         else if(pos == 3){
@@ -93,7 +90,6 @@ public class IMReportActivity extends ActionBarActivity implements AdapterView.O
             //Need to change URL to reflect actual report URL after the +
             mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://s15inventory.franklinpracticum.com/php/inventoryReportPDF.php");
             setContentView(mWebView);
-
         }
         //Item Name Report
         else if(pos == 4){
@@ -101,7 +97,6 @@ public class IMReportActivity extends ActionBarActivity implements AdapterView.O
             mWebView.getSettings().setJavaScriptEnabled(true);
             mWebView.loadUrl("https://docs.google.com/gview?embedded=true&url="+"http://s15inventory.franklinpracticum.com/php/itemNameReportPDF.php");
             setContentView(mWebView);
-
         }
         //Location Report
         else if(pos == 5){

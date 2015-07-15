@@ -10,6 +10,7 @@
         <item name="colorControlNormal">@color/HintTextColor</item>
         <item name="colorControlActivated">@color/ColorPrimaryTextColor</item>
         <item name="colorControlHighlight">@color/ButtonBackgroundColor</item>
+        <item name="android:spinnerStyle">@android:style/Widget.Material.Light.Spinner.Underlined</item>
 
         <item name="android:actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
         <!-- Support library compatibility -->

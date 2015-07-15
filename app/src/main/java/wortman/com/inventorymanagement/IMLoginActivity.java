@@ -49,17 +49,14 @@ public class IMLoginActivity extends Activity {
     private EditText user_field;
     private EditText password_field;
     // Values for user and password at the time of the login attempt.
-    private String user = "";
-    private String password = "";
+    private String user;
+    private String password;
 
     private InputStream is = null;
     private String result = null;
     private String line = null;
     private int code;
     private boolean successful = false;
-
-    //Session
-    //SharedPreferences prefs = getSharedPreferences(SESSION_DATA, 0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,12 +94,10 @@ public class IMLoginActivity extends Activity {
      * errors are presented and no actual login attempt is made.
      */
     public void attemptLogin() {
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
+
                 // Reset errors.
-                // user_field.setError(null);
-                // password_field.setError(null);
+                user_field.setError(null);
+                password_field.setError(null);
 
                 // Store values at the time of the login attempt.
                 user = user_field.getText().toString();
@@ -110,6 +105,30 @@ public class IMLoginActivity extends Activity {
 
                 boolean error = false;
                 View focusView = null;
+
+                // Check for a password.
+                if (TextUtils.isEmpty(password)) {
+                    password_field.setError(getString(R.string.error_field_required));
+                    focusView = password_field;
+                    error = true;
+                }
+
+                // Check for a user.
+                if (TextUtils.isEmpty(user)) {
+                    user_field.setError(getString(R.string.error_field_required));
+                    focusView = user_field;
+                    error = true;
+                }
+
+                if (error) {
+                    // There was an error; don't attempt login and focus the first
+                    // form field with an error.
+                    focusView.requestFocus();
+                } else{
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
 
                 //DB calls go here
                 ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
@@ -201,51 +220,11 @@ public class IMLoginActivity extends Activity {
             }
 
         }.execute();
-    }
+    }}
 
     private void switchActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
 }
-
-
-
-
-//        // Check for a valid password.
-//        if (TextUtils.isEmpty(password)) {
-//            password_field.setError(getString(R.string.error_field_required));
-//            focusView = password_field;
-//            error = true;
-//        } else if (password.length() < 4) {
-//            password_field.setError(getString(R.string.error_invalid_password));
-//            focusView = password_field;
-//            error = true;
-//        }
-//
-//        // Check for a valid user address.
-//        if (TextUtils.isEmpty(user)) {
-//            user_field.setError(getString(R.string.error_field_required));
-//            focusView = user_field;
-//            error = true;
-//        } else if (!user.contains("@")) {
-//            user_field.setError(getString(R.string.error_invalid_email));
-//            focusView = user_field;
-//            error = true;
-//        }
-//
-//        if (error) {
-//            // There was an error; don't attempt login and focus the first
-//            // form field with an error.
-//            focusView.requestFocus();
-//        } else {
-//            // Show a progress spinner, and kick off a background task to
-//            // perform the user login attempt.
-//
-//            Intent intent = new Intent(this, MainActivity.class);
-//                startActivity(intent);
-//
-//            }
-//
-//        }
-//}

@@ -153,16 +153,12 @@
 
             <Spinner
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:id="@+id/condition_editText"
                 android:spinnerMode="dropdown"
                 android:theme="@style/AppTheme"
                 android:entries="@array/add_array"
-                android:layout_alignParentEnd="true"
-                android:focusable="false"
-                android:cursorVisible="false"
-                android:clickable="false"
-                android:text="Some Condition" />
+                android:layout_alignParentEnd="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
