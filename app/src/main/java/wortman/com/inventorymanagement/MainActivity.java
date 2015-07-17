@@ -228,34 +228,10 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_secondary, menu);
-////        MenuInflater inflater = getMenuInflater();
-////        inflater.inflate(R.menu.menu_secondary, menu);
-//
-//        // Get the SearchView and set the searchable configuration
-//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        SearchView searchView = (SearchView) menu.findItem(R.id.search_view).getActionView();
-//        // Assumes current activity is the searchable activity
-//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
-        searchItem = menu.add(android.R.string.search_go);
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_secondary, menu);
 
-        menu.add("One");
-        menu.add("Two");
-        menu.add("Three");
-
-        searchItem.setIcon(R.drawable.ic_action_search);
-
-        MenuItemCompat.setActionView(searchItem, searchView);
-
-        MenuItemCompat.setShowAsAction(searchItem,
-                MenuItemCompat.SHOW_AS_ACTION_ALWAYS
-                        | MenuItemCompat.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-
-        return super.onCreateOptionsMenu(menu);
-
-//        return true;
+        return true;
     }
 
     @Override
