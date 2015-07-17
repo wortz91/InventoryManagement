@@ -36,6 +36,7 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     //private TextView responseTextView;
     private ListView getLocationView;
     private JSONArray jsonArray;
+    JSONArray nearbyArray;
 
     //private Toolbar toolbar;
     //location variables
@@ -77,7 +78,7 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
                     // get inventory item clicked
-                    JSONObject clicked = jsonArray.getJSONObject(position);
+                    JSONObject clicked = nearbyArray.getJSONObject(position);
 
                     // Do something with the click, here we would go to edit screen
                     Intent showDetails = new Intent(getApplicationContext(), IMViewEditActivity.class);
@@ -95,7 +96,7 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
 
     public void setListAdapter (JSONArray jsonArray) {
         this.jsonArray = jsonArray;
-        JSONArray nearbyArray = new JSONArray();
+        nearbyArray = new JSONArray();
 
         try {
             Log.d("JSONArray", jsonArray.getJSONObject(0).toString());

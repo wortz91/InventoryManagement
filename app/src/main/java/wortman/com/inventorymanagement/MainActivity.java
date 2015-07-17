@@ -84,31 +84,6 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
 
         } catch (Exception e) {
         }
-//        //this sets up the search feature and passes in the searched text
-//        Intent searchIntent = getIntent();
-//        Log.d("searchIntent", getIntent().toString());
-//        Log.d("before search", searchIntent.toString());
-//        Log.d("actionSearch", Intent.ACTION_SEARCH);
-////        Log.d("actionIntent", searchIntent.getAction());
-//
-//        if(Intent.ACTION_SEARCH.equals(searchIntent.getAction())) {
-//            String searchQuery = searchIntent.getStringExtra(SearchManager.QUERY);
-//            Log.d("searchQuery", searchQuery);
-//
-//            search(searchQuery);
-//        }
-//
-//        Log.d("After search intent:", searchIntent.toString());
-
-//        search= new SearchView(getSupportActionBar().getThemedContext());
-//        sm = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//
-//        search.setSearchableInfo(sm.getSearchableInfo(getComponentName()));
-//        search.setSubmitButtonEnabled(true);
-//        search.setIconifiedByDefault(true);
-//        search.setMaxWidth(1000);
-
-//        onQueryTextSubmit(search.toString());
 
         RelativeLayoutButton button1 = new RelativeLayoutButton(this,R.id.inventory_button);
         RelativeLayoutButton button2 = new RelativeLayoutButton(this,R.id.add_button);
@@ -175,6 +150,13 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
                 Toast.LENGTH_SHORT).show();
 
         //add the ListViewAdapter
+        //setup the method like getByLabel
+        //pass the variable in as a 'label'
+        //use the generalsearch.php instead of getByLabel.php
+        //value is added after '?label=label
+        //base generalSearch off of getByLabel.php in conjunction
+        // with my current generalsearch.php
+
     }
 
     protected void showSearch(boolean visible) {
