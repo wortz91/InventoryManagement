@@ -83,6 +83,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
             mCursorDrawableRes.set(searchAutoComplete, 0);
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         RelativeLayoutButton button1 = new RelativeLayoutButton(this,R.id.inventory_button);

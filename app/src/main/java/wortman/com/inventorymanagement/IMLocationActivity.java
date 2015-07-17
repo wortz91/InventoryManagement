@@ -204,11 +204,8 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         /*if (Math.sqrt(Math.pow(curLat - dbLat, 2) + Math.pow(curLon - dbLon, 2)) < distance) {
             return true;
         }*/
-        if ((curLat < (dbLat + distance)) && (curLat > (dbLat - distance)) &&
-        (curLon < (dbLon + distance)) && (curLon > (dbLon - distance))) {
-            return true;
-        }
-        return false;
+        return ((curLat < (dbLat + distance)) && (curLat > (dbLat - distance)) &&
+                (curLon < (dbLon + distance)) && (curLon > (dbLon - distance)));
     }
 
     //Assist methods (Latitude)
@@ -281,8 +278,8 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");
 
-        String strDate = sdf.format(cal.getTime());
-        return strDate;
+
+        return sdf.format(cal.getTime());
     }
 }
 
