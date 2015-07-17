@@ -55,7 +55,8 @@
                 android:cursorVisible="false"
                 android:clickable="false"
                 android:text="Some Serial Number"
-                android:maxLength="13" />
+                android:maxLength="13"
+                android:longClickable="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -82,7 +83,8 @@
                 android:cursorVisible="false"
                 android:clickable="false"
                 android:text="Some Item Name"
-                android:maxLength="45" />
+                android:maxLength="35"
+                android:longClickable="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -108,7 +110,8 @@
                 android:cursorVisible="false"
                 android:clickable="false"
                 android:text="Some Category"
-                android:maxLength="45" />
+                android:maxLength="35"
+                android:longClickable="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -134,7 +137,8 @@
                 android:cursorVisible="false"
                 android:clickable="false"
                 android:text="Some Model"
-                android:maxLength="20" />
+                android:maxLength="20"
+                android:longClickable="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -184,7 +188,8 @@
                 android:cursorVisible="false"
                 android:clickable="false"
                 android:text="Some Location"
-                android:maxLength="45" />
+                android:maxLength="35"
+                android:longClickable="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
