@@ -275,7 +275,7 @@ public class IMAddActivity extends ActionBarActivity {
                         submitActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getBaseContext(), "Inserted Successfully",
+                                Toast.makeText(getBaseContext(), "Added successfully",
                                         Toast.LENGTH_SHORT).show();
 
                             }
@@ -284,7 +284,7 @@ public class IMAddActivity extends ActionBarActivity {
                         submitActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getBaseContext(), "Sorry, Try Again",
+                                Toast.makeText(getBaseContext(), "Item already exists",
                                         Toast.LENGTH_SHORT).show();
                             }
                         });
