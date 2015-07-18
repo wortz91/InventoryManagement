@@ -338,7 +338,7 @@ public class IMViewEditActivity extends ActionBarActivity {
                         submitActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getBaseContext(), "Updated Successfully",
+                                Toast.makeText(getBaseContext(), "Updated successfully",
                                         Toast.LENGTH_SHORT).show();
                                 onBackPressed();
 
@@ -348,7 +348,7 @@ public class IMViewEditActivity extends ActionBarActivity {
                         submitActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getBaseContext(), "Sorry, Try Again",
+                                Toast.makeText(getBaseContext(), "Please try again",
                                         Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -434,7 +434,7 @@ public class IMViewEditActivity extends ActionBarActivity {
                         submitActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getBaseContext(), "Removed Successfully",
+                                Toast.makeText(getBaseContext(), "Removed successfully",
                                         Toast.LENGTH_SHORT).show();
                                 onBackPressed();
 
@@ -444,7 +444,7 @@ public class IMViewEditActivity extends ActionBarActivity {
                         submitActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getBaseContext(), "Sorry, Try Again",
+                                Toast.makeText(getBaseContext(), "Item already exists",
                                         Toast.LENGTH_SHORT).show();
                             }
                         });
