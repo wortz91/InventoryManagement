@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/HelpTopic1"
-            android:text="Help Topic 1"
+            android:text="Adding an Item"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/ColorPrimaryTextColor"
             android:textSize="25dp" />
@@ -51,8 +51,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:textSize="15dp"
+            android:text="From the main menu, select the &quot;ADD INVENTORY ITEM&quot; button.  From the resulting screen, proceed to fill in all fields displayed on the screen.  These fields include: Seriel Number, Item Name, Category, Model, Condition, and Location.  Please refer to the help topic on Item Conditions to select the correct condition of your equipment."
             android:id="@+id/Help1"
             android:textColor="#9f9f9f"
             android:layout_marginLeft="10dp"
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/HelpTopic2"
-            android:text="Help Topic 2"
+            android:text="Editing an Item"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/ColorPrimaryTextColor"
             android:textSize="25dp" />
@@ -79,7 +79,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15dp"
             android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
             android:id="@+id/Help2"
             android:textColor="#9f9f9f"
@@ -100,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/HelpTopic3"
-            android:text="Help Topic 3"
+            android:text="Removing an Item"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/ColorPrimaryTextColor"
             android:textSize="25dp" />
@@ -108,7 +108,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15dp"
             android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
             android:id="@+id/Help3"
             android:textColor="#9f9f9f"
@@ -129,16 +129,100 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/HelpTopic4"
-            android:text="Help Topic 4"
+            android:text="Item Conditions"
             android:textColor="@color/ColorPrimaryTextColor"
             android:textSize="25dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="15dp"
             android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
             android:id="@+id/Help4"
+            android:textColor="#9f9f9f"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/HelpTopic5"
+            android:text="Scanning a Label"
+            android:textColor="@color/ColorPrimaryTextColor"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:id="@+id/Help5"
+            android:textColor="#9f9f9f"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/HelpTopic6"
+            android:text="Printing a Label"
+            android:textColor="@color/ColorPrimaryTextColor"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="This feature is not currently implemented.  Check back soon!"
+            android:id="@+id/Help6"
+            android:textColor="#9f9f9f"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/HintTextColor"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/HelpTopic7"
+            android:text="Generating and E-mailing a Report"
+            android:textColor="@color/ColorPrimaryTextColor"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:id="@+id/Help7"
             android:textColor="#9f9f9f"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="10dp"
