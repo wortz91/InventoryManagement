@@ -151,6 +151,7 @@ public class IMBarcodeActivity extends ActionBarActivity {
             startActivity(showDetails);
         }
     }
+
     private class ScanInventoryDetailsAddEdit extends AsyncTask<ApiConnector,Long,JSONArray>
     {
         @Override

@@ -81,6 +81,10 @@
         </activity>
 
         <activity
+            android:name="wortman.com.inventorymanagement.IMSearchResultsActivity">
+        </activity>
+
+        <activity
             android:name="wortman.com.inventorymanagement.IMHelpActivity">
         </activity>
 
