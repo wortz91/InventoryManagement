@@ -101,6 +101,8 @@ public class IMSearchResultsActivity extends ActionBarActivity{
             Log.d("JSONArray", jsonArray.getJSONObject(0).toString());
         } catch (JSONException je) {
             je.printStackTrace();
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
         }
 
         try {
@@ -119,6 +121,8 @@ public class IMSearchResultsActivity extends ActionBarActivity{
             }
         } catch (JSONException je) {
             je.printStackTrace();
+        } catch (NullPointerException npe) {
+            Toast.makeText(this, "The term is " + searchResults + " not in the database", Toast.LENGTH_LONG).show();
         }
         //this.getLocationView.setAdapter(new GetLocationListViewAdapter(jsonArray, this));
     }
