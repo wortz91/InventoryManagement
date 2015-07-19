@@ -45,6 +45,12 @@ public class IMSearchResultsActivity extends ActionBarActivity{
 
         searchResults= searchIntent.getExtras().getString("SearchResults");
 
+        if(searchResults.contains(" ")) {
+            searchResults = searchResults.replaceAll(" ", "%20");
+        }
+
+        Log.d("searchResults:", searchResults);
+
         Toast.makeText(this, "searchResult is:" + searchResults, Toast.LENGTH_LONG).show();
 
         //this is where the actual activity begins!

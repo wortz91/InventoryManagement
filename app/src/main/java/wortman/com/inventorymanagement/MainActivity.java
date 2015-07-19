@@ -183,15 +183,6 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
         }
 
         Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
-
-        //add the ListViewAdapter
-        //setup the method like getByLabel
-        //pass the variable in as a 'label'
-        //use the generalsearch.php instead of getByLabel.php
-        //value is added after '?label=label
-        //base generalSearch off of getByLabel.php in conjunction
-        // with my current generalsearch.php
-
     }
 
     protected void showSearch(boolean visible) {
