@@ -182,10 +182,9 @@ public class ApiConnector {
         return jsonArray;
     }
 
-    public JSONArray SearchInventory()
-    {
+    public JSONArray GetSearchInventory(String Label) {
         // URL for getting all customers
-        String url = "http://s15inventory.franklinpracticum.com/php/generalsearch.php";
+        String url = "http://s15inventory.franklinpracticum.com/php/search.php?Label=" + Label;
 
         // Get HttpResponse Object from url.
         // Get HttpEntity from Http Response Object
@@ -201,8 +200,6 @@ public class ApiConnector {
             HttpResponse httpResponse = httpClient.execute(httpGet);
 
             httpEntity = httpResponse.getEntity();
-
-
 
         } catch (ClientProtocolException e) {
 
@@ -226,8 +223,9 @@ public class ApiConnector {
                 String entityResponse = EntityUtils.toString(httpEntity);
 
                 Log.e("Entity Response  : ", entityResponse);
-
-                jsonArray = new JSONArray(entityResponse);
+                if (entityResponse != null) {
+                    jsonArray = new JSONArray(entityResponse);
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -235,7 +233,7 @@ public class ApiConnector {
                 e.printStackTrace();
             }
         }
+
         return jsonArray;
     }
-
 }

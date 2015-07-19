@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
 import android.support.v4.view.MenuItemCompat;
@@ -21,6 +22,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.lang.reflect.Field;
 
 import java.lang.reflect.Field;
@@ -37,6 +42,27 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
 
     private MenuItem searchItem;
     private SearchView searchView;
+    public static String query;
+    private JSONObject jObj;
+
+    //JSON STRINGS
+    private final String JSON_ITEM_ID = "ItemID";
+    private final String JSON_LABEL = "Label";
+    private final String JSON_ITEM_NAME = "ItemName";
+    private final String JSON_CATEGORY = "category";
+    private final String JSON_MODEL_NUMBER = "ModelNumber";
+    private final String JSON_CONDITION = "ConditionID";
+    private final String JSON_LOCATION = "Location";
+
+    //private variables
+    private int itemID;
+    private String label;
+    private String itemName;
+    private String category;
+    private String modelNumber;
+    private String conditionID;
+    private String location;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,13 +168,21 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
         showSearch(false);
         Bundle extras = intent.getExtras();
         String userQuery = String.valueOf(extras.get(SearchManager.USER_QUERY));
-        String query = String.valueOf(extras.get(SearchManager.QUERY));
+        query = String.valueOf(extras.get(SearchManager.QUERY));
 
         Log.d("query:", query);
         Log.d("userQuery:", userQuery);
 
         Toast.makeText(this, "query: " + query + " user_query: " + userQuery,
                 Toast.LENGTH_SHORT).show();
+
+        if(userQuery != null) {
+            Intent searchResults = new Intent(this, IMSearchResultsActivity.class);
+            searchResults.putExtra("SearchResults", userQuery);
+            startActivity(searchResults);
+        }
+
+        Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
 
         //add the ListViewAdapter
         //setup the method like getByLabel
@@ -165,12 +199,6 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
             MenuItemCompat.expandActionView(searchItem);
         else
             MenuItemCompat.collapseActionView(searchItem);
-    }
-
-    public void search(String searchQuery) {
-        Toast.makeText(this, "The searched for query is:" + searchQuery, Toast.LENGTH_LONG).show();
-
-        Log.d("inside search method:", searchQuery);
     }
 
     /**
@@ -230,6 +258,13 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_secondary, menu);
+        searchItem = menu.add(android.R.string.search_go);
+
+        searchItem.setIcon(R.drawable.ic_action_search);
+
+        MenuItemCompat.setActionView(searchItem, searchView);
+
+        MenuItemCompat.setShowAsAction(searchItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
 
         return true;
     }
@@ -259,7 +294,6 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
     }
 
     // junk needed for location manager below
-
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         // TODO Auto-generated method stub
