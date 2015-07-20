@@ -182,34 +182,6 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/HelpTopic6"
-            android:text="Printing a Label"
-            android:textColor="@color/ColorPrimaryTextColor"
-            android:textSize="25sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="@string/NotImplemented"
-            android:id="@+id/Help6"
-            android:textColor="#9f9f9f"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
-
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="@color/HintTextColor"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/HelpTopic7"
             android:text="Generating and E-mailing a Report"
             android:textColor="@color/ColorPrimaryTextColor"
