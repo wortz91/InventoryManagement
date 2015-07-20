@@ -25,10 +25,6 @@
         android:background="@color/ColorPrimaryDark">
 
         <include
-            android:id="@+id/search_view"
-            layout="@layout/search_view">
-        </include>
-        <include
             android:id="@+id/inventory_listview"
             layout="@layout/inventory_listview">
         </include>

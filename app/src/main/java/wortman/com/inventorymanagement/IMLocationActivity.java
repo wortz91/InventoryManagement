@@ -1,6 +1,7 @@
 package wortman.com.inventorymanagement;
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -8,7 +9,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -17,12 +20,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,7 +35,7 @@ import java.util.Calendar;
 import wortman.com.openshiftapplication.R;
 
 
-public class IMLocationActivity extends ActionBarActivity implements LocationListener {
+public class IMLocationActivity extends ActionBarActivity implements LocationListener, SearchView.OnQueryTextListener {
 
     private Activity submitActivity = this;
     //private TextView responseTextView;
@@ -45,6 +50,14 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     double dbLat = 0;
     double dbLon = 0;
     double distance = 0.25;
+
+
+    //Search variables
+    private MenuItem searchItem;
+    private SearchView searchView;
+    public static String query;
+    private JSONObject jObj;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +75,40 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        searchView = new SearchView(getSupportActionBar().getThemedContext());
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setIconifiedByDefault(true);
+        searchView.setMaxWidth(1000);
+
+        SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById((android.support.v7.appcompat.R.id.search_src_text));
+
+        searchAutoComplete.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus)
+                    showSearch(false);
+            }
+        });
+
+        try {
+            // This sets the cursor
+            // resource ID to 0 or @null
+            // which will make it visible
+            // on white background
+            Field mCursorDrawableRes = TextView.class
+                    .getDeclaredField("mCursorDrawableRes");
+
+            mCursorDrawableRes.setAccessible(true);
+            mCursorDrawableRes.set(searchAutoComplete, 0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         //here is a change to push to Unfuddle
         //ListView
@@ -93,6 +140,54 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         });
 
     }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.d("onNewIntent:", intent.toString());
+        showSearch(false);
+        Bundle extras = intent.getExtras();
+        String userQuery = String.valueOf(extras.get(SearchManager.USER_QUERY));
+        query = String.valueOf(extras.get(SearchManager.QUERY));
+
+        Log.d("query:", query);
+        Log.d("userQuery:", userQuery);
+
+        Toast.makeText(this, "query: " + query + " user_query: " + userQuery,
+                Toast.LENGTH_SHORT).show();
+
+        if(userQuery != null) {
+            Intent searchResults = new Intent(this, IMSearchResultsActivity.class);
+            searchResults.putExtra("SearchResults", userQuery);
+            startActivity(searchResults);
+        }
+
+        Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showSearch(boolean visible) {
+        if (visible)
+            MenuItemCompat.expandActionView(searchItem);
+        else
+            MenuItemCompat.collapseActionView(searchItem);
+    }
+
+
+
+    @Override
+    public boolean onQueryTextSubmit(String myQuery) {
+
+        return (false);
+    } /* on query text submit */
+
+
+    @Override
+    public boolean onQueryTextChange(String change)
+    {
+        // "change" represents current text string as being typed
+        return(false);
+    } /* on query text change */
 
     public void setListAdapter (JSONArray jsonArray) {
         this.jsonArray = jsonArray;
@@ -173,6 +268,15 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_secondary, menu);
+
+        searchItem = menu.add(android.R.string.search_go);
+
+        searchItem.setIcon(R.drawable.ic_action_search);
+
+        MenuItemCompat.setActionView(searchItem, searchView);
+
+        MenuItemCompat.setShowAsAction(searchItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+
         return true;
     }
 

@@ -40,6 +40,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
     private double latitude;
     private double longitude;
 
+    //Search variables
     private MenuItem searchItem;
     private SearchView searchView;
     public static String query;
@@ -192,17 +193,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
             MenuItemCompat.collapseActionView(searchItem);
     }
 
-    /**
-     * Called when the hardware search button is pressed
-     */
-    @Override
-    public boolean onSearchRequested() {
-        Log.d("onSearchRequested();", "searchySearchSearchSearch");
-        showSearch(true);
 
-        // dont show the built-in search dialog
-        return false;
-    }
 
     @Override
     public boolean onQueryTextSubmit(String myQuery) {
@@ -249,6 +240,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_secondary, menu);
+
         searchItem = menu.add(android.R.string.search_go);
 
         searchItem.setIcon(R.drawable.ic_action_search);

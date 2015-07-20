@@ -25,10 +25,6 @@
         android:background="@color/ColorPrimaryDark">
 
         <include
-            android:id="@+id/search_view"
-            layout="@layout/search_view">
-        </include>
-        <include
             android:id="@+id/nearby_listview"
             layout="@layout/nearby_listview">
         </include>

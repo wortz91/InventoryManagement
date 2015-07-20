@@ -2,12 +2,17 @@ package wortman.com.inventorymanagement;
 
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.location.LocationListener;
 import android.os.AsyncTask;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,18 +32,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.lang.reflect.Field;
 
 import wortman.com.openshiftapplication.R;
 
 
-public class IMInventoryActivity extends ActionBarActivity {
+public class IMInventoryActivity extends ActionBarActivity implements SearchView.OnQueryTextListener{
 
     private Activity submitActivity = this;
     //private TextView responseTextView;
     private ListView getInventoryView;
     private JSONArray jsonArray;
 
-    //private Toolbar toolbar;
+    //Search variables
+    private MenuItem searchItem;
+    private SearchView searchView;
+    public static String query;
+    private JSONObject jObj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +66,40 @@ public class IMInventoryActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        searchView = new SearchView(getSupportActionBar().getThemedContext());
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSubmitButtonEnabled(true);
+        searchView.setIconifiedByDefault(true);
+        searchView.setMaxWidth(1000);
+
+        SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById((android.support.v7.appcompat.R.id.search_src_text));
+
+        searchAutoComplete.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus)
+                    showSearch(false);
+            }
+        });
+
+        try {
+            // This sets the cursor
+            // resource ID to 0 or @null
+            // which will make it visible
+            // on white background
+            Field mCursorDrawableRes = TextView.class
+                    .getDeclaredField("mCursorDrawableRes");
+
+            mCursorDrawableRes.setAccessible(true);
+            mCursorDrawableRes.set(searchAutoComplete, 0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         new GetInventoryTask().execute(new ApiConnector());
 
@@ -82,6 +126,54 @@ public class IMInventoryActivity extends ActionBarActivity {
         });
 
     }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.d("onNewIntent:", intent.toString());
+        showSearch(false);
+        Bundle extras = intent.getExtras();
+        String userQuery = String.valueOf(extras.get(SearchManager.USER_QUERY));
+        query = String.valueOf(extras.get(SearchManager.QUERY));
+
+        Log.d("query:", query);
+        Log.d("userQuery:", userQuery);
+
+        Toast.makeText(this, "query: " + query + " user_query: " + userQuery,
+                Toast.LENGTH_SHORT).show();
+
+        if(userQuery != null) {
+            Intent searchResults = new Intent(this, IMSearchResultsActivity.class);
+            searchResults.putExtra("SearchResults", userQuery);
+            startActivity(searchResults);
+        }
+
+        Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showSearch(boolean visible) {
+        if (visible)
+            MenuItemCompat.expandActionView(searchItem);
+        else
+            MenuItemCompat.collapseActionView(searchItem);
+    }
+
+
+
+    @Override
+    public boolean onQueryTextSubmit(String myQuery) {
+
+        return (false);
+    } /* on query text submit */
+
+
+    @Override
+    public boolean onQueryTextChange(String change)
+    {
+        // "change" represents current text string as being typed
+        return(false);
+    } /* on query text change */
 
     public void setListAdapter (JSONArray jsonArray) {
         this.jsonArray = jsonArray;
@@ -116,6 +208,14 @@ public class IMInventoryActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_secondary, menu);
+        searchItem = menu.add(android.R.string.search_go);
+
+        searchItem.setIcon(R.drawable.ic_action_search);
+
+        MenuItemCompat.setActionView(searchItem, searchView);
+
+        MenuItemCompat.setShowAsAction(searchItem, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+
         return true;
     }
 
