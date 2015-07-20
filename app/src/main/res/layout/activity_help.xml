@@ -35,9 +35,7 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context=".MainActivity"
         android:background="@color/ColorPrimaryDark"
-        android:weightSum="1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true">
+        android:weightSum="1">
 
         <TextView
             android:layout_width="match_parent"
@@ -46,13 +44,13 @@
             android:text="Adding an Item"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/ColorPrimaryTextColor"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="From the main menu, select the &quot;ADD INVENTORY ITEM&quot; button.  From the resulting screen, proceed to fill in all fields displayed on the screen.  These fields include: Seriel Number, Item Name, Category, Model, Condition, and Location.  Please refer to the help topic on Item Conditions to select the correct condition of your equipment."
+            android:textSize="15sp"
+            android:text="@string/AddItemText"
             android:id="@+id/Help1"
             android:textColor="#9f9f9f"
             android:layout_marginLeft="10dp"
@@ -74,13 +72,13 @@
             android:text="Editing an Item"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/ColorPrimaryTextColor"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:textSize="15sp"
+            android:text="@string/EditItemText"
             android:id="@+id/Help2"
             android:textColor="#9f9f9f"
             android:layout_gravity="center_horizontal"
@@ -103,13 +101,13 @@
             android:text="Removing an Item"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/ColorPrimaryTextColor"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:textSize="15sp"
+            android:text="@string/RemoveItemText"
             android:id="@+id/Help3"
             android:textColor="#9f9f9f"
             android:layout_gravity="center_horizontal"
@@ -131,13 +129,13 @@
             android:id="@+id/HelpTopic4"
             android:text="Item Conditions"
             android:textColor="@color/ColorPrimaryTextColor"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:textSize="15sp"
+            android:text="@string/ItemConditionText"
             android:id="@+id/Help4"
             android:textColor="#9f9f9f"
             android:layout_gravity="center_horizontal"
@@ -159,13 +157,13 @@
             android:id="@+id/HelpTopic5"
             android:text="Scanning a Label"
             android:textColor="@color/ColorPrimaryTextColor"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:textSize="15sp"
+            android:text="@string/NotImplemented"
             android:id="@+id/Help5"
             android:textColor="#9f9f9f"
             android:layout_gravity="center_horizontal"
@@ -187,13 +185,13 @@
             android:id="@+id/HelpTopic6"
             android:text="Printing a Label"
             android:textColor="@color/ColorPrimaryTextColor"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="This feature is not currently implemented.  Check back soon!"
+            android:textSize="15sp"
+            android:text="@string/NotImplemented"
             android:id="@+id/Help6"
             android:textColor="#9f9f9f"
             android:layout_gravity="center_horizontal"
@@ -215,13 +213,13 @@
             android:id="@+id/HelpTopic7"
             android:text="Generating and E-mailing a Report"
             android:textColor="@color/ColorPrimaryTextColor"
-            android:textSize="25dp" />
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15dp"
-            android:text="Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo."
+            android:textSize="15sp"
+            android:text="@string/GenerateReportText"
             android:id="@+id/Help7"
             android:textColor="#9f9f9f"
             android:layout_gravity="center_horizontal"

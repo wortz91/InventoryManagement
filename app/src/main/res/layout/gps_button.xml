@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="@color/MenuTitleTextColor"
-        android:text="Use GPS satellites"/>
+        android:text="Use GPS satellites                 "/>
 
     <TextView
         android:id="@+id/gps_text2"
         android:layout_width="wrap_content"
-        android:text="When locating, accurate to street level"
+        android:text="When locating, accurate to street level    "
         android:textColor="@color/MenuSecondaryTitleTextColor"
         android:layout_height="wrap_content"
         android:layout_below="@+id/gps_text"
@@ -29,6 +29,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#ff1d814f"
+        android:textColor="@color/MenuTitleTextColor"
+        android:textStyle="bold"
         android:text="Click To Enable"
         android:id="@+id/gpsButton"
         android:layout_centerVertical="true"

@@ -36,6 +36,7 @@ public class IMSettingsActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         Switch wirelessSwitch = (Switch)findViewById(R.id.wirelessSwitch);
+        wirelessSwitch.setChecked(true);
         wirelessSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 

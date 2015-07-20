@@ -21,8 +21,35 @@
     <string name="button_text"><font size="125">First line!</font>\n\<font size="15">Second line!</font></string>
     <string name="search_hint">What do you wish to search for?</string>
 
+
+    <string name="AddItemText">From the main menu, select the \'Add Inventory Item\' button.
+        In the resulting screen, fill in all displayed fields. These fields include:
+        Serial Number, Item Name, Category, Model, Condition, and Location. Please refer to the help
+        topic on Item Conditions to select the correct condition of the equipment. Once complete,
+        click the \'Add\' button to add the item.</string>
+    <string name="EditItemText">From the main menu, choose either \'View Current Inventory\' or
+        click the magnifying glass to perform a search for the desired item.  Once it is found from
+        either page, click the item to open the \'Edit/Remove Item\' page.  All fields will be
+        populated with the current information.  Click the \'Edit\' button, and then tap
+        on the desired field(s) and make changes as needed.  Once complete press \'Save\' to save
+        all changes.  If a mistake was made, press \'Cancel\' to discard changes.</string>
+    <string name="RemoveItemText">From the main menu, choose either \'View Current Inventory\' or
+        click the magnifying glass to perform a search for the desired item.  Once it is found from
+        either page, click the item to open the \'Edit/Remove Item\' page. Click the \'Remove\'
+        button, and select \'Yes\' from the following prompt to remove the item. </string>
+    <string name="ItemConditionText">When choosing the condition of equipment please note the
+        following: \n\nExcellent - New or like new (no appearance of wear) \n\nGood - Minimal wear
+        \n\nFair - Showing signs of wear and/or minor missing components \n\nPoor - Excessive wear,
+        broken, and/or major missing components</string>
+    <string name="GenerateReportText">From the main menu, select the \'Generate Report\' button.
+        In the resulting screen, select the desired report from the dropdown menu. In the upper
+        right hand corner, click the top right button that looks like a box with an arrow to export
+        the file.  From the resulting screen, a user may log into a Google account to print, save,
+        email, or share the report.</string>
+    <string name="Lorem">Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo.</string>
+    <string name="NotImplemented">This feature is not yet implemented. Check back soon!</string>
+
     <string-array name="report_array">
-        <item></item>
         <item>Category Report</item>
         <item>Condition Report</item>
         <item>Inventory Report</item>
