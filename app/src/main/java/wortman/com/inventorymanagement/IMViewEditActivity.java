@@ -97,10 +97,8 @@ public class IMViewEditActivity extends ActionBarActivity {
         this.itm = (EditText) this.findViewById(R.id.itemName_editText);
         this.cat = (EditText) this.findViewById(R.id.catagory_editText);
         this.modl = (EditText) this.findViewById(R.id.model_editText);
-        this.loc = (EditText) this.findViewById(R.id.location_editText);
-
         addListenerOnSpinnerItemSelection();
-
+        this.loc = (EditText) this.findViewById(R.id.location_editText);
 
         //get ItemID to pass to DB call
         this.ItemID = getIntent().getIntExtra("ItemID", ItemID);
@@ -185,6 +183,10 @@ public class IMViewEditActivity extends ActionBarActivity {
                     error = true;
                 }
                 condition = conditionSpinner.getSelectedItem().toString();
+                if (TextUtils.isEmpty(condition)){
+                    focusView = conditionSpinner;
+                    error = true;
+                }
                 location = loc.getText().toString();
                 if (TextUtils.isEmpty(location)){
                     loc.setError(getString(R.string.error_field_required));
@@ -509,16 +511,33 @@ public class IMViewEditActivity extends ActionBarActivity {
 
         @Override
         protected void onPostExecute(JSONArray jsonArray) {
-
+            int position = 0;
             try
             {
                 JSONObject inventoryItem = jsonArray.getJSONObject(0);
+                Log.d("inventoryItem JSON:", inventoryItem.toString());
 
                 lbl.setText(inventoryItem.getString("Label"));
                 itm.setText(inventoryItem.getString("ItemName"));
                 cat.setText(inventoryItem.getString("Category"));
                 modl.setText(inventoryItem.getString("ModelNumber"));
-                cond.setText("" + inventoryItem.getInt("ConditionID"));
+                //this spinner is not being grabbed properly thus causing the location to not grab the proper 'Location'
+                String compare = inventoryItem.getString("ConditionID");
+                switch(compare) {
+                    case "Excellent":
+                        position = 0;
+                        break;
+                    case "Good":
+                        position = 1;
+                        break;
+                    case "Fair":
+                        position = 2;
+                        break;
+                    case "Poor":
+                        position = 3;
+                        break;
+                }
+                conditionSpinner.setSelection(position);
                 loc.setText(inventoryItem.getString("Location"));
             }
             catch (Exception e)

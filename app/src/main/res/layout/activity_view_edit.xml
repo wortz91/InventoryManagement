@@ -161,6 +161,8 @@
                 android:id="@+id/condition_editText"
                 android:spinnerMode="dropdown"
                 android:theme="@style/AppTheme"
+                android:focusable="false"
+                android:cursorVisible="false"
                 android:entries="@array/add_array"
                 android:layout_alignParentEnd="true"/>
 

@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -68,6 +69,9 @@ public class IMInventoryActivity extends ActionBarActivity {
                     // Do something with the click, here we would go to edit screen
                     Intent showDetails = new Intent(getApplicationContext(),IMViewEditActivity.class);
                     showDetails.putExtra("ItemID", clicked.getInt("ItemID"));
+                    showDetails.putExtra("ConditionID", clicked.getString("ConditionID"));
+                    Log.d("JSONObject passed in:", clicked.getInt("ItemID") + "");
+                    Log.d("JSONObject passed in:", clicked.getString("ConditionID") + "");
 
                     startActivity(showDetails);
 
