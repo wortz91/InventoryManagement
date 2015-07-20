@@ -47,7 +47,12 @@
         the file.  From the resulting screen, a user may log into a Google account to print, save,
         email, or share the report.</string>
     <string name="Lorem">Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo.</string>
-    <string name="NotImplemented">This feature is not yet implemented. Check back soon!</string>
+    <string name="NotImplemented">From the main menu, select the \'Barcode Scanner\' button.  In the
+        resulting screen, select the scan button to open the scanning feature.  A red flashing line
+        will appear on the screen.  Position the red line to cross perpendicularly over the barcode
+        to be scanned.  Once the device recognizes the barcode, the "Add Item" screen will appear
+        with the serial number populated by the value of the barcode.  From this point, refer to the
+        help topic on Adding an Item to continue to complete the addition of the new item.</string>
 
     <string-array name="report_array">
         <item>Category Report</item>
