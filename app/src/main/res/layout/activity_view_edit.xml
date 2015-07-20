@@ -49,6 +49,7 @@
                 android:clickable="false"
                 android:text="Some Serial Number"
                 android:maxLength="13"
+                android:inputType="text"
                 android:longClickable="false"/>
 
             <TextView
@@ -77,6 +78,7 @@
                 android:clickable="false"
                 android:text="Some Item Name"
                 android:maxLength="35"
+                android:inputType="text"
                 android:longClickable="false"/>
 
             <TextView
@@ -104,6 +106,7 @@
                 android:clickable="false"
                 android:text="Some Category"
                 android:maxLength="35"
+                android:inputType="text"
                 android:longClickable="false"/>
 
             <TextView
@@ -131,6 +134,7 @@
                 android:clickable="false"
                 android:text="Some Model"
                 android:maxLength="20"
+                android:inputType="text"
                 android:longClickable="false"/>
 
             <TextView
@@ -184,6 +188,7 @@
                 android:clickable="false"
                 android:text="Some Location"
                 android:maxLength="35"
+                android:inputType="text"
                 android:longClickable="false"/>
 
             <TextView
