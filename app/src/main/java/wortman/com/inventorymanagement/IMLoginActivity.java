@@ -1,8 +1,11 @@
 package wortman.com.inventorymanagement;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,8 +29,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 import wortman.com.openshiftapplication.R;
@@ -62,12 +69,10 @@ public class IMLoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         // Set up the login form.
         user = getIntent().getStringExtra(EXTRA_EMAIL);
         user_field = (EditText) findViewById(R.id.user_field);
         user_field.setText(user);
-
         password_field = (EditText) findViewById(R.id.password_field);
         password_field.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -83,9 +88,32 @@ public class IMLoginActivity extends Activity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        attemptLogin();
+                        if (isConnected()) {
+                            attemptLogin();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "You must be connected to" +
+                                            "a WIFI or cellular connection to use this application." +
+                                            "Please connect to a network and try again",
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
+    }
+
+    /**
+     * Make sure there is a network connection.
+     * @return true if there is
+     */
+    public boolean isConnected() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+        } catch (Exception e)  {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
