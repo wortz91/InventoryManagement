@@ -55,6 +55,7 @@
         help topic on Adding an Item to continue to complete the addition of the new item.</string>
 
     <string-array name="report_array">
+        <item></item>
         <item>Category Report</item>
         <item>Condition Report</item>
         <item>Inventory Report</item>
