@@ -91,9 +91,9 @@ public class IMLoginActivity extends Activity {
                         if (isConnected()) {
                             attemptLogin();
                         }else{
-                            Toast.makeText(getApplicationContext(), "You must be connected to" +
-                                            "a WIFI or cellular connection to use this application." +
-                                            "Please connect to a network and try again",
+                            Toast.makeText(getApplicationContext(), "You must be connected to " +
+                                            "a WIFI or cellular connection to use this application. " +
+                                            "Please connect to a network and try again.",
                                     Toast.LENGTH_LONG).show();
                         }
                     }
