@@ -46,13 +46,19 @@
         right hand corner, click the top right button that looks like a box with an arrow to export
         the file.  From the resulting screen, a user may log into a Google account to print, save,
         email, or share the report.</string>
-    <string name="Lorem">Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris justo.</string>
-    <string name="NotImplemented">From the main menu, select the \'Barcode Scanner\' button.  In the
-        resulting screen, select the scan button to open the scanning feature.  A red flashing line
-        will appear on the screen.  Position the red line to cross perpendicularly over the barcode
-        to be scanned.  Once the device recognizes the barcode, the "Add Item" screen will appear
-        with the serial number populated by the value of the barcode.  From this point, refer to the
-        help topic on Adding an Item to continue to complete the addition of the new item.</string>
+    <string name="Lorem">Lorem ipsum dolor sit amet, sapien etiam, nunc amet dolor ac odio mauris
+        justo.</string>
+    <string name="BarcodeScan">The barcode scanning feature may be used to add a new item or edit
+        an existing item.  To use this feature, from the main menu, select the \'Barcode Scanner\'
+        button.  In the resulting screen, select the scan button to open the scanning feature.  A
+        red flashing line will appear on the screen.  Position the red line to cross perpendicularly
+        over the barcode to be scanned.  Once the device recognizes the barcode, either the \'Add
+        Item\' or the \'Edit/Remove Item\' screen will appear.\n\nIn the case of adding an item, the
+        add screen will have the serial number populated by the value of the scanned barcode.  Refer
+        to the help topic on adding an item to finish adding the new item.\n\nIn the case of editing
+        or removing an item, all fields will be populated by the values currently stored in the
+        database. Refer to the help topic on editing an item to finish working with the item.
+        </string>
 
     <string-array name="report_array">
         <item></item>
