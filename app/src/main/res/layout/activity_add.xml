@@ -196,7 +196,8 @@
 
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp">
 
                 <Button
                     android:layout_width="100dp"
@@ -206,7 +207,6 @@
                     android:textSize="20dp"
                     android:background="@color/ButtonBackgroundColor"
                     android:textColor="@color/ColorPrimaryDark"
-                    android:layout_marginTop="25dp"
                     android:layout_alignParentStart="true"
                     android:layout_marginLeft="35dp" />
 
@@ -218,7 +218,6 @@
                     android:textSize="20dp"
                     android:background="@color/ButtonBackgroundColor"
                     android:textColor="@color/ColorPrimaryDark"
-                    android:layout_marginTop="25dp"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="35dp" />
 
