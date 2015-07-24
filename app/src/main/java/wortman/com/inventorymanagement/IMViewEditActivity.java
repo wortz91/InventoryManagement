@@ -98,6 +98,7 @@ public class IMViewEditActivity extends ActionBarActivity {
         this.cat = (EditText) this.findViewById(R.id.catagory_editText);
         this.modl = (EditText) this.findViewById(R.id.model_editText);
         addListenerOnSpinnerItemSelection();
+        conditionSpinner.setEnabled(false);
         this.loc = (EditText) this.findViewById(R.id.location_editText);
 
         //get ItemID to pass to DB call
@@ -141,6 +142,7 @@ public class IMViewEditActivity extends ActionBarActivity {
                 catagory_editText.setFocusableInTouchMode(true);
 
                 Spinner condition_editText =(Spinner)findViewById(R.id.condition_editText);
+                conditionSpinner.setEnabled(true);
                 condition_editText.setClickable(true);
                 condition_editText.setFocusableInTouchMode(true);
 
@@ -184,6 +186,7 @@ public class IMViewEditActivity extends ActionBarActivity {
                 }
                 condition = conditionSpinner.getSelectedItem().toString();
                 if (TextUtils.isEmpty(condition)){
+                    conditionSpinner.setEnabled(false);
                     focusView = conditionSpinner;
                     error = true;
                 }
