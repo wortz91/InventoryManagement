@@ -12,7 +12,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -86,10 +85,8 @@ public class IMBarcodeActivity extends ActionBarActivity {
         if(result != null) {
             if(result.getContents() == null) {
                 Log.d("MainActivity", "Cancelled scan");
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Log.d("MainActivity", "Scanned");
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 Label = result.getContents().toString();
                 //GET INVENTORY ARRAY
                 new GetInventoryTask().execute(new ApiConnector());
