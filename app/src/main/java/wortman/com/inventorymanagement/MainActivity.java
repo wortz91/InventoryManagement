@@ -54,6 +54,9 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
     private final String JSON_MODEL_NUMBER = "ModelNumber";
     private final String JSON_CONDITION = "ConditionID";
     private final String JSON_LOCATION = "Location";
+    private final String errmsg= "You must be connected to " +
+            "a WIFI or cellular connection to use this feature " +
+            "Please connect to a network and try again.";
 
     //private variables
     private int itemID;
@@ -122,44 +125,83 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(submitActivity, IMInventoryActivity.class);
-                startActivity(intent);
-
+                if (isConnected()) {
+                    Intent intent = new Intent(submitActivity, IMInventoryActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), errmsg,
+                            Toast.LENGTH_LONG).show();
+                }
             }
-        });
+            });
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(submitActivity, IMAddActivity.class);
-                startActivity(intent);
+                if (isConnected()) {
+                    Intent intent = new Intent(submitActivity, IMAddActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), errmsg,
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(submitActivity, IMBarcodeActivity.class);
-                startActivity(intent);
+                if (isConnected()) {
+                    Intent intent = new Intent(submitActivity, IMBarcodeActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getApplicationContext(), errmsg,
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(submitActivity, IMReportActivity.class);
-                startActivity(intent);
+                if (isConnected()) {
+                    Intent intent = new Intent(submitActivity, IMReportActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getApplicationContext(), errmsg,
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(submitActivity, IMLocationActivity.class);
-                startActivity(intent);
-
+                if (isConnected()) {
+                    Intent intent = new Intent(submitActivity, IMLocationActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getApplicationContext(), errmsg,
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
+    }
+
+    /**
+     * Make sure there is a network connection.
+     * @return true if there is
+     */
+    public boolean isConnected() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+            int exitValue = ipProcess.waitFor();
+            return (exitValue == 0);
+        } catch (Exception e)  {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override

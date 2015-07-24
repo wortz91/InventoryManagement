@@ -206,10 +206,40 @@ public class IMViewEditActivity extends ActionBarActivity {
                     // form field with an error.
                     focusView.requestFocus();
                 }else{
-                //call method to parse the strings into the proper table column field
+                    //call method to parse the strings into the proper table column field
                     updateDatabase();
+                    //swap edit and save button visibility
                     edit.setVisibility(View.VISIBLE);
                     save.setVisibility(View.INVISIBLE);
+                    //turn off edits on EditTexts
+                    EditText label_editText =(EditText)findViewById(R.id.label_editText);
+                    label_editText.setCursorVisible(false);
+                    label_editText.setClickable(false);
+                    label_editText.setFocusableInTouchMode(false);
+
+                    EditText model_editText =(EditText)findViewById(R.id.model_editText);
+                    model_editText.setCursorVisible(false);
+                    model_editText.setClickable(false);
+                    model_editText.setFocusableInTouchMode(false);
+
+                    EditText itemName_editText =(EditText)findViewById(R.id.itemName_editText);
+                    itemName_editText.setCursorVisible(false);
+                    itemName_editText.setClickable(false);
+                    itemName_editText.setFocusableInTouchMode(false);
+
+                    EditText catagory_editText =(EditText)findViewById(R.id.catagory_editText);
+                    catagory_editText.setCursorVisible(false);
+                    catagory_editText.setClickable(false);
+                    catagory_editText.setFocusableInTouchMode(false);
+
+                    Spinner condition_editText =(Spinner)findViewById(R.id.condition_editText);
+                    condition_editText.setClickable(false);
+                    condition_editText.setFocusableInTouchMode(false);
+
+                    EditText location_editText =(EditText)findViewById(R.id.location_editText);
+                    location_editText.setCursorVisible(false);
+                    location_editText.setClickable(false);
+                    location_editText.setFocusableInTouchMode(false);
                 }
             }});
 
