@@ -77,6 +77,7 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
     String lastEditDate;
     String lastEditUser;
 
+    //the input stream
     InputStream is = null;
     String result = null;
     String line = null;
@@ -101,7 +102,7 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
+        //sets up the search bar
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
         searchView = new SearchView(getSupportActionBar().getThemedContext());
@@ -110,6 +111,7 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         searchView.setIconifiedByDefault(true);
         searchView.setMaxWidth(1000);
 
+        //adds the search bar to the ActionBar
         SearchView.SearchAutoComplete searchAutoComplete = (SearchView.SearchAutoComplete) searchView.findViewById((android.support.v7.appcompat.R.id.search_src_text));
 
         searchAutoComplete.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -147,12 +149,16 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         final EditText cat = (EditText) findViewById(R.id.category_editText);
         final EditText modl = (EditText) findViewById(R.id.model_editText);
 
+        //calls a create spinner variable
         addListenerOnSpinnerItemSelection();
 
         final EditText loc = (EditText) findViewById(R.id.location_editText);
         Log.d("User",SESSION_DATA);
+
         final SharedPreferences prefs = getSharedPreferences(SESSION_DATA, 0);
         Log.d("User",SESSION_DATA);
+
+        //determines what to do upon add button click
         findViewById(R.id.add_button).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -215,6 +221,7 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
                     }
                 });
 
+        //determines what is done when cancel is cared
         findViewById(R.id.cancel_button).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -231,16 +238,18 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         super.onNewIntent(intent);
         Log.d("onNewIntent:", intent.toString());
         showSearch(false);
+
+        //creates a bundle of intents
         Bundle extras = intent.getExtras();
+
+        //stores the variables from the bundle to pass to different intents
         String userQuery = String.valueOf(extras.get(SearchManager.USER_QUERY));
         query = String.valueOf(extras.get(SearchManager.QUERY));
 
         Log.d("query:", query);
         Log.d("userQuery:", userQuery);
 
-        Toast.makeText(this, "query: " + query + " user_query: " + userQuery,
-                Toast.LENGTH_SHORT).show();
-
+        //checks for null
         if(userQuery != null) {
             Intent searchResults = new Intent(this, IMSearchResultsActivity.class);
             searchResults.putExtra("SearchResults", userQuery);
@@ -250,6 +259,10 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * this will display search results
+     * @param visible   if true
+     */
     protected void showSearch(boolean visible) {
         if (visible)
             MenuItemCompat.expandActionView(searchItem);
@@ -286,6 +299,10 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         startActivity(intent);
     }
 
+    /**
+     * Inserts item into database
+     * @return  true if added
+     */
     public boolean insertIntoDatabase() {
         new AsyncTask<Void, Void, Void>() {
 
@@ -311,6 +328,7 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
                     Log.d("ArrayList:", nameValuePairs.get(i).toString());
                 }
 
+                //creates a post to the php server
                 try {
                     HttpClient httpclient = new DefaultHttpClient();
 
@@ -332,6 +350,7 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
                             Toast.LENGTH_LONG).show();
                 }
 
+                //creates the JSON
                 try
 
                 {
@@ -354,6 +373,7 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
                     Log.e("Fail 2", e.toString());
                 }
 
+                //creates the JSON object from the buffered reader object
                 try {
                     JSONObject json_data = new JSONObject(result);
                     System.out.println(json_data);
@@ -402,6 +422,7 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_secondary, menu);
 
+        //adds search bar to the actionbar
         searchItem = menu.add(android.R.string.search_go);
 
         searchItem.setIcon(R.drawable.ic_action_search);
@@ -437,8 +458,12 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         return super.onOptionsItemSelected(item);
     }
 
-    //Assist methods (Latitude)
+    /**
+     *     Latitude calculator
+     * @return Latitude
+     */
     public double findLatitude() {
+        //grabs the location from the GPS
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location location;
 
@@ -457,8 +482,14 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         return latitude;
     }
 
-    //Assist methods (Latitude)
+    /**
+     *     Longitude calculator
+
+     * @return Longitude
+     */
     public double findLongitude() {
+        //grabs the location from the GPS
+
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location location;
 
@@ -477,6 +508,9 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         return longitude;
     }
 
+    /**
+     *     sets the date format for the database using the Calendar object
+     */
     public String getCreateDate() {
         Calendar cal = Calendar.getInstance();
 

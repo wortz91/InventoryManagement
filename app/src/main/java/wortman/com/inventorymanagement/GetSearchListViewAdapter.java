@@ -15,15 +15,28 @@ import org.json.JSONObject;
 import wortman.com.openshiftapplication.R;
 
 /**
+ * Creates a custom adapter object for the displaying of the search results
+ *
  * Created by Nicholas on 7/19/2015.
  */
 public class GetSearchListViewAdapter extends BaseAdapter {
 
+    /**
+     * private variables
+     */
     private JSONArray dataArray;
     private Activity activity;
 
+    /**
+     * variable for the layouts
+     */
     private static LayoutInflater inflater = null;
 
+    /**
+     * Passes in the variables for the arrays and activities
+     * @param jsonArray the json array
+     * @param a the activity
+     */
     public GetSearchListViewAdapter(JSONArray jsonArray, Activity a)
     {
         this.dataArray = jsonArray;
@@ -94,7 +107,9 @@ public class GetSearchListViewAdapter extends BaseAdapter {
     }
 
 
-
+    /**
+     * creates a model for the object
+     */
     private  class  ListCell
     {
         private TextView Label;

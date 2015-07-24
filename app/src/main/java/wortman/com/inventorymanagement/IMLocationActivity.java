@@ -76,8 +76,10 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        //creates search bar object
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
+        //creates search view bar
         searchView = new SearchView(getSupportActionBar().getThemedContext());
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setSubmitButtonEnabled(true);
@@ -94,6 +96,7 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
             }
         });
 
+        //the cursor for the search bar
         try {
             // This sets the cursor
             // resource ID to 0 or @null
@@ -109,17 +112,20 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
             e.printStackTrace();
         }
 
-
-        //here is a change to push to Unfuddle
         //ListView
         new GetInventoryTask().execute(new ApiConnector());
 
+        //finds the latitude
         curLat = findLatitude();
+
+        //finds the longitude
         curLon = findLongitude();
 
+        //the variables from the database
         dbLat = 0;
         dbLon = 0;
 
+        //creates the view for the activity
         this.getLocationView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -131,6 +137,7 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
                     Intent showDetails = new Intent(getApplicationContext(), IMViewEditActivity.class);
                     showDetails.putExtra("ItemID", clicked.getInt("ItemID"));
 
+                    //starts the given activity
                     startActivity(showDetails);
 
                 } catch (JSONException e) {
@@ -147,7 +154,11 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         super.onNewIntent(intent);
         Log.d("onNewIntent:", intent.toString());
         showSearch(false);
+
+        //the bundle of intents
         Bundle extras = intent.getExtras();
+
+        //the strings from the intents
         String userQuery = String.valueOf(extras.get(SearchManager.USER_QUERY));
         query = String.valueOf(extras.get(SearchManager.QUERY));
 
@@ -166,6 +177,11 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * shows the search
+     *
+     * @param visible   returns true if the value is searchable
+     */
     protected void showSearch(boolean visible) {
         if (visible)
             MenuItemCompat.expandActionView(searchItem);
@@ -189,8 +205,16 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         return(false);
     } /* on query text change */
 
+    /**
+     * the nearby terms
+     *
+     * @param jsonArray the entire passed in array
+     */
     public void setListAdapter (JSONArray jsonArray) {
+        //the entire database as a JSONArray
         this.jsonArray = jsonArray;
+
+        //empty new array
         nearbyArray = new JSONArray();
 
         try {
@@ -203,17 +227,20 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
 
             Log.d("Remaining objects:", jsonArray.length() + "");
 
+            //goes through all values in the array
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject dbVal = jsonArray.getJSONObject(i);
                 Log.d("JSONObject:", dbVal.toString());
 
                 Log.d("JSONObject:", dbVal.toString());
 
+                //adds the value from the parsed double in the database to the variable
                 dbLat = Double.parseDouble((String) dbVal.get("Latitude"));
                 Log.d("dbLat:", dbLat + "");
 
                 Log.d("curLat:", curLat + "");
 
+                //adds the value from the parsed double in the database to the variable
                 dbLon = Double.parseDouble((String) dbVal.get("Longitude"));
                 Log.d("dbLon:", dbLon + "");
 
@@ -226,7 +253,6 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
                 if (isNearby(curLat, curLon, dbLat, dbLon, distance)) {
 
                     //add item to list -- this setAdapter is adding the entire jsonArray if one is true
-                    //I think I need to change the AdapterListView
                     nearbyArray.put(dbVal);
                     this.getLocationView.setAdapter(new GetLocationListViewAdapter(nearbyArray, this));
                 }
@@ -234,9 +260,11 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         } catch (JSONException je) {
             je.printStackTrace();
         }
-        //this.getLocationView.setAdapter(new GetLocationListViewAdapter(jsonArray, this));
     }
 
+    /**
+     * this parses the array
+     */
     private class GetInventoryTask extends AsyncTask<ApiConnector,Long,JSONArray>
     {
         @Override
@@ -304,6 +332,16 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * this is the method to calculate if the object is nearby
+     *
+     * @param curLat    the phones latitude
+     * @param curLon    the phones longitude
+     * @param dbLat     the latitude of the object in the database
+     * @param dbLon     the longitude of the object in the database
+     * @param distance  what the distance that is deemed "nearby"
+     * @return          true if nearby
+     */
     public boolean isNearby(double curLat, double curLon, double dbLat, double dbLon, double distance) {
         /*if (Math.sqrt(Math.pow(curLat - dbLat, 2) + Math.pow(curLon - dbLon, 2)) < distance) {
             return true;
@@ -312,14 +350,19 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
                 (curLon < (dbLon + distance)) && (curLon > (dbLon - distance)));
     }
 
-    //Assist methods (Latitude)
+    /**
+     * gets the latitude from gps
+     * @return  the latitude
+     */
     public double findLatitude() {
+        //sets up the gps object
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location location;
 
         if (lm == null) {
             Toast.makeText(this, "GPS not enabled, please enable GPS in system settings", Toast.LENGTH_SHORT).show();
         } else {
+            //gets the gps location
             location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
             if (location != null) {
@@ -332,14 +375,19 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         return curLat;
     }
 
-    //Assist methods (Latitude)
+    /**
+     * gets the longitude of the device
+     * @return  the longitude
+     */
     public double findLongitude() {
+        //sets up the gps object
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location location;
 
         if (lm == null) {
             Toast.makeText(this, "GPS not enabled, please enable GPS in system settings", Toast.LENGTH_SHORT).show();
         } else {
+            //gets the gps location
             location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
             if (location != null) {
@@ -377,7 +425,12 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
 
     }
 
+    /**
+     * gets the edit date
+     * @return  the date that the database was last edited in the given format dd:MMMM:yyyy HH:mm:ss
+     */
     public String getLastEditDate() {
+        //gets the calendar object
         Calendar cal = Calendar.getInstance();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd:MMMM:yyyy HH:mm:ss a");

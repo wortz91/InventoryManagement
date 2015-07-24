@@ -35,8 +35,11 @@ public class IMSettingsActivity extends ActionBarActivity {
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
 
+        //the switch object that can be toggled
         Switch wirelessSwitch = (Switch)findViewById(R.id.wirelessSwitch);
         wirelessSwitch.setChecked(true);
+
+        //listener to check if switched
         wirelessSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
@@ -52,6 +55,7 @@ public class IMSettingsActivity extends ActionBarActivity {
             }
         });
 
+        //turns gps on and off
         Button gpsButton = (Button) findViewById(R.id.gpsButton);
         gpsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {

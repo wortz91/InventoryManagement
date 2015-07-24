@@ -26,14 +26,17 @@ import wortman.com.openshiftapplication.R;
  */
 public class IMSearchResultsActivity extends ActionBarActivity{
 
+    //the passable variables
     private Activity submitActivity = this;
     public static final String SESSION_DATA = "sessionData";
     Context context;
 
+    //the private variables
     private ListView getSearchView;
     private JSONArray jsonArray;
     private JSONArray searchedArray;
 
+    //the searched for term
     private String searchResults;
 
     @Override
@@ -43,8 +46,10 @@ public class IMSearchResultsActivity extends ActionBarActivity{
 
         Intent searchIntent = getIntent();
 
+        //grabs search terms from the intent
         searchResults= searchIntent.getExtras().getString("SearchResults");
 
+        //removes space character and adds %20 to deal with space characters
         if(searchResults.contains(" ")) {
             searchResults = searchResults.replaceAll(" ", "%20");
         }
@@ -93,10 +98,18 @@ public class IMSearchResultsActivity extends ActionBarActivity{
     }
 
 
+    /**
+     * this returns the populated jsonArray as a new array with only the searched terms in it
+     * @param jsonArray the entire jsonArray
+     */
     public void setListAdapter (JSONArray jsonArray) {
+        //the entire array
         this.jsonArray = jsonArray;
+
+        //new array
         searchedArray = new JSONArray();
 
+        //debug code
         try {
             Log.d("JSONArray", jsonArray.getJSONObject(0).toString());
         } catch (JSONException je) {
@@ -105,6 +118,7 @@ public class IMSearchResultsActivity extends ActionBarActivity{
             npe.printStackTrace();
         }
 
+        //loop through the array and add it to searchedArray if the term is searched for
         try {
 
             Log.d("Remaining objects:", jsonArray.length() + "");
@@ -116,6 +130,8 @@ public class IMSearchResultsActivity extends ActionBarActivity{
                 Log.d("JSONObject:", dbVal.toString());
 
                 searchedArray.put(dbVal);
+
+                //populate the adapter
                 this.getSearchView.setAdapter(new GetSearchListViewAdapter(searchedArray, this));
 
             }
@@ -124,10 +140,12 @@ public class IMSearchResultsActivity extends ActionBarActivity{
         } catch (NullPointerException npe) {
             Toast.makeText(this, "The term is " + searchResults + " not in the database", Toast.LENGTH_LONG).show();
         }
-        //this.getLocationView.setAdapter(new GetLocationListViewAdapter(jsonArray, this));
     }
 
 
+    /**
+     * search task for the results
+     */
     private class GetSearchTask extends AsyncTask<ApiConnector,Long,JSONArray>
     {
         @Override
