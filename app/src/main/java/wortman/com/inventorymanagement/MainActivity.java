@@ -216,8 +216,8 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
         Log.d("query:", query);
         Log.d("userQuery:", userQuery);
 
-        Toast.makeText(this, "query: " + query + " user_query: " + userQuery,
-                Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "query: " + query + " user_query: " + userQuery,
+        //        Toast.LENGTH_SHORT).show();
 
         if(userQuery != null) {
             Intent searchResults = new Intent(this, IMSearchResultsActivity.class);
@@ -225,7 +225,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
             startActivity(searchResults);
         }
 
-        Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
     }
 
     protected void showSearch(boolean visible) {

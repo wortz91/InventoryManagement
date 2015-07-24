@@ -56,7 +56,7 @@ public class IMSearchResultsActivity extends ActionBarActivity{
 
         Log.d("searchResults:", searchResults);
 
-        Toast.makeText(this, "searchResult is:" + searchResults, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "searchResult is:" + searchResults, Toast.LENGTH_LONG).show();
 
         //this is where the actual activity begins!
         //this.responseTextView = (TextView) this.findViewById(R.id.responseTextView);
