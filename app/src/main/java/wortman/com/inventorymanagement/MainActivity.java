@@ -311,7 +311,7 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
             startActivity(intent);
         }
         if (id == R.id.action_main) {
-        // Do nothing.
+        //Do nothing.
         }
 
         return super.onOptionsItemSelected(item);
