@@ -43,7 +43,6 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     private JSONArray jsonArray;
     JSONArray nearbyArray;
 
-    //private Toolbar toolbar;
     //location variables
     double curLat = 0;
     double curLon = 0;
@@ -64,7 +63,6 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-        //this.responseTextView = (TextView) this.findViewById(R.id.responseTextView);
         this.getLocationView = (ListView) this.findViewById(R.id.getInventoryView);
         //ACTION BAR TO BE ON EACH ACTIVITY
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -277,7 +275,6 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         @Override
         protected void onPostExecute(JSONArray jsonArray) {
 
-            //setTextToTextView(jsonArray);
             setListAdapter(jsonArray);
         }
     }

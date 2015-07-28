@@ -85,7 +85,6 @@ public class GetSearchListViewAdapter extends BaseAdapter {
         }
 
         // change the data of cell
-
         try
         {
             JSONObject jsonObject = this.dataArray.getJSONObject(position);

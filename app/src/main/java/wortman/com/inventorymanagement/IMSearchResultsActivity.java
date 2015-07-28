@@ -56,10 +56,7 @@ public class IMSearchResultsActivity extends ActionBarActivity{
 
         Log.d("searchResults:", searchResults);
 
-        //Toast.makeText(this, "searchResult is:" + searchResults, Toast.LENGTH_LONG).show();
-
         //this is where the actual activity begins!
-        //this.responseTextView = (TextView) this.findViewById(R.id.responseTextView);
         this.getSearchView = (ListView) this.findViewById(R.id.getSearchResults);
         //ACTION BAR TO BE ON EACH ACTIVITY
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -158,7 +155,6 @@ public class IMSearchResultsActivity extends ActionBarActivity{
         @Override
         protected void onPostExecute(JSONArray jsonArray) {
 
-            //setTextToTextView(jsonArray);
             setListAdapter(jsonArray);
         }
     }

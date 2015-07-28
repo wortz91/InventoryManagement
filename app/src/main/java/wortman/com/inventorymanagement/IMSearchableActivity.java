@@ -28,7 +28,6 @@ public class IMSearchableActivity extends ActionBarActivity {
         Log.d("searchIntent", getIntent().toString());
         Log.d("before search", searchIntent.toString());
         Log.d("actionSearch", Intent.ACTION_SEARCH);
-//        Log.d("actionIntent", searchIntent.getAction());
 
         //checks if the action is equal to the search action for the intents
         if(Intent.ACTION_SEARCH.equals(searchIntent.getAction())) {
@@ -46,8 +45,6 @@ public class IMSearchableActivity extends ActionBarActivity {
      * @param searchQuery   the search term
      */
     public void search(String searchQuery) {
-        //Toast.makeText(this, "The searched for query is:" + searchQuery, Toast.LENGTH_LONG).show();
-
         Log.d("inside search method:", searchQuery);
     }
 }

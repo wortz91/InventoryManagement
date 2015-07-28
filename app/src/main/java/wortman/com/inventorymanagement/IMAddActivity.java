@@ -214,10 +214,6 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
                         insertIntoDatabase();
 
                         goHome();}
-
-                        //call successful
-                        //Toast.makeText(IMAddActivity.this, "Add Successful", Toast.LENGTH_SHORT).show();
-
                     }
                 });
 
