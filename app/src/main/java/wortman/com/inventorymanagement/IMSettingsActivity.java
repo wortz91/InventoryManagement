@@ -16,12 +16,15 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-
 import wortman.com.openshiftapplication.R;
 
+/**
+ * Class for setting page.
+ *
+ * @author Jason Edwards, Bob Boatwright
+ */
 public class IMSettingsActivity extends ActionBarActivity {
     private Activity submitActivity = this;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,15 +37,12 @@ public class IMSettingsActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.drawable.inv_man);
         getSupportActionBar().setHomeButtonEnabled(true);
-
         //the switch object that can be toggled
-        Switch wirelessSwitch = (Switch)findViewById(R.id.wirelessSwitch);
+        Switch wirelessSwitch = (Switch) findViewById(R.id.wirelessSwitch);
         wirelessSwitch.setChecked(true);
-
         //listener to check if switched
         wirelessSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -55,7 +55,7 @@ public class IMSettingsActivity extends ActionBarActivity {
             }
         });
 
-        //turns gps on and off
+        //GPS button turns gps on and off
         Button gpsButton = (Button) findViewById(R.id.gpsButton);
         gpsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View arg0) {
@@ -65,11 +65,20 @@ public class IMSettingsActivity extends ActionBarActivity {
         });
     }
 
+    /**
+     * Method to handle onResume activity.
+     */
     @Override
     public void onResume() {
         super.onResume();
     }
 
+    /**
+     * Method to inflate the menu; this adds items to the action bar if it is present.
+     *
+     * @param menu
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -77,13 +86,18 @@ public class IMSettingsActivity extends ActionBarActivity {
         return true;
     }
 
+    /**
+     * Method to set what shows in the overflow menu.
+     *
+     * @param item
+     * @return option selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent intent = new Intent(submitActivity, IMSettingsActivity.class);
@@ -97,7 +111,6 @@ public class IMSettingsActivity extends ActionBarActivity {
             Intent intent = new Intent(submitActivity, MainActivity.class);
             startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

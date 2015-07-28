@@ -16,10 +16,13 @@ import android.widget.Toast;
 
 import wortman.com.openshiftapplication.R;
 
+/**
+ * Class for help page.
+ *
+ * @author Jason Edwards, Bob Boatwright
+ */
 public class IMHelpActivity extends ActionBarActivity {
     private Activity submitActivity = this;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +37,20 @@ public class IMHelpActivity extends ActionBarActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
+    /**
+     * Method to handle onResume activity.
+     */
     @Override
     public void onResume() {
         super.onResume();
     }
 
+    /**
+     * Method tpo inflate the menu; this adds items to the action bar if it is present.
+     *
+     * @param menu
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -46,13 +58,18 @@ public class IMHelpActivity extends ActionBarActivity {
         return true;
     }
 
+    /**
+     * Method to set what shows in the overflow menu.
+     *
+     * @param item
+     * @return option selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent intent = new Intent(submitActivity, IMSettingsActivity.class);
@@ -66,7 +83,6 @@ public class IMHelpActivity extends ActionBarActivity {
             Intent intent = new Intent(submitActivity, MainActivity.class);
             startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

@@ -1,11 +1,8 @@
 package wortman.com.inventorymanagement;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,30 +22,22 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 import wortman.com.openshiftapplication.R;
 
 /**
- * Activity which displays a login screen to the user.
+ * Class Activity which displays a login screen to the user.
  * Created by Jason on 6/8/2015.
  * Edited by Bob on 6/21/15.
  */
 public class IMLoginActivity extends Activity {
-
-    /**
-     * The default user to populate the user field with.
-     */
+    //The default user to populate the user field with.
     public static final String EXTRA_EMAIL = "com.example.android.authenticatordemo.extra.EMAIL";
     public static final String SESSION_DATA = "sessionData";
     private Activity submitActivity = this;
@@ -58,7 +47,6 @@ public class IMLoginActivity extends Activity {
     // Values for user and password at the time of the login attempt.
     private String user;
     private String password;
-
     private InputStream is = null;
     private String result = null;
     private String line = null;
@@ -83,14 +71,14 @@ public class IMLoginActivity extends Activity {
                 return false;
             }
         });
-
+        // Sign in button lister with connectivity check
         findViewById(R.id.sign_in_button).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (isConnected()) {
                             attemptLogin();
-                        }else{
+                        } else {
                             Toast.makeText(getApplicationContext(), "You must be connected to " +
                                             "a WIFI or cellular connection to use this application. " +
                                             "Please connect to a network and try again.",
@@ -102,6 +90,7 @@ public class IMLoginActivity extends Activity {
 
     /**
      * Make sure there is a network connection.
+     *
      * @return true if there is
      */
     public boolean isConnected() {
@@ -110,7 +99,7 @@ public class IMLoginActivity extends Activity {
             Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
             int exitValue = ipProcess.waitFor();
             return (exitValue == 0);
-        } catch (Exception e)  {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -122,137 +111,121 @@ public class IMLoginActivity extends Activity {
      * errors are presented and no actual login attempt is made.
      */
     public void attemptLogin() {
-
-                // Reset errors.
-                user_field.setError(null);
-                password_field.setError(null);
-
-                // Store values at the time of the login attempt.
-                user = user_field.getText().toString();
-                password = password_field.getText().toString();
-
-                boolean error = false;
-                View focusView = null;
-
-                // Check for a password.
-                if (TextUtils.isEmpty(password)) {
-                    password_field.setError(getString(R.string.error_field_required));
-                    focusView = password_field;
-                    error = true;
-                }
-
-                // Check for a user.
-                if (TextUtils.isEmpty(user)) {
-                    user_field.setError(getString(R.string.error_field_required));
-                    focusView = user_field;
-                    error = true;
-                }
-
-                if (error) {
-                    // There was an error; don't attempt login and focus the first
-                    // form field with an error.
-                    focusView.requestFocus();
-                } else{
-
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-
-                //DB calls go here
-                ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
-
-                nameValuePairs.add(new BasicNameValuePair("username", user));
-                nameValuePairs.add(new BasicNameValuePair("password", password));
-
-                SharedPreferences userId =  getSharedPreferences(SESSION_DATA,0);
-                SharedPreferences.Editor editor = userId.edit();
-                editor.putString("username", user);
-                editor.commit();
-
-                try {
-                    HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost("http://s15inventory.franklinpracticum.com/php/login.php");
-                    httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                    HttpResponse response = httpclient.execute(httppost);
-                    HttpEntity entity = response.getEntity();
-
-                    is = entity.getContent();
-
-                    Log.e("pass 1", "connection success ");
-                } catch (Exception e) {
-                    Log.e("Fail 1", e.toString());
-                    Toast.makeText(getApplicationContext(), "Invalid IP Address",
-                            Toast.LENGTH_LONG).show();
-                }
-
-                try {
-                    BufferedReader reader = new BufferedReader
-                            (new InputStreamReader(is, "iso-8859-1"), 8);
-
-                    StringBuilder sb = new StringBuilder();
-
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line + "\n");
+        // Reset errors.
+        user_field.setError(null);
+        password_field.setError(null);
+        // Store values at the time of the login attempt.
+        user = user_field.getText().toString();
+        password = password_field.getText().toString();
+        boolean error = false;
+        View focusView = null;
+        // Check for a password.
+        if (TextUtils.isEmpty(password)) {
+            password_field.setError(getString(R.string.error_field_required));
+            focusView = password_field;
+            error = true;
+        }
+        // Check for a user.
+        if (TextUtils.isEmpty(user)) {
+            user_field.setError(getString(R.string.error_field_required));
+            focusView = user_field;
+            error = true;
+        }
+        if (error) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            /**
+             * AsyncTask for login.
+             */
+            new AsyncTask<Void, Void, Void>() {
+                /**
+                 * Method to process log on.
+                 * @param params
+                 */
+                @Override
+                protected Void doInBackground(Void... params) {
+                    //DB calls go here
+                    ArrayList<NameValuePair> nameValuePairs = new ArrayList<>();
+                    // Map entered values
+                    nameValuePairs.add(new BasicNameValuePair("username", user));
+                    nameValuePairs.add(new BasicNameValuePair("password", password));
+                    // Set Session
+                    SharedPreferences userId = getSharedPreferences(SESSION_DATA, 0);
+                    SharedPreferences.Editor editor = userId.edit();
+                    editor.putString("username", user);
+                    editor.commit();
+                    // Try connecting to PHP script
+                    try {
+                        HttpClient httpclient = new DefaultHttpClient();
+                        HttpPost httppost = new HttpPost("http://s15inventory.franklinpracticum.com/php/login.php");
+                        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                        HttpResponse response = httpclient.execute(httppost);
+                        HttpEntity entity = response.getEntity();
+                        is = entity.getContent();
+                        Log.e("pass 1", "connection success ");
+                    } catch (Exception e) {
+                        Log.e("Fail 1", e.toString());
+                        Toast.makeText(getApplicationContext(), "Invalid IP Address",
+                                Toast.LENGTH_LONG).show();
                     }
-
-                    Log.d("sb", sb.toString());
-                    is.close();
-
-                    result = sb.toString();
-
-                    Log.e("pass 2", "connection success ");
-                } catch (Exception e) {
-                    Log.e("Fail 2", e.toString());
-                }
-
-                try {
-//                    String[] r = result.split(":");
-//                    result = r[1].substring(0,1);
-//                    Log.d("result", result);
-//                    code = Integer.parseInt(result);
-//                    Log.d("code", code +"");
-//                    Log.d("in try", result);
-
-                    JSONObject json_data = new JSONObject(result);
-                    Log.d("json_data", json_data.toString());
-                    Log.d("code before", code + "");
-
-                    code = (json_data.getInt("code"));
-                    Log.d("code", code + "");
-
-                    if (code == 1) {
-                        Log.d("test", "test");
-                        successful = true;
-                        Log.d("successful", successful + "");
-                        submitActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getBaseContext(), "Login Successful",
-                                        Toast.LENGTH_SHORT).show();
-                                switchActivity();
-                            }
-                        });
-                    } else {
-                        submitActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(getBaseContext(), "Username or Password is incorrect",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                    // Try validate connection
+                    try {
+                        BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+                        StringBuilder sb = new StringBuilder();
+                        while ((line = reader.readLine()) != null) {
+                            sb.append(line + "\n");
+                        }
+                        Log.d("sb", sb.toString());
+                        is.close();
+                        result = sb.toString();
+                        Log.e("pass 2", "connection success ");
+                    } catch (Exception e) {
+                        Log.e("Fail 2", e.toString());
                     }
-                } catch (Exception e) {
-                    Log.e("Fail 3", e.toString());
+                    // Try to pass JSON object to PHP and get results
+                    try {
+                        JSONObject json_data = new JSONObject(result);
+                        Log.d("json_data", json_data.toString());
+                        Log.d("code before", code + "");
+                        code = (json_data.getInt("code"));
+                        Log.d("code", code + "");
+                        if (code == 1) {
+                            Log.d("test", "test");
+                            successful = true;
+                            Log.d("successful", successful + "");
+                            submitActivity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getBaseContext(), "Login Successful",
+                                            Toast.LENGTH_SHORT).show();
+                                    switchActivity();
+                                }
+                            });
+                        } else {
+                            submitActivity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getBaseContext(), "Username or Password is incorrect",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    } catch (Exception e) {
+                        Log.e("Fail 3", e.toString());
+                    }
+                    return null;
                 }
-                return null;
-            }
+            }.execute();
+        }
+    }
 
-        }.execute();
-    }}
-
+    /**
+     * Method to switch activity.
+     */
     private void switchActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
 }
