@@ -89,6 +89,10 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
     public static String query;
     private JSONObject jObj;
 
+    /**
+     * the initial page viewed for the IMAddActivity
+     * @param savedInstanceState    the bundle passed to the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -228,7 +232,10 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
 
     }
 
-
+    /**
+     * when intent changes this is what happens
+     * @param intent    the variables that are passed to new activity
+     */
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -266,6 +273,11 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
             MenuItemCompat.collapseActionView(searchItem);
     }
 
+    /**
+     * returns true if the search text changes when submitted
+     * @param myQuery   the search query
+     * @return  true if text changed
+     */
     @Override
     public boolean onQueryTextSubmit(String myQuery) {
 
@@ -273,6 +285,11 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
     } /* on query text submit */
 
 
+    /**
+     * returns true if the search text changed
+     * @param change    the searched for string
+     * @return  true if it changed as being typed
+     */
     @Override
     public boolean onQueryTextChange(String change)
     {
@@ -285,11 +302,17 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         conditionSpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
     }
 
+    /**
+     * changes intent if the back button is pressed
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
     }
 
+    /**
+     * navigates to the home screen
+     */
     public void goHome() {
         Intent intent = new Intent(submitActivity, MainActivity.class);
         startActivity(intent);
@@ -413,6 +436,11 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
     return true;
 }
 
+    /**
+     * populates the search menu menu
+     * @param menu  the search menu
+     * @return  true if search menu exists
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -430,6 +458,11 @@ public class IMAddActivity extends ActionBarActivity implements SearchView.OnQue
         return true;
     }
 
+    /**
+     * returns true if the overflow menu item is selected and goes to that intent
+     * @param item  the menu item selected
+     * @return  true if item is selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

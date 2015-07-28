@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import wortman.com.openshiftapplication.R;
 
@@ -17,7 +16,10 @@ public class IMSearchableActivity extends ActionBarActivity {
 
     private Activity submitActivity = this;
 
-
+    /**
+     * creates the initial view
+     * @param savedInstanceState    the passed in bundle
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

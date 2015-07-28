@@ -23,6 +23,11 @@ import wortman.com.openshiftapplication.R;
  */
 public class IMHelpActivity extends ActionBarActivity {
     private Activity submitActivity = this;
+
+    /**
+     * displays the main screen
+     * @param savedInstanceState    the bundle that was passed in
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

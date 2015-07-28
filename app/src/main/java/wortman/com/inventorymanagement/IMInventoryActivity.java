@@ -39,6 +39,11 @@ public class IMInventoryActivity extends ActionBarActivity implements SearchView
     private SearchView searchView;
     public static String query;
     private JSONObject jObj;
+
+    /**
+     * the main view
+     * @param savedInstanceState the bundle that was passed in
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +108,7 @@ public class IMInventoryActivity extends ActionBarActivity implements SearchView
 
     /**
      * Method to take intent to searched item.
-     * @param intent
+     * @param intent    the intent that occurred
      */
     @Override
     protected void onNewIntent(Intent intent) {

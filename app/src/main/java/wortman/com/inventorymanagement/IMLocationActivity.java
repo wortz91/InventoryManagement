@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +28,6 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import wortman.com.openshiftapplication.R;
@@ -57,7 +55,10 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     public static String query;
     private JSONObject jObj;
 
-
+    /**
+     * the main view
+     * @param savedInstanceState    the bundle of passed variables
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,6 +148,10 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     }
 
 
+    /**
+     * what happens on new intent
+     * @param intent    the new activity
+     */
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -187,8 +192,11 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
             MenuItemCompat.collapseActionView(searchItem);
     }
 
-
-
+    /**
+     * what happens when the searched text is submitted
+     * @param myQuery   the searched for text
+     * @return  false if text is submitted
+     */
     @Override
     public boolean onQueryTextSubmit(String myQuery) {
 
@@ -196,6 +204,11 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
     } /* on query text submit */
 
 
+    /**
+     * what happens when the searched for text is changes
+     * @param change    the string representation of the text
+     * @return  false if text is changing
+     */
     @Override
     public boolean onQueryTextChange(String change)
     {
@@ -265,6 +278,11 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
      */
     private class GetInventoryTask extends AsyncTask<ApiConnector,Long,JSONArray>
     {
+        /**
+         * the array modification on the background thread
+         * @param params    the passed in ApiConnector objects
+         * @return  the json Array
+         */
         @Override
         protected JSONArray doInBackground(ApiConnector... params) {
 
@@ -272,6 +290,10 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
             return params[0].GetInventory();
         }
 
+        /**
+         * what to do with the array after it is created
+         * @param jsonArray the json array created on the background thread
+         */
         @Override
         protected void onPostExecute(JSONArray jsonArray) {
 
@@ -279,7 +301,9 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         }
     }
 
-
+    /**
+     * what to do once it comes back from the background thread
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -287,8 +311,11 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         new GetInventoryTask().execute(new ApiConnector());
     }
 
-
-
+    /**
+     * infaltes the search menu
+     * @param menu  the menu to be inflated
+     * @return  returns true if the menu is inflated
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -305,6 +332,11 @@ public class IMLocationActivity extends ActionBarActivity implements LocationLis
         return true;
     }
 
+    /**
+     * creates the overflow menu
+     * @param item  the individual clickable objects
+     * @return  return true if an item is selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

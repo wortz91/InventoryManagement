@@ -39,6 +39,10 @@ public class MainActivity extends ActionBarActivity implements LocationListener,
             "a WIFI or cellular connection to use this feature " +
             "Please connect to a network and try again.";
 
+    /**
+     * the initial view
+     * @param savedInstanceState    the initial variables from the IMLoginActivity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

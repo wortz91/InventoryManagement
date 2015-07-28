@@ -39,6 +39,10 @@ public class IMSearchResultsActivity extends ActionBarActivity{
     //the searched for term
     private String searchResults;
 
+    /**
+     * the initial view
+     * @param savedInstanceState the passed in variables
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,6 +149,11 @@ public class IMSearchResultsActivity extends ActionBarActivity{
      */
     private class GetSearchTask extends AsyncTask<ApiConnector,Long,JSONArray>
     {
+        /**
+         * the JSONArray produced in the AsyncTask object
+         * @param params    the ApiConnector object
+         * @return  the JSONArray
+         */
         @Override
         protected JSONArray doInBackground(ApiConnector... params) {
 
@@ -152,6 +161,10 @@ public class IMSearchResultsActivity extends ActionBarActivity{
             return params[0].GetSearchInventory(searchResults);
         }
 
+        /**
+         * automatically performed code after the doInBackground method
+         * @param jsonArray the ordered JSONArray object
+         */
         @Override
         protected void onPostExecute(JSONArray jsonArray) {
 
@@ -159,7 +172,9 @@ public class IMSearchResultsActivity extends ActionBarActivity{
         }
     }
 
-
+    /**
+     * what the program does after leaving the AsyncTask class
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -167,8 +182,11 @@ public class IMSearchResultsActivity extends ActionBarActivity{
         new GetSearchTask().execute(new ApiConnector());
     }
 
-
-
+    /**
+     * creates the overflow menu
+     * @param menu  the menu object
+     * @return  true if clicked
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -176,6 +194,11 @@ public class IMSearchResultsActivity extends ActionBarActivity{
         return true;
     }
 
+    /**
+     * handles the options in the overflow menu
+     * @param item  the individual menu items
+     * @return  true if the objects are clicked and goes to the respected class
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

@@ -45,21 +45,42 @@ public class GetSearchListViewAdapter extends BaseAdapter {
         inflater = (LayoutInflater) this.activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    /**
+     * returns the value of the size of the array
+     * @return  the size of the array
+     */
     @Override
     public int getCount() {
         return this.dataArray.length();
     }
 
+    /**
+     * returns the value at the passed in location
+     * @param position  position in the array
+     * @return  the object
+     */
     @Override
     public Object getItem(int position) {
         return position;
     }
 
+    /**
+     * returns the ItemID
+     * @param position  the location in the array
+     * @return  the id of the item
+     */
     @Override
     public long getItemId(int position) {
         return position;
     }
 
+    /**
+     * gives the custom view
+     * @param position  the location in the array
+     * @param convertView   the old view
+     * @param parent    the parent view
+     * @return  the custom view adapter
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
