@@ -32,7 +32,11 @@ import java.util.Calendar;
 
 import wortman.com.openshiftapplication.R;
 
-
+/**
+ * Gets the location of the device
+ *
+ * @author Nicholas Wortman
+ */
 public class IMLocationActivity extends ActionBarActivity implements LocationListener, SearchView.OnQueryTextListener {
 
     private Activity submitActivity = this;

@@ -52,7 +52,11 @@ import java.util.Locale;
 
 import wortman.com.openshiftapplication.R;
 
-
+/**
+ * AddActivity
+ *
+ * @author Nicholas Wortman
+ */
 public class IMAddActivity extends ActionBarActivity implements SearchView.OnQueryTextListener {
     //this is for navigation with the overflow menu
     private Activity submitActivity = this;

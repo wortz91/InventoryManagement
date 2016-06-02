@@ -25,6 +25,8 @@ import wortman.com.openshiftapplication.R;
 
 /**
  * Main Activity class for main menu.
+ *
+ * Author Nicholas Wortman, Jason Edwards, Bob Boatwright
  */
 public class MainActivity extends ActionBarActivity implements LocationListener, SearchView.OnQueryTextListener {
     private Activity submitActivity = this;
